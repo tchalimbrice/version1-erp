@@ -1,0 +1,5 @@
+<div class="login-page"> <div class="bg-img"></div> <div class="login-card"> <div class="login-card__icon"></div> <h1 class="login-card__title">BTP Manager</h1> <p class="login-card__sub">Gestion d'entreprise de construction</p> <label class="login-field"> <span>Lien d'invitation ou token</span> <textarea [(ngModel)]="inviteText" class="login-field__input" rows="4"placeholder="Collez votre lien d'invitation ici…"></textarea> </label> @if (error) {
+      <div class="login-error">{{ error }}</div> }
+
+    <button class="login-btn" (click)="connect()">Accéder à l'espace</button> <a href="http://localhost:4200" class="login-back">← Retour à BIZMASTER</a> </div>
+</div>

@@ -1,0 +1,84 @@
+/* Global header (company name top-left) */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 16px;
+  background: #0b2014;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.app-header__left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 180px;
+}
+
+.app-header__badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+}
+
+.app-header__company {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 42vw;
+}
+
+.app-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.app-header__link {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.app-header__link:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.app-header__user {
+  margin-left: 8px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.app-header__logout {
+  margin-left: 6px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.92);
+  cursor: pointer;
+}
+
+.app-header__logout:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.app-main {
+  min-height: calc(100vh - 56px);
+}

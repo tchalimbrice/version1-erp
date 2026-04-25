@@ -1,0 +1,47 @@
+<div class="login-wrap">
+  <div class="bg-img"></div>
+  <div class="login-card">
+    <div class="login-logo">
+      <span class="login-logo__icon" style="display:none;">🏥</span>
+      <div class="login-logo__text">
+        <span class="login-logo__sub">BIZMASTER</span>
+        <span class="login-logo__name">Gestion Santé</span>
+      </div>
+    </div>
+
+    @if (error()) {
+      <div class="login-error">{{ error() }}</div>
+    }
+
+    <!-- Étape 1 : saisie du lien unique -->
+    @if (step() === 'invite') {
+      <h1 class="login-title">Accès à votre espace</h1>
+      <p class="login-sub">Collez le lien unique qui vous a été transmis par votre responsable.</p>
+
+      <div class="login-field">
+        <label class="login-label">Lien unique d'accès</label>
+        <textarea [(ngModel)]="inviteText" rows="3" class="login-textarea"
+          placeholder="Collez votre lien d'accès ici…"></textarea>
+      </div>
+      <button (click)="parseInvite()" class="login-btn">Valider le lien</button>
+      <p class="login-hint">Contactez votre directeur si vous n'avez pas reçu votre lien.</p>
+    }
+
+    <!-- Étape 2 : email + mot de passe -->
+    @if (step() === 'login') {
+      <h1 class="login-title">Vérifiez votre identité</h1>
+      <p class="login-sub">Saisissez vos identifiants pour accéder à votre interface.</p>
+
+      <div class="login-field">
+        <label class="login-label">Email</label>
+        <input type="email" [(ngModel)]="email" class="login-input" placeholder="votre@email.ci" />
+      </div>
+      <div class="login-field">
+        <label class="login-label">Mot de passe</label>
+        <input type="password" [(ngModel)]="password" class="login-input" placeholder="••••••••" (keydown.enter)="login()" />
+      </div>
+      <button (click)="login()" class="login-btn">Se connecter</button>
+      <button (click)="backToInvite()" class="login-back">← Retour au lien d'accès</button>
+    }
+  </div>
+</div>

@@ -1,0 +1,18 @@
+@import '../../shared-page';
+
+.settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.alert-success {
+  background: #d5f5e3;
+  color: #1e8449;
+  border-radius: 9px;
+  padding: 12px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.horaires-grid { display: flex; flex-direction: column; gap: 8px; }
+.horaire-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: #f7f9fb; border-radius: 8px; }
+.horaire-jour { font-size: 13px; font-weight: 600; color: #0f2942; }
+.horaire-val  { font-size: 13px; color: #555; }

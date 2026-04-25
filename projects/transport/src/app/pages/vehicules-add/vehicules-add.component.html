@@ -1,0 +1,6 @@
+﻿<div class="form-page"> <header class="topbar"> <h1>Ajouter un véhicule</h1> <button class="ghost" type="button" (click)="cancel()">Retour</button> </header> <form class="card" (ngSubmit)="submit()"> <div class="form-grid"> <label> Immatriculation
+        <input type="text" name="plate" [(ngModel)]="plate" placeholder="DEC-7258" /> </label> <label> Type
+        <input type="text" name="type" [(ngModel)]="type" placeholder="Bus" /> </label> <label> Statut
+        <input type="text" name="status" [(ngModel)]="status" placeholder="Disponible" /> </label> <label> Chauffeur
+        <input type="text" name="driver" [(ngModel)]="driver" placeholder="Remy Evans" /> </label> </div> <div class="form-actions"> <button class="ghost" type="button" (click)="cancel()">Annuler</button> <button class="primary" type="submit">Enregistrer</button> </div> </form>
+</div>

@@ -1,0 +1,14 @@
+@import '../../shared-page';
+
+.btn-pay {
+  background: #e8f8f0;
+  color: #1e8449;
+  border: 1px solid #a9dfbf;
+  border-radius: 7px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+  &:hover { background: #d5f5e3; }
+}

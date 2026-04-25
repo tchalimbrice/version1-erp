@@ -1,0 +1,2 @@
+﻿<div class="auth-page"> <div class="auth-card"> <h2>Connexion par lien</h2> <p>Ouvrez votre lien unique ou collez-le ci-dessous.</p> <form class="form" (submit)="$event.preventDefault(); connect()"> <label class="field"> <span>Lien unique</span> <input type="text" [(ngModel)]="inviteText" name="inviteText" placeholder="Collez ici le lien / le code…" /> </label> <p class="error" *ngIf="error">{{ error }}</p> <button class="submit" type="submit">Se connecter</button> </form> </div>
+</div>

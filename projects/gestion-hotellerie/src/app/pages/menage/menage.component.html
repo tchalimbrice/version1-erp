@@ -1,0 +1,8 @@
+<div class="page"> <div class="page-header"> <div> <h1>Ménage</h1> <p class="page-sub">Gestion du ménage et de l'entretien des chambres</p> </div> </div> <!-- Stats --> <div class="stats-row"> <div class="stat-card"> <div class="stat-card__value stat-card__value--orange">{{ aFaire }}</div> <div class="stat-card__label">À préparer</div> </div> <div class="stat-card"> <div class="stat-card__value stat-card__value--blue">{{ enCours }}</div> <div class="stat-card__label">En cours</div> </div> <div class="stat-card"> <div class="stat-card__value stat-card__value--green">{{ terminees }}</div> <div class="stat-card__label">Terminées</div> </div> </div> <!-- Task list --> <div class="card"> <div class="card__title">Tâches du jour</div> <table class="table"> <thead> <tr> <th>Chambre</th><th>Type</th><th>Employé</th><th>Priorité</th><th>Statut</th><th>Action</th> </tr> </thead> <tbody> @for (t of taches; track t.id) {
+          <tr> <td><strong>Chambre {{ t.chambre }}</strong></td> <td>{{ t.type }}</td> <td>{{ t.employe }}</td> <td><span class="badge-prio" [class]="'badge-prio--' + t.priorite">{{ t.priorite }}</span></td> <td><span class="badge" [class]="'badge--' + t.statut.toLowerCase().replace(' ', '-')">{{ t.statut }}</span></td> <td> @if (t.statut !== 'Terminée') {
+                <button class="btn btn--sm btn--ghost" (click)="nextStatut(t)"> {{ t.statut === 'À préparer' ? 'Démarrer' : 'Terminer' }}
+                </button> } @else {
+                <span class="done-icon"></span> }
+            </td> </tr> }
+      </tbody> </table> </div>
+</div>

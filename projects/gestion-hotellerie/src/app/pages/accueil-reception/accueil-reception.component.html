@@ -1,0 +1,91 @@
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>Bonjour, {{ prenom() }}</h1>
+      <p class="page-sub">Tableau de bord Réception</p>
+    </div>
+    <div class="quick-actions">
+      <a class="btn btn--primary" routerLink="/clients-hotel">+ Nouveau client</a>
+      <a class="btn btn--outline" routerLink="/reservations-reception">+ Réservation</a>
+      <a class="btn btn--outline" routerLink="/commandes">+ Commande</a>
+    </div>
+  </div>
+
+  <!-- Compteurs -->
+  <div class="kpi-grid">
+    <a class="kpi-card kpi-card--blue" routerLink="/reservations-reception">
+      <div class="kpi-icon">&#8601;</div>
+      <div class="kpi-card__value">{{ svc.stats().arrivees }}</div>
+      <div class="kpi-card__label">Arrivées aujourd'hui</div>
+    </a>
+    <a class="kpi-card kpi-card--orange" routerLink="/reservations-reception">
+      <div class="kpi-icon">&#8599;</div>
+      <div class="kpi-card__value">{{ svc.stats().departs }}</div>
+      <div class="kpi-card__label">Départs aujourd'hui</div>
+    </a>
+    <a class="kpi-card kpi-card--green" routerLink="/reservations-reception">
+      <div class="kpi-icon">&#9632;</div>
+      <div class="kpi-card__value">{{ svc.stats().enSejour }}</div>
+      <div class="kpi-card__label">Clients en séjour</div>
+    </a>
+    <a class="kpi-card kpi-card--red" routerLink="/commandes">
+      <div class="kpi-icon">&#9998;</div>
+      <div class="kpi-card__value">{{ svc.stats().commandesActives }}</div>
+      <div class="kpi-card__label">Commandes actives</div>
+    </a>
+    <a class="kpi-card kpi-card--purple" routerLink="/clients-hotel">
+      <div class="kpi-icon">&#9786;</div>
+      <div class="kpi-card__value">{{ svc.clients().length }}</div>
+      <div class="kpi-card__label">Clients enregistrés</div>
+    </a>
+  </div>
+
+  <!-- Deux colonnes -->
+  <div class="two-cols">
+    <!-- Réservations confirmées -->
+    <div class="panel">
+      <div class="panel__head">
+        <span>Prochaines arrivées (confirmées)</span>
+        <a class="panel__link" routerLink="/reservations-reception">Voir tout</a>
+      </div>
+      <div class="panel__body">
+        @if (arriveesDuJour().length === 0) {
+          <div class="empty">Aucune arrivée confirmée en attente.</div>
+        }
+        @for (r of arriveesDuJour(); track r.id) {
+          <div class="list-item">
+            <div class="list-avatar">{{ r.clientNom[0] }}</div>
+            <div class="list-info">
+              <div class="fw-bold">{{ r.clientNom }}</div>
+              <div class="text-muted text-sm">Chambre {{ r.chambre }} · {{ r.dateArrivee }} → {{ r.dateDepart }}</div>
+            </div>
+            <span [class]="statutResCls(r.statut)">{{ r.statut }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Commandes en cours -->
+    <div class="panel">
+      <div class="panel__head">
+        <span>Commandes actives</span>
+        <a class="panel__link" routerLink="/commandes">Voir tout</a>
+      </div>
+      <div class="panel__body">
+        @if (commandesEnAttente().length === 0) {
+          <div class="empty">Aucune commande en cours.</div>
+        }
+        @for (c of commandesEnAttente(); track c.id) {
+          <div class="list-item">
+            <div class="list-avatar list-avatar--cmd">{{ c.chambre }}</div>
+            <div class="list-info">
+              <div class="fw-bold">{{ c.type }} — {{ c.clientNom }}</div>
+              <div class="text-muted text-sm">{{ c.heureCommande }} · {{ fmt(c.montant) }}</div>
+            </div>
+            <span [class]="statutCmdCls(c.statut)">{{ c.statut }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

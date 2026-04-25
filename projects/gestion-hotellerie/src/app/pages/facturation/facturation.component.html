@@ -1,0 +1,161 @@
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>Facturation</h1>
+      <p class="page-sub">Comptabilité — {{ factures().length }} facture(s)</p>
+    </div>
+    <button class="btn btn--primary" (click)="showForm.set(true)">+ Nouvelle facture</button>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpi-grid">
+    <div class="kpi-card kpi-card--dark">
+      <div class="kpi-card__value">{{ fmtK(kpis().total) }}</div>
+      <div class="kpi-card__label">Total facturé</div>
+    </div>
+    <div class="kpi-card kpi-card--green">
+      <div class="kpi-card__value">{{ fmtK(kpis().payees) }}</div>
+      <div class="kpi-card__label">Encaissé</div>
+    </div>
+    <div class="kpi-card kpi-card--orange">
+      <div class="kpi-card__value">{{ fmtK(kpis().attente) }}</div>
+      <div class="kpi-card__label">En attente</div>
+    </div>
+    <div class="kpi-card kpi-card--red">
+      <div class="kpi-card__value">{{ kpis().nbRetard }} facture(s)</div>
+      <div class="kpi-card__label">{{ fmtK(kpis().retard) }} en retard</div>
+    </div>
+  </div>
+
+  <!-- Tabs + Recherche -->
+  <div class="toolbar">
+    <div class="tabs">
+      @for (t of tabs; track t) {
+        <button class="tab" [class.tab--active]="activeTab() === t" (click)="activeTab.set(t)">
+          {{ t }} ({{ countTab(t) }})
+        </button>
+      }
+    </div>
+    <input class="search-input" placeholder="Rechercher (N°, client…)" [value]="search()" (input)="search.set($any($event.target).value)" />
+  </div>
+
+  <!-- Table -->
+  <div class="card">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>N° Facture</th><th>Client</th><th>Chambre</th><th>Type</th>
+          <th>Montant HT</th><th>TVA</th><th>Montant TTC</th>
+          <th>Statut</th><th>Émission</th><th>Échéance</th><th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (f of filtered(); track f.id) {
+          <tr (click)="selected.set(f)" style="cursor:pointer;">
+            <td><span class="mono">{{ f.numero }}</span></td>
+            <td class="fw-bold">{{ f.client }}</td>
+            <td class="text-muted">{{ f.chambre }}</td>
+            <td><span [class]="typeCls(f.type)">{{ f.type }}</span></td>
+            <td class="text-muted">{{ fmt(f.montantHT) }}</td>
+            <td class="text-muted">{{ f.tva }}%</td>
+            <td class="fw-bold">{{ fmt(f.montantTTC) }}</td>
+            <td><span [class]="statutCls(f.statut)">{{ f.statut }}</span></td>
+            <td class="text-muted text-sm">{{ f.dateEmission }}</td>
+            <td class="text-sm" [class.text-retard]="f.statut === 'En retard'">{{ f.dateEcheance }}</td>
+            <td>
+              @if (f.statut === 'En attente' || f.statut === 'En retard') {
+                <button class="btn-payer" (click)="$event.stopPropagation(); marquerPayee(f.id)">Payer</button>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    @if (filtered().length === 0) {
+      <div class="empty">Aucune facture pour ce filtre.</div>
+    }
+  </div>
+</div>
+
+<!-- Détail facture -->
+@if (selected()) {
+  <div class="overlay" (click)="selected.set(null)">
+    <div class="modal modal--wide" (click)="$event.stopPropagation()">
+      <div class="modal__header">
+        <div>
+          <h2>{{ selected()!.numero }}</h2>
+          <p style="margin:0;color:#64748b;font-size:13px;">{{ selected()!.client }}</p>
+        </div>
+        <button class="modal__close" (click)="selected.set(null)">×</button>
+      </div>
+      <div class="modal__body">
+        <div class="detail-grid">
+          <div class="detail-field"><label>Client</label><strong>{{ selected()!.client }}</strong></div>
+          <div class="detail-field"><label>Chambre</label><span>{{ selected()!.chambre }}</span></div>
+          <div class="detail-field"><label>Type</label><span [class]="typeCls(selected()!.type)">{{ selected()!.type }}</span></div>
+          <div class="detail-field"><label>Statut</label><span [class]="statutCls(selected()!.statut)">{{ selected()!.statut }}</span></div>
+          <div class="detail-field"><label>Montant HT</label><span>{{ fmt(selected()!.montantHT) }}</span></div>
+          <div class="detail-field"><label>TVA ({{ selected()!.tva }}%)</label><span>{{ fmt(selected()!.montantTTC - selected()!.montantHT) }}</span></div>
+          <div class="detail-field"><label>Montant TTC</label><strong class="ttc-value">{{ fmt(selected()!.montantTTC) }}</strong></div>
+          <div class="detail-field"><label>Date d'émission</label><span>{{ selected()!.dateEmission }}</span></div>
+          <div class="detail-field"><label>Date d'échéance</label>
+            <span [class.text-retard]="selected()!.statut === 'En retard'">{{ selected()!.dateEcheance }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal__footer">
+        @if (selected()!.statut === 'En attente' || selected()!.statut === 'En retard') {
+          <button class="btn btn--primary" (click)="marquerPayee(selected()!.id)">Marquer payée</button>
+        }
+        <button class="btn btn--ghost" (click)="selected.set(null)">Fermer</button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- Modal nouvelle facture -->
+@if (showForm()) {
+  <div class="overlay" (click)="showForm.set(false)">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <div class="modal__header">
+        <h2>Nouvelle facture</h2>
+        <button class="modal__close" (click)="showForm.set(false)">×</button>
+      </div>
+      <div class="modal__body">
+        <div class="field-row">
+          <label class="field"><span>Client</span><input type="text" [(ngModel)]="form.client" placeholder="Nom du client" /></label>
+          <label class="field"><span>Chambre (optionnel)</span><input type="text" [(ngModel)]="form.chambre" placeholder="Ex: 201" /></label>
+        </div>
+        <div class="field-row">
+          <label class="field">
+            <span>Type</span>
+            <select [(ngModel)]="form.type">
+              @for (t of types; track t) { <option [value]="t">{{ t }}</option> }
+            </select>
+          </label>
+          <label class="field">
+            <span>TVA (%)</span>
+            <select [(ngModel)]="form.tva">
+              <option [value]="0">0%</option>
+              <option [value]="9">9%</option>
+              <option [value]="18">18%</option>
+            </select>
+          </label>
+        </div>
+        <div class="field-row">
+          <label class="field"><span>Montant HT (FCFA)</span><input type="number" [(ngModel)]="form.montantHT" placeholder="0" /></label>
+          <label class="field"><span>Date d'échéance</span><input type="date" [(ngModel)]="form.dateEcheance" /></label>
+        </div>
+        @if (form.montantHT > 0) {
+          <div class="ttc-preview">
+            Montant TTC estimé : <strong>{{ fmt(form.montantHT * (1 + form.tva / 100)) }}</strong>
+          </div>
+        }
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--ghost" (click)="showForm.set(false)">Annuler</button>
+        <button class="btn btn--primary" (click)="addFacture()">Créer la facture</button>
+      </div>
+    </div>
+  </div>
+}

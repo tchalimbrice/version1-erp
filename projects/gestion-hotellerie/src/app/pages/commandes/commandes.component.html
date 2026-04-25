@@ -1,0 +1,171 @@
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>Commandes</h1>
+      <p class="page-sub">Room service, restaurant, bar, blanchisserie</p>
+    </div>
+    <button class="btn btn--primary" (click)="showForm.set(true)">+ Nouvelle commande</button>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpi-grid">
+    <div class="kpi-card kpi-card--dark"><div class="kpi-card__value">{{ kpis().total }}</div><div class="kpi-card__label">Total commandes</div></div>
+    <div class="kpi-card kpi-card--orange"><div class="kpi-card__value">{{ kpis().attente }}</div><div class="kpi-card__label">En attente</div></div>
+    <div class="kpi-card kpi-card--blue"><div class="kpi-card__value">{{ kpis().enCours }}</div><div class="kpi-card__label">En cours</div></div>
+    <div class="kpi-card kpi-card--green"><div class="kpi-card__value">{{ fmt(kpis().total24h) }}</div><div class="kpi-card__label">Chiffre total</div></div>
+  </div>
+
+  <!-- Tabs + Recherche -->
+  <div class="toolbar">
+    <div class="tabs">
+      @for (t of tabs; track t) {
+        <button class="tab" [class.tab--active]="activeTab() === t" (click)="activeTab.set(t)">
+          {{ t }} ({{ countTab(t) }})
+        </button>
+      }
+    </div>
+    <input class="search-input" placeholder="Chambre, client, N°…" [value]="search()" (input)="search.set($any($event.target).value)" />
+  </div>
+
+  <!-- Cards commandes -->
+  <div class="commandes-grid">
+    @for (c of filtered(); track c.id) {
+      <div class="cmd-card" [class.cmd-card--urgent]="c.statut === 'En attente'" (click)="selected.set(c)">
+        <div class="cmd-card__top">
+          <div class="cmd-room">Ch. {{ c.chambre }}</div>
+          <span [class]="statutCls(c.statut)">{{ c.statut }}</span>
+        </div>
+        <div class="cmd-client">{{ c.clientNom }}</div>
+        <span [class]="typeCls(c.type)" style="margin:6px 0;display:inline-block;">{{ c.type }}</span>
+        <div class="cmd-lignes">
+          @for (l of c.lignes.slice(0,3); track $index) {
+            <div class="cmd-ligne">{{ l.quantite }}× {{ l.produit }}</div>
+          }
+          @if (c.lignes.length > 3) {
+            <div class="cmd-ligne text-muted">+ {{ c.lignes.length - 3 }} autre(s)…</div>
+          }
+        </div>
+        <div class="cmd-card__foot">
+          <span class="cmd-montant">{{ fmt(c.montant) }}</span>
+          <span class="cmd-heure">{{ c.heureCommande }}</span>
+        </div>
+        @if (c.statut === 'En attente') {
+          <button class="btn-card-action" (click)="$event.stopPropagation(); changerStatut(c.id, 'En cours')">Prendre en charge</button>
+        }
+        @if (c.statut === 'En cours') {
+          <button class="btn-card-action btn-card-action--green" (click)="$event.stopPropagation(); changerStatut(c.id, 'Livrée')">Marquer livré</button>
+        }
+      </div>
+    }
+    @if (filtered().length === 0) {
+      <div class="empty-grid">Aucune commande pour ce filtre.</div>
+    }
+  </div>
+</div>
+
+<!-- ── DÉTAIL COMMANDE ── -->
+@if (selected()) {
+  <div class="overlay" (click)="selected.set(null)">
+    <div class="modal modal--wide" (click)="$event.stopPropagation()">
+      <div class="modal__header">
+        <div>
+          <h2>{{ selected()!.numero }} — Chambre {{ selected()!.chambre }}</h2>
+          <p style="margin:2px 0 0;color:#64748b;font-size:13px;">{{ selected()!.clientNom }} · {{ selected()!.dateCommande }} à {{ selected()!.heureCommande }}</p>
+        </div>
+        <button class="modal__close" (click)="selected.set(null)">×</button>
+      </div>
+      <div class="modal__body">
+        <div style="display:flex;gap:10px;margin-bottom:4px;">
+          <span [class]="typeCls(selected()!.type)">{{ selected()!.type }}</span>
+          <span [class]="statutCls(selected()!.statut)">{{ selected()!.statut }}</span>
+        </div>
+        <table class="table table--inner">
+          <thead><tr><th>Produit / Service</th><th class="text-center">Qté</th><th class="text-right">Prix unit.</th><th class="text-right">Sous-total</th></tr></thead>
+          <tbody>
+            @for (l of selected()!.lignes; track $index) {
+              <tr>
+                <td>{{ l.produit }}</td>
+                <td class="text-center">{{ l.quantite }}</td>
+                <td class="text-right text-muted">{{ fmt(l.prixUnit) }}</td>
+                <td class="text-right fw-bold">{{ fmt(l.quantite * l.prixUnit) }}</td>
+              </tr>
+            }
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3" class="text-right fw-bold" style="padding:12px 14px;border-top:2px solid #e2e8f0;">Total</td>
+              <td class="text-right" style="padding:12px 14px;border-top:2px solid #e2e8f0;font-size:16px;font-weight:800;color:#059669;">{{ fmt(selected()!.montant) }}</td>
+            </tr>
+          </tfoot>
+        </table>
+        @if (selected()!.notes) {
+          <div class="notes-box"><label>Notes</label><p>{{ selected()!.notes }}</p></div>
+        }
+      </div>
+      <div class="modal__footer">
+        @if (selected()!.statut === 'En attente') {
+          <button class="btn btn--primary" (click)="changerStatut(selected()!.id, 'En cours')">Prendre en charge</button>
+        }
+        @if (selected()!.statut === 'En cours') {
+          <button class="btn btn--green" (click)="changerStatut(selected()!.id, 'Livrée')">Marquer livré</button>
+        }
+        @if (selected()!.statut !== 'Annulée' && selected()!.statut !== 'Livrée') {
+          <button class="btn btn--ghost-red" (click)="changerStatut(selected()!.id, 'Annulée')">Annuler</button>
+        }
+        <button class="btn btn--ghost" (click)="selected.set(null)">Fermer</button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- ── NOUVELLE COMMANDE ── -->
+@if (showForm()) {
+  <div class="overlay" (click)="showForm.set(false)">
+    <div class="modal modal--wide" (click)="$event.stopPropagation()">
+      <div class="modal__header">
+        <h2>Nouvelle commande</h2>
+        <button class="modal__close" (click)="showForm.set(false)">×</button>
+      </div>
+      <div class="modal__body">
+        <div class="field-row">
+          <label class="field"><span>Chambre *</span><input type="text" [(ngModel)]="form.chambre" placeholder="Ex: 201" /></label>
+          <label class="field"><span>Nom du client *</span><input type="text" [(ngModel)]="form.clientNom" placeholder="Nom complet" /></label>
+        </div>
+        <div class="field-row">
+          <label class="field">
+            <span>Type de commande</span>
+            <select [(ngModel)]="form.type">
+              @for (t of types; track t) { <option [value]="t">{{ t }}</option> }
+            </select>
+          </label>
+          <label class="field"><span>Heure</span><input type="time" [(ngModel)]="form.heureCommande" /></label>
+        </div>
+
+        <div class="lignes-header">
+          <span class="field-label">Articles / Services</span>
+          <button class="btn-add-ligne" (click)="ajouterLigne()">+ Ajouter une ligne</button>
+        </div>
+
+        @for (l of lignes; track $index; let i = $index) {
+          <div class="ligne-row">
+            <input class="ligne-produit" type="text" [(ngModel)]="l.produit" placeholder="Produit ou service" />
+            <input class="ligne-qty" type="number" [(ngModel)]="l.quantite" min="1" placeholder="Qté" />
+            <input class="ligne-prix" type="number" [(ngModel)]="l.prixUnit" placeholder="Prix unit." />
+            <span class="ligne-total">{{ fmt(l.quantite * l.prixUnit) }}</span>
+            <button class="btn-del-ligne" (click)="supprimerLigne(i)" [disabled]="lignes.length === 1">×</button>
+          </div>
+        }
+
+        <div class="total-row">
+          Total : <strong>{{ fmt(totalLignes()) }}</strong>
+        </div>
+
+        <label class="field"><span>Notes</span><textarea [(ngModel)]="form.notes" rows="2" placeholder="Instructions spéciales…"></textarea></label>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--ghost" (click)="showForm.set(false)">Annuler</button>
+        <button class="btn btn--primary" (click)="ajouter()">Enregistrer la commande</button>
+      </div>
+    </div>
+  </div>
+}

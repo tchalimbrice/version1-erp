@@ -1,0 +1,267 @@
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>Gestion des employés</h1>
+      <p class="page-sub">Ressources Humaines — {{ kpis().total }} employé(s) actif(s)</p>
+    </div>
+    <div class="actions-row">
+      <a class="btn btn--ghost" routerLink="/anciens-employes">
+        Anciens employés ({{ kpis().anciens }})
+      </a>
+      <button class="btn btn--primary" (click)="showAjout.set(true)">+ Nouvel employé</button>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpi-grid">
+    <div class="kpi-card kpi-card--blue">
+      <div class="kpi-card__value">{{ kpis().total }}</div>
+      <div class="kpi-card__label">Effectif actif</div>
+    </div>
+    <div class="kpi-card kpi-card--green">
+      <div class="kpi-card__value">{{ kpis().actifs }}</div>
+      <div class="kpi-card__label">En poste</div>
+    </div>
+    <div class="kpi-card kpi-card--orange">
+      <div class="kpi-card__value">{{ kpis().conges }}</div>
+      <div class="kpi-card__label">En congé / Arrêt</div>
+    </div>
+    <div class="kpi-card kpi-card--purple">
+      <div class="kpi-card__value">{{ fmt(kpis().masse) }}</div>
+      <div class="kpi-card__label">Masse salariale (en poste)</div>
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="tabs">
+      @for (t of tabs; track t) {
+        <button class="tab" [class.tab--active]="activeTab() === t" (click)="activeTab.set(t)">{{ t }}</button>
+      }
+    </div>
+    <input class="search-input" placeholder="Rechercher (nom, poste…)" [value]="search()" (input)="search.set($any($event.target).value)" />
+  </div>
+
+  <!-- Table -->
+  <div class="card">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Matricule</th><th>Employé</th><th>Poste</th>
+          <th>Département</th><th>Contrat</th><th>Salaire</th>
+          <th>Statut</th><th>Entrée</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (e of filtered(); track e.id) {
+          <tr (click)="ouvrirFiche(e)" style="cursor:pointer;">
+            <td><span class="mono">{{ e.matricule }}</span></td>
+            <td>
+              <div class="emp-cell">
+                <div class="emp-avatar">{{ initiales(e) }}</div>
+                <div>
+                  <div class="fw-bold">{{ e.prenom }} {{ e.nom }}</div>
+                  @if (e.email) { <div class="text-muted text-sm">{{ e.email }}</div> }
+                </div>
+              </div>
+            </td>
+            <td>{{ e.poste }}</td>
+            <td><span [class]="deptCls(e.departement)">{{ e.departement }}</span></td>
+            <td><span [class]="contratCls(e.contrat)">{{ e.contrat }}</span></td>
+            <td class="fw-bold">{{ fmt(e.salaire) }}</td>
+            <td><span [class]="statutCls(e.statut)">{{ e.statut }}</span></td>
+            <td class="text-muted text-sm">{{ e.dateEntree }}</td>
+            <td (click)="$event.stopPropagation()">
+              <div class="btn-group">
+                <button class="btn-action" (click)="ouvrirEdit(e)" title="Modifier">Modifier</button>
+                <button class="btn-action btn-action--danger" (click)="ouvrirCloture(e)" title="Clôturer contrat">Clôturer</button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    @if (filtered().length === 0) {
+      <div class="empty">Aucun employé pour ce filtre.</div>
+    }
+  </div>
+</div>
+
+<!-- ── FICHE EMPLOYÉ ──────────────────────────────────────────────── -->
+@if (ficheOuverte()) {
+  <div class="overlay" (click)="ficheOuverte.set(null)">
+    <div class="modal modal--wide" (click)="$event.stopPropagation()">
+      <div class="modal__header">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <div class="emp-avatar emp-avatar--lg">{{ initiales(ficheOuverte()!) }}</div>
+          <div>
+            <h2>{{ ficheOuverte()!.prenom }} {{ ficheOuverte()!.nom }}</h2>
+            <p style="margin:2px 0 0;color:#64748b;font-size:13px;">{{ ficheOuverte()!.poste }} — {{ ficheOuverte()!.matricule }}</p>
+          </div>
+        </div>
+        <button class="modal__close" (click)="ficheOuverte.set(null)">×</button>
+      </div>
+      <div class="modal__body">
+        <div class="detail-grid">
+          <div class="detail-field"><label>Département</label><span [class]="deptCls(ficheOuverte()!.departement)">{{ ficheOuverte()!.departement }}</span></div>
+          <div class="detail-field"><label>Contrat</label><span [class]="contratCls(ficheOuverte()!.contrat)">{{ ficheOuverte()!.contrat }}</span></div>
+          <div class="detail-field"><label>Statut</label><span [class]="statutCls(ficheOuverte()!.statut)">{{ ficheOuverte()!.statut }}</span></div>
+          <div class="detail-field"><label>Salaire mensuel</label><strong>{{ fmt(ficheOuverte()!.salaire) }}</strong></div>
+          <div class="detail-field"><label>Téléphone</label><span>{{ ficheOuverte()!.tel || '—' }}</span></div>
+          <div class="detail-field"><label>Email</label><span>{{ ficheOuverte()!.email || '—' }}</span></div>
+          <div class="detail-field"><label>Date d'entrée</label><span>{{ ficheOuverte()!.dateEntree }}</span></div>
+        </div>
+        @if (ficheOuverte()!.notes) {
+          <div class="notes-box">
+            <label>Notes RH</label>
+            <p>{{ ficheOuverte()!.notes }}</p>
+          </div>
+        }
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--ghost" (click)="toggleConge(ficheOuverte()!.id); ficheOuverte.set(null)">
+          {{ ficheOuverte()!.statut === 'En congé' ? 'Retour actif' : 'Mettre en congé' }}
+        </button>
+        <button class="btn btn--edit" (click)="ouvrirEdit(ficheOuverte()!); ficheOuverte.set(null)">Modifier</button>
+        <button class="btn btn--danger" (click)="ouvrirCloture(ficheOuverte()!); ficheOuverte.set(null)">Clôturer contrat</button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- ── MODIFIER EMPLOYÉ ──────────────────────────────────────────── -->
+@if (showEdit()) {
+  <div class="overlay" (click)="showEdit.set(false)">
+    <div class="modal modal--wide" (click)="$event.stopPropagation()">
+      <div class="modal__header">
+        <h2>Modifier — {{ selected()?.prenom }} {{ selected()?.nom }}</h2>
+        <button class="modal__close" (click)="showEdit.set(false)">×</button>
+      </div>
+      <div class="modal__body">
+        <div class="field-row">
+          <label class="field"><span>Prénom</span><input type="text" [(ngModel)]="editForm.prenom" /></label>
+          <label class="field"><span>Nom</span><input type="text" [(ngModel)]="editForm.nom" /></label>
+        </div>
+        <label class="field"><span>Poste</span><input type="text" [(ngModel)]="editForm.poste" /></label>
+        <div class="field-row">
+          <label class="field">
+            <span>Département</span>
+            <select [(ngModel)]="editForm.departement">
+              @for (d of departements; track d) { <option [value]="d">{{ d }}</option> }
+            </select>
+          </label>
+          <label class="field">
+            <span>Contrat</span>
+            <select [(ngModel)]="editForm.contrat">
+              @for (c of contrats; track c) { <option [value]="c">{{ c }}</option> }
+            </select>
+          </label>
+        </div>
+        <div class="field-row">
+          <label class="field">
+            <span>Statut</span>
+            <select [(ngModel)]="editForm.statut">
+              @for (s of statuts; track s) { <option [value]="s">{{ s }}</option> }
+            </select>
+          </label>
+          <label class="field"><span>Salaire mensuel (FCFA)</span><input type="number" [(ngModel)]="editForm.salaire" /></label>
+        </div>
+        <div class="field-row">
+          <label class="field"><span>Téléphone</span><input type="text" [(ngModel)]="editForm.tel" /></label>
+          <label class="field"><span>Email</span><input type="email" [(ngModel)]="editForm.email" /></label>
+        </div>
+        <label class="field">
+          <span>Notes RH</span>
+          <textarea [(ngModel)]="editForm.notes" rows="3" placeholder="Observations, remarques…"></textarea>
+        </label>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--ghost" (click)="showEdit.set(false)">Annuler</button>
+        <button class="btn btn--primary" (click)="sauvegarderEdit()">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- ── CLÔTURER CONTRAT ──────────────────────────────────────────── -->
+@if (showCloture()) {
+  <div class="overlay" (click)="showCloture.set(false)">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <div class="modal__header">
+        <h2>Clôturer le contrat</h2>
+        <button class="modal__close" (click)="showCloture.set(false)">×</button>
+      </div>
+      <div class="modal__body">
+        <div class="cloture-info">
+          <span class="emp-avatar emp-avatar--sm">{{ selected() ? initiales(selected()!) : '' }}</span>
+          <div>
+            <strong>{{ selected()?.prenom }} {{ selected()?.nom }}</strong>
+            <span class="text-muted text-sm"> — {{ selected()?.poste }}</span>
+          </div>
+        </div>
+        <label class="field">
+          <span>Motif de départ</span>
+          <select [(ngModel)]="clotureForm.motif">
+            @for (m of motifs; track m) { <option [value]="m">{{ m }}</option> }
+          </select>
+        </label>
+        <label class="field">
+          <span>Note de départ (confidentielle)</span>
+          <textarea [(ngModel)]="clotureForm.noteDepart" rows="4" placeholder="Contexte, observations, éléments à retenir pour le dossier RH…"></textarea>
+        </label>
+        <div class="warning-box">
+          L'employé sera archivé et consultable dans la page <strong>Anciens employés</strong>. Cette action est réversible.
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--ghost" (click)="showCloture.set(false)">Annuler</button>
+        <button class="btn btn--danger" (click)="confirmerCloture()">Confirmer le départ</button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- ── NOUVEL EMPLOYÉ ────────────────────────────────────────────── -->
+@if (showAjout()) {
+  <div class="overlay" (click)="showAjout.set(false)">
+    <div class="modal modal--wide" (click)="$event.stopPropagation()">
+      <div class="modal__header">
+        <h2>Nouvel employé</h2>
+        <button class="modal__close" (click)="showAjout.set(false)">×</button>
+      </div>
+      <div class="modal__body">
+        <div class="field-row">
+          <label class="field"><span>Prénom</span><input type="text" [(ngModel)]="ajoutForm.prenom" placeholder="Prénom" /></label>
+          <label class="field"><span>Nom</span><input type="text" [(ngModel)]="ajoutForm.nom" placeholder="Nom de famille" /></label>
+        </div>
+        <label class="field"><span>Poste</span><input type="text" [(ngModel)]="ajoutForm.poste" placeholder="Ex: Réceptionniste" /></label>
+        <div class="field-row">
+          <label class="field">
+            <span>Département</span>
+            <select [(ngModel)]="ajoutForm.departement">
+              @for (d of departements; track d) { <option [value]="d">{{ d }}</option> }
+            </select>
+          </label>
+          <label class="field">
+            <span>Contrat</span>
+            <select [(ngModel)]="ajoutForm.contrat">
+              @for (c of contrats; track c) { <option [value]="c">{{ c }}</option> }
+            </select>
+          </label>
+        </div>
+        <div class="field-row">
+          <label class="field"><span>Salaire (FCFA)</span><input type="number" [(ngModel)]="ajoutForm.salaire" placeholder="0" /></label>
+          <label class="field"><span>Date d'entrée</span><input type="date" [(ngModel)]="ajoutForm.dateEntree" /></label>
+        </div>
+        <div class="field-row">
+          <label class="field"><span>Téléphone</span><input type="text" [(ngModel)]="ajoutForm.tel" placeholder="+225 07..." /></label>
+          <label class="field"><span>Email</span><input type="email" [(ngModel)]="ajoutForm.email" placeholder="email@hotel.ci" /></label>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--ghost" (click)="showAjout.set(false)">Annuler</button>
+        <button class="btn btn--primary" (click)="ajouterEmploye()">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,181 @@
+.login {
+  min-height: 100vh;
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  overflow: hidden;
+  color: #0f172a;
+}
+
+.login__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&auto=format&fit=crop') center/cover no-repeat,
+    radial-gradient(1200px 800px at 20% 20%, rgba(255, 255, 255, 0.35), transparent 60%),
+    radial-gradient(1000px 700px at 80% 30%, rgba(167, 139, 250, 0.22), transparent 55%),
+    linear-gradient(180deg, #1a1c2d 0%, #0b0c16 100%);
+}
+
+.login__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.62));
+}
+
+.login__brand {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 0.22em;
+  user-select: none;
+}
+
+.login__crown {
+  font-size: 28px;
+  line-height: 1;
+  margin-bottom: 8px;
+  opacity: 0.85;
+  display: none;
+}
+
+.login__hotel {
+  font-size: 12px;
+  font-weight: 700;
+  opacity: 0.82;
+}
+
+.login__name {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 18px;
+  padding: 22px 22px 18px;
+  box-shadow:
+    0 18px 60px rgba(0, 0, 0, 0.35),
+    0 6px 18px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(14px);
+}
+
+.card__title {
+  margin: 2px 0 6px;
+  font-size: 18px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.card__subtitle {
+  margin: 0 0 18px;
+  font-size: 13px;
+  color: rgba(15, 23, 42, 0.72);
+  text-align: center;
+}
+
+.form {
+  display: grid;
+  gap: 12px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(15, 23, 42, 0.78);
+}
+
+.field input {
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 23, 42, 0.16);
+  background: #fff;
+  padding: 0 12px;
+  outline: none;
+}
+
+.field input:focus {
+  border-color: rgba(79, 70, 229, 0.55);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.14);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+.link {
+  font-size: 12px;
+  color: #4f46e5;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.error {
+  margin: 2px 0 0;
+  color: #b91c1c;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.submit {
+  height: 44px;
+  border: 0;
+  border-radius: 12px;
+  background: #2f2a64;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.submit:hover {
+  filter: brightness(1.05);
+}
+
+.muted {
+  margin: 8px 0 0;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(15, 23, 42, 0.70);
+}
+
+.login__footer {
+  position: absolute;
+  bottom: 22px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 1;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.65);
+}
+

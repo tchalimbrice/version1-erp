@@ -1,0 +1,23 @@
+@import '../../shared-page';
+
+.search-input {
+  border: 1.5px solid #dde3ea;
+  border-radius: 9px;
+  padding: 8px 14px;
+  font-size: 13px;
+  outline: none;
+  width: 240px;
+  &:focus { border-color: #1a5276; }
+}
+
+.patient-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-weight: 800; font-size: 11px; flex-shrink: 0;
+}

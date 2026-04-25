@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "leaflet/dist/leaflet.css";
+
+:root {
+  --color-primary: #3b82f6;
+  --color-secondary: #10b981;
+  --color-background: #ffffff;
+  --color-surface: #ffffff;
+  --color-text: #1f2937;
+  --color-text-secondary: #6b7280;
+  --color-accent: #0ea5e9;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+}

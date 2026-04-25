@@ -1,0 +1,8 @@
+@if (role(); as r) {
+  <div class="layout"> <aside class="sidebar"> <div class="sidebar__brand"> <div class="sidebar__brand-icon">&#9632;</div> <div class="sidebar__brand-text"> <span class="sidebar__brand-sub">LOGISTIQUE</span> <span class="sidebar__brand-name">{{ companyName() }}</span> </div> </div> <nav class="sidebar__nav"> @for (l of linksForRole(r); track l.path) {
+          <a [routerLink]="l.path" routerLinkActive="sidebar__link--active" class="sidebar__link"> <span class="sidebar__link-ic" [innerHTML]="l.icon"></span> {{ l.label }}
+          </a> }
+      </nav> <a href="http://localhost:4200" class="sidebar__home-link">&#8962; BIZMASTER</a> <div class="sidebar__footer"> <div class="sidebar__avatar">{{ userInitials() }}</div> <div class="sidebar__user-info"> <span class="sidebar__user-name">{{ userName() }}</span> <span class="sidebar__user-role">{{ roleFr(r) }}</span> </div> <button class="sidebar__logout-btn" (click)="store.logout()" [routerLink]="'/connexion'" title="Déconnexion">&#8594;</button> </div> </aside> <main class="main-content"><router-outlet /></main> </div>
+} @else {
+  <router-outlet />
+}

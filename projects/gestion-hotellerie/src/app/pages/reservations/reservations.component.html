@@ -1,0 +1,12 @@
+<div class="page"> <div class="page-header"> <div> <h1>Réservations</h1> <p class="page-sub">Gérez toutes vos réservations</p> </div> <button class="btn btn--primary" (click)="showForm.set(true)">+ Nouvelle réservation</button> </div> <!-- Tabs --> <div class="tabs"> @for (t of tabs; track t) {
+      <button class="tab" [class.tab--active]="activeTab() === t" (click)="activeTab.set(t)">{{ t }}</button> }
+  </div> <!-- Table --> <div class="card"> <table class="table"> <thead> <tr> <th>Client</th><th>Chambre</th><th>Arrivée</th><th>Départ</th><th>Statut</th><th>Montant</th><th></th> </tr> </thead> <tbody> @for (r of filtered; track r.id) {
+          <tr> <td> <div class="client-cell"> <div class="client-avatar">{{ r.client[0] }}</div> {{ r.client }}
+              </div> </td> <td>{{ r.chambre }}</td> <td>{{ r.arrivee }}</td> <td>{{ r.depart }}</td> <td><span class="badge" [class]="'badge--' + r.statut.toLowerCase().replace(' ', '-')">{{ r.statut }}</span></td> <td>{{ r.montant }},00 €</td> <td><button class="btn-dots">&#8943;</button></td> </tr> }
+      </tbody> </table> @if (filtered.length === 0) {
+      <div class="empty">Aucune réservation pour ce filtre.</div> }
+  </div>
+</div> <!-- Modal nouvelle réservation -->
+@if (showForm()) {
+  <div class="overlay" (click)="showForm.set(false)"> <div class="modal" (click)="$event.stopPropagation()"> <div class="modal__header"> <h2>Nouvelle réservation</h2> <button class="modal__close" (click)="showForm.set(false)"></button> </div> <div class="modal__body"> <label class="field"> <span>Nom du client</span> <input type="text" [(ngModel)]="form.client" placeholder="Nom complet" /> </label> <label class="field"> <span>Chambre</span> <input type="text" [(ngModel)]="form.chambre" placeholder="Ex: 201" /> </label> <div class="field-row"> <label class="field"> <span>Date d'arrivée</span> <input type="date" [(ngModel)]="form.arrivee" /> </label> <label class="field"> <span>Date de départ</span> <input type="date" [(ngModel)]="form.depart" /> </label> </div> <label class="field"> <span>Montant (€)</span> <input type="number" [(ngModel)]="form.montant" placeholder="0" /> </label> </div> <div class="modal__footer"> <button class="btn btn--ghost" (click)="showForm.set(false)">Annuler</button> <button class="btn btn--primary" (click)="saveForm()">Enregistrer</button> </div> </div> </div>
+}

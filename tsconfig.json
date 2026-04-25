@@ -21,5 +21,61 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true
   },
-  "files": []
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/transport/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/transport/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/gestion-de-ferme/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/gestion-de-ferme/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/page-accueil-generale/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/page-accueil-generale/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/gestion-hotellerie/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/gestion-hotellerie/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/gestion-sante/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/gestion-sante/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/gestion-construction/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/gestion-construction/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/gestion-logistique/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/gestion-logistique/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/gestion-education/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/gestion-education/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/gestion-commerce/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/gestion-commerce/tsconfig.spec.json"
+    }
+  ]
 }

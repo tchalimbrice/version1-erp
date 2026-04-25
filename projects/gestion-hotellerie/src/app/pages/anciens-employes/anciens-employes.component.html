@@ -1,0 +1,137 @@
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>Anciens employés</h1>
+      <p class="page-sub">Historique RH — {{ svc.anciens().length }} dossier(s) archivé(s)</p>
+    </div>
+    <a class="btn btn--ghost" routerLink="/employes">← Retour employés actifs</a>
+  </div>
+
+  <!-- KPIs motifs -->
+  <div class="kpi-grid">
+    <div class="kpi-card kpi-card--gray">
+      <div class="kpi-card__value">{{ kpis().total }}</div>
+      <div class="kpi-card__label">Total archivés</div>
+    </div>
+    <div class="kpi-card kpi-card--red">
+      <div class="kpi-card__value">{{ kpis().renvois }}</div>
+      <div class="kpi-card__label">Renvois</div>
+    </div>
+    <div class="kpi-card kpi-card--orange">
+      <div class="kpi-card__value">{{ kpis().demissions }}</div>
+      <div class="kpi-card__label">Démissions</div>
+    </div>
+    <div class="kpi-card kpi-card--blue">
+      <div class="kpi-card__value">{{ kpis().fins }}</div>
+      <div class="kpi-card__label">Fins de contrat</div>
+    </div>
+    <div class="kpi-card kpi-card--green">
+      <div class="kpi-card__value">{{ kpis().promotions }}</div>
+      <div class="kpi-card__label">Promotions / mutations</div>
+    </div>
+  </div>
+
+  <!-- Filtres -->
+  <div class="toolbar">
+    <input class="search-input" placeholder="Rechercher (nom, poste…)" [value]="search()" (input)="search.set($any($event.target).value)" />
+    <select class="filter-select" [value]="filterMotif()" (change)="filterMotif.set($any($event.target).value)">
+      <option value="">Tous les motifs</option>
+      @for (m of motifs; track m) { <option [value]="m">{{ m }}</option> }
+    </select>
+  </div>
+
+  <!-- Table -->
+  <div class="card">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Matricule</th><th>Employé</th><th>Poste</th>
+          <th>Département</th><th>Contrat</th><th>Salaire</th>
+          <th>Entrée</th><th>Sortie</th><th>Motif</th><th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (e of filtered(); track e.id) {
+          <tr (click)="selected.set(e)" style="cursor:pointer;">
+            <td><span class="mono">{{ e.matricule }}</span></td>
+            <td>
+              <div class="emp-cell">
+                <div class="emp-avatar">{{ initiales(e) }}</div>
+                <div>
+                  <div class="fw-bold">{{ e.prenom }} {{ e.nom }}</div>
+                  @if (e.email) { <div class="text-muted text-sm">{{ e.email }}</div> }
+                </div>
+              </div>
+            </td>
+            <td>{{ e.poste }}</td>
+            <td><span [class]="deptCls(e.departement)">{{ e.departement }}</span></td>
+            <td><span [class]="contratCls(e.contrat)">{{ e.contrat }}</span></td>
+            <td class="text-muted">{{ fmt(e.salaire) }}</td>
+            <td class="text-muted text-sm">{{ e.dateEntree }}</td>
+            <td class="text-sm fw-bold">{{ e.dateFinContrat || '—' }}</td>
+            <td><span [class]="motifCls(e.motifDepart)">{{ e.motifDepart || '—' }}</span></td>
+            <td><button class="btn-fiche" (click)="$event.stopPropagation(); selected.set(e)">Dossier</button></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    @if (filtered().length === 0) {
+      <div class="empty">Aucun ancien employé pour ce filtre.</div>
+    }
+  </div>
+</div>
+
+<!-- ── DOSSIER ANCIEN EMPLOYÉ ─────────────────────────────────────── -->
+@if (selected()) {
+  <div class="overlay" (click)="selected.set(null)">
+    <div class="modal modal--wide" (click)="$event.stopPropagation()">
+      <div class="modal__header">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <div class="emp-avatar emp-avatar--lg">{{ initiales(selected()!) }}</div>
+          <div>
+            <h2>{{ selected()!.prenom }} {{ selected()!.nom }}</h2>
+            <p style="margin:2px 0 0;color:#64748b;font-size:13px;">{{ selected()!.poste }} — {{ selected()!.matricule }}</p>
+          </div>
+        </div>
+        <button class="modal__close" (click)="selected.set(null)">×</button>
+      </div>
+      <div class="modal__body">
+        <div class="section-title">Informations du poste</div>
+        <div class="detail-grid">
+          <div class="detail-field"><label>Département</label><span [class]="deptCls(selected()!.departement)">{{ selected()!.departement }}</span></div>
+          <div class="detail-field"><label>Contrat</label><span [class]="contratCls(selected()!.contrat)">{{ selected()!.contrat }}</span></div>
+          <div class="detail-field"><label>Salaire</label><strong>{{ fmt(selected()!.salaire) }}</strong></div>
+          <div class="detail-field"><label>Téléphone</label><span>{{ selected()!.tel || '—' }}</span></div>
+          <div class="detail-field"><label>Email</label><span>{{ selected()!.email || '—' }}</span></div>
+          <div class="detail-field"><label>Date d'entrée</label><span>{{ selected()!.dateEntree }}</span></div>
+        </div>
+
+        <div class="section-title" style="margin-top:20px;">Clôture du contrat</div>
+        <div class="detail-grid">
+          <div class="detail-field"><label>Date de sortie</label><strong>{{ selected()!.dateFinContrat || '—' }}</strong></div>
+          <div class="detail-field"><label>Motif de départ</label>
+            <span [class]="motifCls(selected()!.motifDepart)">{{ selected()!.motifDepart || '—' }}</span>
+          </div>
+        </div>
+
+        @if (selected()!.noteDepart) {
+          <div class="notes-box notes-box--depart">
+            <label>Note de départ (confidentielle)</label>
+            <p>{{ selected()!.noteDepart }}</p>
+          </div>
+        }
+
+        @if (selected()!.notes) {
+          <div class="notes-box">
+            <label>Notes RH (pendant le contrat)</label>
+            <p>{{ selected()!.notes }}</p>
+          </div>
+        }
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--ghost" (click)="selected.set(null)">Fermer</button>
+        <button class="btn btn--primary" (click)="reactiver(selected()!.id)">Réactiver l'employé</button>
+      </div>
+    </div>
+  </div>
+}

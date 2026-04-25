@@ -1,0 +1,14 @@
+<div class="page"> <div class="page__header"> <div> <h1 class="page__title">Tableau de bord</h1> <p class="page__sub">{{ today }}</p> </div> <div class="page__actions"> <a routerLink="/rendez-vous" class="btn btn--primary">+ Nouveau RDV</a> </div> </div> <!-- KPIs --> <div class="kpi-grid"> @for (k of kpis; track k.label) {
+      <div class="kpi-card" [style.border-left-color]="k.color"> <div class="kpi-card__icon" [style.background]="k.color + '18'" [innerHTML]="k.icon"></div> <div class="kpi-card__body"> <div class="kpi-card__value" [style.color]="k.color">{{ k.value }}</div> <div class="kpi-card__label">{{ k.label }}</div> <div class="kpi-card__sub">{{ k.sub }}</div> </div> </div> }
+  </div> <div class="charts-row"> <!-- Bar chart: RDV semaine --> <div class="card"> <div class="card__head"> <span class="card__title">Activité de la semaine</span> </div> <div class="bar-chart"> @for (d of barData; track d.label) {
+          <div class="bar-chart__col"> <div class="bar-chart__bars"> <div class="bar-chart__bar bar-chart__bar--rdv"[style.height.%]="(d.rdv / maxBar) * 100"></div> <div class="bar-chart__bar bar-chart__bar--consult"[style.height.%]="(d.consult / maxBar) * 100"></div> </div> <div class="bar-chart__lbl">{{ d.label }}</div> </div> }
+      </div> <div class="legend"> <span class="legend__dot" style="background:#1a5276"></span> Rendez-vous
+        <span class="legend__dot" style="background:#7d3c98;margin-left:16px"></span> Consultations
+      </div> </div> <!-- Pie chart: Personnel --> <div class="card"> <div class="card__head"><span class="card__title">Répartition du personnel</span></div> <div class="pie-wrap"> <svg viewBox="0 0 140 140" class="pie-svg"> @for (s of pieSegments; track s.label) {
+            <path [attr.d]="s.d" [attr.fill]="s.color" /> }
+          <circle cx="70" cy="70" r="34" fill="#f0f4f8" /> <text x="70" y="74" text-anchor="middle" font-size="11" font-weight="700" fill="#0f2942">Personnel</text> </svg> <div class="pie-legend"> @for (s of pieSegments; track s.label) {
+            <div class="pie-legend__item"> <span class="pie-legend__dot" [style.background]="s.color"></span> <span>{{ s.label }} ({{ s.pct }}%)</span> </div> }
+        </div> </div> </div> </div> <!-- Recent activity --> <div class="card"> <div class="card__head"> <span class="card__title">Activité récente</span> <a routerLink="/consultations" class="card__link">Voir tout</a> </div> <table class="table"> <thead> <tr> <th>Patient</th> <th>Type</th> <th>Heure</th> <th>Médecin</th> <th>Statut</th> </tr> </thead> <tbody> @for (a of recentActivities; track a.patient) {
+          <tr> <td class="fw-med">{{ a.patient }}</td> <td class="text-muted">{{ a.type }}</td> <td class="text-muted">{{ a.date }}</td> <td class="text-muted">{{ a.medecin }}</td> <td><span [class]="statutClass(a.statut)">{{ a.statut }}</span></td> </tr> }
+      </tbody> </table> </div>
+</div>

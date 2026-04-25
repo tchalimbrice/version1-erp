@@ -1,0 +1,92 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+  background: #f3f6fb;
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+  color: #1f2a44;
+}
+
+.form-page {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 12px 16px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(31, 42, 68, 0.08);
+  margin-bottom: 16px;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 10px 24px rgba(31, 42, 68, 0.1);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.form-grid label {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  color: #5b6b86;
+}
+
+.form-grid input {
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid #d8e0ef;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.primary {
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #2a7ad1 0%, #195fb0 100%);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 0 14px;
+  cursor: pointer;
+}
+
+.ghost {
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f2;
+  background: #f7f9fd;
+  font-size: 12px;
+  padding: 0 12px;
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}

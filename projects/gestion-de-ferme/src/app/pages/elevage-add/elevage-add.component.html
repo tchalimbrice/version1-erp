@@ -1,0 +1,31 @@
+<div class="form-page">
+  <header class="topbar">
+    <h1>Ajouter un animal</h1>
+    <button class="ghost" type="button" (click)="cancel()">Retour</button>
+  </header>
+
+  <form class="card" (ngSubmit)="submit()">
+    <div class="form-grid">
+      <label>
+        Espèce
+        <input type="text" name="species" [(ngModel)]="species" placeholder="Bovin" />
+      </label>
+      <label>
+        Lot
+        <input type="text" name="batch" [(ngModel)]="batch" placeholder="Lot A" />
+      </label>
+      <label>
+        Âge
+        <input type="text" name="age" [(ngModel)]="age" placeholder="2 ans" />
+      </label>
+      <label>
+        État
+        <input type="text" name="status" [(ngModel)]="status" placeholder="En bonne santé" />
+      </label>
+    </div>
+    <div class="form-actions">
+      <button class="ghost" type="button" (click)="cancel()">Annuler</button>
+      <button class="primary" type="submit">Enregistrer</button>
+    </div>
+  </form>
+</div>

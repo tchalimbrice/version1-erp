@@ -1,0 +1,65 @@
+import { Component, computed } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { CollabStoreService, Role } from './services/collab-store.service';
+
+interface NavLink { label: string; path: string; icon: string; }
+
+@Component({
+  selector: 'app-root',
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
+  templateUrl: './app.html',
+  styleUrl: './app.scss'
+})
+export class App {
+  readonly companyName = computed(() => this.store.company()?.name ?? 'BELLEVUE');
+  readonly role = computed(() => this.store.currentUser()?.role);
+  readonly userName = computed(() => this.store.currentUser()?.name ?? '');
+
+  readonly userInitials = computed(() => {
+    const n = this.store.currentUser()?.name ?? '';
+    return n.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2) || 'U';
+  });
+
+  constructor(public readonly store: CollabStoreService) {}
+
+  roleFr(role: Role): string {
+    const map: Record<Role, string> = {
+      owner:        'Chef d\'entreprise',
+      employee:     'Personnel hôtel',
+      hr:           'Ressources Humaines',
+      accountant:   'Comptable',
+      receptionist: 'Réceptionniste',
+    };
+    return map[role] ?? role;
+  }
+
+  linksForRole(role: Role | undefined): NavLink[] {
+    if (!role) return [];
+    if (role === 'owner') return [
+      { label: 'Tableau de bord', path: '/dashboard',    icon: '' },
+      { label: 'Paramètres',      path: '/parametres',   icon: '' }
+    ];
+    if (role === 'employee') return [
+      { label: 'Réservations',        path: '/reservations', icon: '' },
+      { label: 'Check-in / Check-out', path: '/checkin',     icon: '&#8597;' },
+      { label: 'Chambres',            path: '/chambres',     icon: '' },
+      { label: 'Clients',             path: '/clients',      icon: '' },
+      { label: 'Ménage',              path: '/menage',       icon: '' },
+      { label: 'Rapports',            path: '/rapports',     icon: '' }
+    ];
+    if (role === 'hr') return [
+      { label: 'Employés actifs',  path: '/employes',         icon: '' },
+      { label: 'Anciens employés', path: '/anciens-employes', icon: '' },
+    ];
+    if (role === 'receptionist') return [
+      { label: 'Accueil',       path: '/accueil-reception',      icon: '' },
+      { label: 'Clients',       path: '/clients-hotel',          icon: '' },
+      { label: 'Réservations',  path: '/reservations-reception', icon: '' },
+      { label: 'Commandes',     path: '/commandes',              icon: '' },
+    ];
+    return [
+      { label: 'Facturation', path: '/facturation', icon: '' }
+    ];
+  }
+}

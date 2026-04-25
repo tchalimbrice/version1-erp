@@ -1,0 +1,326 @@
+<div class="min-h-screen w-full bg-background relative overflow-hidden flex flex-col">
+  <div class="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-blue-50/50 to-transparent pointer-events-none"></div>
+  <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+
+  <header class="relative z-10 p-6">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      @if (!linksGenerated) {
+        <button (click)="goBack()" class="flex items-center gap-2 text-text-secondary hover:text-text transition-colors">
+          &#8592; Retour
+        </button>
+        <div class="text-sm text-text-secondary">Étape {{ currentStep }}/{{ totalSteps }}</div>
+      }
+    </div>
+  </header>
+
+  <main class="flex-1 flex items-center justify-center px-4 sm:px-6 relative z-10 py-12">
+    <div class="w-full max-w-2xl">
+
+      <!-- ── Étape 1 : Infos entreprise ── -->
+      @if (currentStep === 1) {
+        <div>
+          <div class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-heading font-bold text-text leading-tight tracking-tight mb-4">Votre entreprise</h1>
+            <p class="text-lg text-text-secondary max-w-xl mx-auto">Renseignez les informations de base pour créer votre espace de gestion.</p>
+          </div>
+          <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-8 flex flex-col gap-4">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-1">Nom de l'entreprise *</label>
+              <input [(ngModel)]="company.nom" type="text" placeholder="Ex: Mon Hôtel Palace" class="w-full border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-1">Adresse</label>
+              <input [(ngModel)]="company.adresse" type="text" placeholder="Ex: Abidjan, Cocody" class="w-full border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Téléphone</label>
+                <input [(ngModel)]="company.telephone" type="tel" placeholder="Ex: 07 00 00 00" class="w-full border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Email *</label>
+                <input [(ngModel)]="company.email" type="email" placeholder="admin@entreprise.ci" class="w-full border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-1">Mot de passe administrateur *</label>
+              <input [(ngModel)]="company.adminPassword" type="password" placeholder="••••••••" class="w-full border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
+              <p class="text-xs text-gray-400 mt-1">Vous utilisez ce mot de passe pour vous connecter à votre ERP.</p>
+            </div>
+          </div>
+          <div class="text-center mt-8">
+            <button (click)="nextStep()" [disabled]="!step1Valid" [class.opacity-50]="!step1Valid" [class.cursor-not-allowed]="!step1Valid"
+              class="px-8 py-4 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors disabled:hover:bg-primary">
+              Suivant &#8594;
+            </button>
+          </div>
+        </div>
+      }
+
+      <!-- ── Étape 2 : Mode de gestion ── -->
+      @if (currentStep === 2) {
+        <div>
+          <div class="text-center mb-12">
+            <h1 class="text-4xl sm:text-5xl font-heading font-bold text-text leading-tight tracking-tight mb-4">Mode de gestion</h1>
+            <p class="text-lg text-text-secondary max-w-2xl mx-auto">Définissez comment vous souhaitez organiser votre entreprise.</p>
+          </div>
+          <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div (click)="selectMode('centralized')" [class.ring-2]="selectedMode === 'centralized'" [class.ring-primary]="selectedMode === 'centralized'"
+              class="cursor-pointer bg-white rounded-xl p-8 border border-gray-200 hover:border-primary/50 transition-all duration-200">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-primary font-bold text-xl">C</div>
+                <div>
+                  <h3 class="text-xl font-semibold text-text">Gestion centralisée</h3>
+                  <p class="text-sm text-text-secondary">Chef d'entreprise seul</p>
+                </div>
+              </div>
+              <p class="text-text-secondary mb-6">Vous gérez vous-même toutes les activités. Interface unique avec toutes les fonctionnalités.</p>
+              <ul class="space-y-2 text-sm text-text-secondary">
+                <li>✓ Contrôle total des opérations</li>
+                <li>✓ Interface simplifiée</li>
+                <li>✓ Accès direct à toutes les données</li>
+              </ul>
+            </div>
+            <div (click)="selectMode('collaborative')" [class.ring-2]="selectedMode === 'collaborative'" [class.ring-primary]="selectedMode === 'collaborative'"
+              class="cursor-pointer bg-white rounded-xl p-8 border border-gray-200 hover:border-primary/50 transition-all duration-200">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-secondary font-bold text-xl">E</div>
+                <div>
+                  <h3 class="text-xl font-semibold text-text">Gestion collaborative</h3>
+                  <p class="text-sm text-text-secondary">Avec équipe et personnel</p>
+                </div>
+              </div>
+              <p class="text-text-secondary mb-6">Travaillez avec votre équipe. Chaque membre a son interface dédiée et ses permissions spécifiques.</p>
+              <ul class="space-y-2 text-sm text-text-secondary">
+                <li>✓ Comptes utilisateurs individuels</li>
+                <li>✓ Permissions par rôle</li>
+                <li>✓ Liens d'accès uniques par collaborateur</li>
+                <li>✓ Suivi des activités</li>
+              </ul>
+            </div>
+          </div>
+          <div class="text-center flex gap-4 justify-center">
+            <button (click)="previousStep()" class="px-6 py-3 bg-gray-200 text-text rounded-lg font-medium hover:bg-gray-300 transition-colors">Précédent</button>
+            <button (click)="nextStep()" [disabled]="!selectedMode" [class.opacity-50]="!selectedMode" [class.cursor-not-allowed]="!selectedMode"
+              class="px-8 py-4 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors">Suivant</button>
+          </div>
+        </div>
+      }
+
+      <!-- ── Étape 3 : Domaine d'activité ── -->
+      @if (currentStep === 3) {
+        <div>
+          <div class="text-center mb-12">
+            <h1 class="text-4xl sm:text-5xl font-heading font-bold text-text leading-tight tracking-tight mb-4">Domaine d'activité</h1>
+            <p class="text-lg text-text-secondary max-w-2xl mx-auto">Cela déterminera les fonctionnalités et l'interface dédiée à votre secteur.</p>
+          </div>
+          <div class="grid md:grid-cols-2 gap-6 mb-12">
+            @for (domain of [
+              {key:'transport',    label:'🚌 Transport',        desc:'Bus, trajets, chauffeurs et itinéraires.'},
+              {key:'agriculture',  label:'🌾 Gestion de ferme', desc:'Bétail, production et soins vétérinaires.'},
+              {key:'hospitality',  label:'🏨 Hôtellerie',       desc:'Réservations, chambres et services.'},
+              {key:'commerce',     label:'🛒 Commerce',         desc:'Catalogue produits, ventes et facturation.'},
+              {key:'health',       label:'🏥 Santé',            desc:'Patients, dossiers médicaux et rendez-vous.'},
+              {key:'education',    label:'🏫 Éducation',        desc:'Étudiants, notes et suivi pédagogique.'},
+              {key:'construction', label:'🏗️ BTP',             desc:'Chantiers, matériaux et suivi de projet.'},
+              {key:'logistics',    label:'📦 Logistique',       desc:'Livraisons, entrepôts et suivi de colis.'}
+            ]; track domain.key) {
+              <button (click)="selectDomain($any(domain.key))"
+                [class.ring-2]="selectedDomain === domain.key"
+                [class.ring-primary]="selectedDomain === domain.key"
+                class="relative text-left cursor-pointer bg-white rounded-xl p-6 border border-gray-200 hover:border-primary/50 transition-all duration-200">
+                <h3 class="text-xl font-semibold text-text">{{ domain.label }}</h3>
+                <p class="text-sm text-text-secondary mt-2">{{ domain.desc }}</p>
+              </button>
+            }
+          </div>
+          <div class="text-center flex gap-4 justify-center">
+            <button (click)="previousStep()" class="px-6 py-3 bg-gray-200 text-text rounded-lg font-medium hover:bg-gray-300 transition-colors">Précédent</button>
+            <button (click)="nextStep()" [disabled]="!selectedDomain" [class.opacity-50]="!selectedDomain" [class.cursor-not-allowed]="!selectedDomain"
+              class="px-8 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors">
+              {{ selectedMode === 'collaborative' ? 'Suivant' : 'Lancer mon ERP &#8594;' }}
+            </button>
+          </div>
+        </div>
+      }
+
+      <!-- ── Étape 4 (Collaboratif) : Sélection des collaborateurs ── -->
+      @if (currentStep === 4) {
+        <div>
+          <div class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-heading font-bold text-text leading-tight tracking-tight mb-4">Choisissez vos collaborateurs</h1>
+            <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+              Sélectionnez les rôles de votre équipe. Le directeur / propriétaire est inclus automatiquement.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-5 mb-10">
+            @for (role of availableCollabRoles; track role.key) {
+              <div (click)="toggleCollabRole(role.key)"
+                [class.ring-2]="isCollabSelected(role.key)"
+                [class.ring-primary]="isCollabSelected(role.key)"
+                [class.bg-primary]="isCollabSelected(role.key)"
+                [class.text-white]="isCollabSelected(role.key)"
+                class="cursor-pointer bg-white rounded-xl p-6 border border-gray-200 hover:border-primary/50 transition-all duration-200">
+                <div class="flex items-start gap-4">
+                  <div class="text-3xl flex-shrink-0">{{ role.icon }}</div>
+                  <div class="flex-1">
+                    <h3 class="text-lg font-bold" [class.text-white]="isCollabSelected(role.key)" [class.text-text]="!isCollabSelected(role.key)">
+                      {{ role.label }}
+                    </h3>
+                    <p class="text-sm mt-1" [class.text-white]="isCollabSelected(role.key)" [class.text-text-secondary]="!isCollabSelected(role.key)">
+                      {{ role.description }}
+                    </p>
+                    <div class="flex flex-wrap gap-1 mt-3">
+                      @for (a of role.access; track a) {
+                        <span class="text-xs px-2 py-0.5 rounded-full font-medium"
+                          [class.bg-white]="isCollabSelected(role.key)"
+                          [class.text-primary]="isCollabSelected(role.key)"
+                          [class.bg-gray-100]="!isCollabSelected(role.key)"
+                          [class.text-gray-600]="!isCollabSelected(role.key)">
+                          {{ a }}
+                        </span>
+                      }
+                    </div>
+                  </div>
+                  <div class="flex-shrink-0 mt-1">
+                    <div class="w-6 h-6 rounded-full border-2 flex items-center justify-center"
+                      [class.border-white]="isCollabSelected(role.key)"
+                      [class.bg-white]="isCollabSelected(role.key)"
+                      [class.border-gray-300]="!isCollabSelected(role.key)">
+                      @if (isCollabSelected(role.key)) {
+                        <span class="text-primary font-bold text-xs">✓</span>
+                      }
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+
+          @if (step4Valid) {
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6 text-sm text-blue-700">
+              <strong>{{ selectedCollabKeys.size }}</strong> rôle(s) sélectionné(s) — vous renseignerez ensuite les informations de chaque collaborateur.
+            </div>
+          }
+
+          <div class="text-center flex gap-4 justify-center">
+            <button (click)="previousStep()" class="px-6 py-3 bg-gray-200 text-text rounded-lg font-medium hover:bg-gray-300 transition-colors">Précédent</button>
+            <button (click)="nextStep()" [disabled]="!step4Valid" [class.opacity-50]="!step4Valid" [class.cursor-not-allowed]="!step4Valid"
+              class="px-8 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors">
+              Renseigner les informations &#8594;
+            </button>
+          </div>
+        </div>
+      }
+
+      <!-- ── Étape 5 (Collaboratif) : Infos collaborateurs + génération des liens ── -->
+      @if (currentStep === 5 && !linksGenerated) {
+        <div>
+          <div class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-heading font-bold text-text leading-tight tracking-tight mb-4">Informations des collaborateurs</h1>
+            <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+              Renseignez les informations de connexion de chaque collaborateur.
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-6 mb-8">
+            @for (entry of collabEntries; track $index) {
+              <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+                <div class="flex items-center gap-3 mb-5">
+                  <span class="text-2xl">{{ entry.roleDef.icon }}</span>
+                  <div>
+                    <h3 class="font-bold text-text">{{ entry.roleDef.label }}</h3>
+                    <p class="text-xs text-text-secondary">{{ entry.roleDef.description }}</p>
+                  </div>
+                </div>
+                <div class="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1 uppercase tracking-wide">Nom *</label>
+                    <input [(ngModel)]="entry.nom" type="text" placeholder="Kouassi"
+                      class="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1 uppercase tracking-wide">Prénom *</label>
+                    <input [(ngModel)]="entry.prenom" type="text" placeholder="Ange"
+                      class="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1 uppercase tracking-wide">Email *</label>
+                    <input [(ngModel)]="entry.email" type="email" placeholder="email@entreprise.ci"
+                      class="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1 uppercase tracking-wide">Mot de passe *</label>
+                    <input [(ngModel)]="entry.password" type="password" placeholder="••••••"
+                      class="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+
+          <div class="text-center flex gap-4 justify-center">
+            <button (click)="previousStep()" class="px-6 py-3 bg-gray-200 text-text rounded-lg font-medium hover:bg-gray-300 transition-colors">Précédent</button>
+            <button (click)="nextStep()" [disabled]="!step5Valid" [class.opacity-50]="!step5Valid" [class.cursor-not-allowed]="!step5Valid"
+              class="px-8 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors">
+              Générer les liens d'accès &#8594;
+            </button>
+          </div>
+        </div>
+      }
+
+      <!-- ── Liens générés ── -->
+      @if (linksGenerated) {
+        <div>
+          <div class="text-center mb-10">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">✅</div>
+            <h1 class="text-3xl font-heading font-bold text-text mb-3">Liens d'accès générés !</h1>
+            <p class="text-text-secondary">Transmettez chaque lien au collaborateur concerné. Chacun sera invité à se connecter avec son email et mot de passe.</p>
+          </div>
+
+          <!-- Lien propriétaire -->
+          <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-4">
+            <div class="flex items-center justify-between flex-wrap gap-3">
+              <div>
+                <div class="text-xs font-bold text-blue-500 uppercase tracking-wide mb-1">Votre accès (Propriétaire / Directeur)</div>
+                <div class="text-sm font-semibold text-blue-800">{{ company.nom }}</div>
+                <div class="text-xs text-blue-600 mt-0.5">{{ company.email }}</div>
+              </div>
+              <button (click)="copyLink(ownerLink)" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+                Copier mon lien
+              </button>
+            </div>
+          </div>
+
+          <!-- Liens collaborateurs -->
+          @for (link of generatedLinks; track $index) {
+            <div class="bg-white border border-gray-200 rounded-xl p-5 mb-3 shadow-sm">
+              <div class="flex items-center justify-between flex-wrap gap-3">
+                <div>
+                  <div class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">{{ link.role }}</div>
+                  <div class="text-sm font-semibold text-text">{{ link.name }}</div>
+                  <div class="text-xs text-text-secondary mt-0.5">{{ link.email }}</div>
+                </div>
+                <button (click)="copyLink(link.url)" class="px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors">
+                  Copier le lien
+                </button>
+              </div>
+            </div>
+          }
+
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6 text-sm text-amber-700">
+            <strong>Important :</strong> Conservez ces liens. Chaque collaborateur utilise son lien unique pour accéder à son espace et se connecter avec son email et mot de passe.
+          </div>
+
+          <div class="text-center mt-8">
+            <button (click)="goToDashboard()" class="px-8 py-4 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors">
+              Accéder à mon tableau de bord &#8594;
+            </button>
+          </div>
+        </div>
+      }
+
+    </div>
+  </main>
+</div>

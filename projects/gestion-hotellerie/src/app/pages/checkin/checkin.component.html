@@ -1,0 +1,24 @@
+<div class="page"> <div class="page-header"> <div> <h1>{{ activeTab() === 'checkin' ? 'Check-in' : 'Check-out' }}</h1> <p class="page-sub">{{ activeTab() === 'checkin' ? "Enregistrez l'arrivée d'un client" : "Gérez le départ d'un client" }}</p> </div> </div> <!-- Tabs --> <div class="tabs"> <button class="tab" [class.tab--active]="activeTab() === 'checkin'" (click)="setTab('checkin')">Check-in</button> <button class="tab" [class.tab--active]="activeTab() === 'checkout'" (click)="setTab('checkout')">Check-out</button> </div> <!-- ── CHECK-IN ─────────────────────────────── --> @if (activeTab() === 'checkin') {
+    <!-- Stepper --> <div class="stepper"> <div class="step" [class.step--active]="step() >= 1" [class.step--done]="step() > 1"> <div class="step__dot">@if (step() > 1) { ✓ } @else { 1 }</div> <span>Recherche</span> </div> <div class="step__line" [class.step__line--active]="step() > 1"></div> <div class="step" [class.step--active]="step() >= 2" [class.step--done]="step() > 2"> <div class="step__dot">@if (step() > 2) { ✓ } @else { 2 }</div> <span>Informations</span> </div> <div class="step__line" [class.step__line--active]="step() > 2"></div> <div class="step" [class.step--active]="step() >= 3"> <div class="step__dot">3</div> <span>Clé &amp; confirmation</span> </div> </div> <!-- Step 1: Search --> @if (step() === 1) {
+      <div class="card"> <div class="card__title">Rechercher une réservation</div> <div class="search-wrap"> <span class="search-icon"></span> <input
+            class="search-input"type="text"placeholder="N° réservation ou nom du client..."[ngModel]="searchQuery()"(ngModelChange)="searchQuery.set($event)"/> </div> @if (searchQuery().length > 0) {
+          @if (filteredResas.length === 0) {
+            <p class="empty">Aucune réservation trouvée.</p> }
+          @for (r of filteredResas; track r.id) {
+            <div class="resa-result" (click)="selectResa(r)"> <div class="resa-result__avatar">{{ r.client[0] }}</div> <div class="resa-result__info"> <div class="resa-result__name">{{ r.client }}</div> <div class="resa-result__meta">{{ r.id }} &bull; ARRIVÉE : {{ r.arrivee }} &bull; DÉPART : {{ r.depart }}</div> <div class="resa-result__room">Chambre attribuée : {{ r.chambre }} - {{ r.type }}</div> </div> <button class="btn btn--primary">Sélectionner</button> </div> }
+        }
+      </div> }
+
+    <!-- Step 2: Info --> @if (step() === 2 && selectedResa(); as r) {
+      <div class="card"> <div class="card__title">Informations du client</div> <div class="resa-card"> <div class="resa-card__avatar">{{ r.client[0] }}</div> <div class="resa-card__body"> <div class="resa-card__name">{{ r.client }}</div> <div class="resa-card__id">{{ r.id }}</div> <div class="resa-card__dates">ARRIVÉE : {{ r.arrivee }} &nbsp;&nbsp; DÉPART : {{ r.depart }}</div> <div class="resa-card__room">Chambre attribuée : <strong>{{ r.chambre }} - {{ r.type }}</strong></div> </div> </div> <div class="btn-row"> <button class="btn btn--ghost" (click)="reset()">&#8592; Retour</button> <button class="btn btn--primary" (click)="proceedCheckin()">Procéder au check-in</button> </div> </div> }
+
+    <!-- Step 3: Confirmation --> @if (step() === 3 && selectedResa(); as r) {
+      <div class="card card--success"> <div class="success-icon"></div> <div class="success-title">Check-in effectué !</div> <div class="success-sub">{{ r.client }} est maintenant enregistré(e) dans la chambre {{ r.chambre }}.</div> <div class="badge-room">Chambre {{ r.chambre }} — {{ r.type }}</div> <div class="btn-row btn-row--center"> <button class="btn btn--ghost" (click)="reset()">Nouveau check-in</button> </div> </div> }
+  }
+
+  <!-- ── CHECK-OUT ─────────────────────────────── --> @if (activeTab() === 'checkout') {
+    <div class="card"> <div class="card__title">Clients qui partent aujourd'hui</div> <table class="table"> <thead> <tr> <th>Client</th><th>Chambre</th><th>Arrivée</th><th>Départ</th><th>Facture</th><th>Action</th> </tr> </thead> <tbody> @for (c of departClients; track c.id) {
+            <tr> <td> <div class="client-cell"> <div class="client-avatar">{{ c.client[0] }}</div> {{ c.client }}
+                </div> </td> <td>{{ c.chambre }} - {{ c.type }}</td> <td>{{ c.arrivee }}</td> <td>{{ c.depart }}</td> <td>Voir facture</td> <td><button class="btn btn--sm btn--primary">Check-out</button></td> </tr> }
+        </tbody> </table> </div> }
+</div>

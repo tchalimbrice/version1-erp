@@ -1,0 +1,6 @@
+﻿<div class="form-page"> <header class="topbar"> <h1>Ajouter un chauffeur</h1> <button class="ghost" type="button" (click)="cancel()">Retour</button> </header> <form class="card" (ngSubmit)="submit()"> <div class="form-grid"> <label> Nom complet
+        <input type="text" name="driverName" [(ngModel)]="driverName" placeholder="Ex: Alona Rarth" /> </label> <label> Téléphone
+        <input type="text" name="phone" [(ngModel)]="phone" placeholder="0795-599-51" /> </label> <label> Numéro de permis
+        <input type="text" name="license" [(ngModel)]="license" placeholder="Permis" /> </label> <label> Véhicule assigné
+        <input type="text" name="vehicle" [(ngModel)]="vehicle" placeholder="Lorian" /> </label> </div> <div class="form-actions"> <button class="ghost" type="button" (click)="cancel()">Annuler</button> <button class="primary" type="submit">Enregistrer</button> </div> </form>
+</div>

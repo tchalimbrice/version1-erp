@@ -1,0 +1,23 @@
+.page { padding: 28px 32px; max-width: 800px; }
+.page-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; }
+h1 { margin: 0 0 4px; font-size: 22px; font-weight: 800; }
+.page-sub { margin: 0; color: #64748b; font-size: 13px; }
+
+.toast { background: #ecfdf5; color: #059669; padding: 10px 16px; border-radius: 10px; font-weight: 700; font-size: 13px; border: 1px solid #a7f3d0; }
+
+.section { background: #fff; border: 1px solid rgba(15,23,42,0.08); border-radius: 16px; padding: 22px; margin-bottom: 20px; }
+.section__title { font-size: 14px; font-weight: 800; margin-bottom: 18px; color: #0f172a; }
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field--wide { grid-column: span 2; }
+.field span { font-size: 13px; font-weight: 700; color: #475569; }
+.field input, .field select {
+  padding: 10px 12px; border: 1px solid #e2e8f0; border-radius: 10px;
+  font-size: 14px; font-family: inherit; outline: none; background: #fff;
+}
+.field input:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.1); }
+
+.btn { padding: 11px 22px; border-radius: 10px; font-size: 13px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; }
+.btn--primary { background: #6366f1; color: #fff; }
+.btn--primary:hover { background: #4f46e5; }

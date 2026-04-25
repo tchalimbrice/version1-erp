@@ -1,0 +1,166 @@
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>Réservations</h1>
+      <p class="page-sub">{{ svc.reservations().length }} réservation(s) au total</p>
+    </div>
+    <button class="btn btn--primary" (click)="showForm.set(true)">+ Nouvelle réservation</button>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpi-grid">
+    <div class="kpi-card kpi-card--dark"><div class="kpi-card__value">{{ kpis().total }}</div><div class="kpi-card__label">Total</div></div>
+    <div class="kpi-card kpi-card--green"><div class="kpi-card__value">{{ kpis().confirmees }}</div><div class="kpi-card__label">Confirmées</div></div>
+    <div class="kpi-card kpi-card--blue"><div class="kpi-card__value">{{ kpis().arrivees }}</div><div class="kpi-card__label">En séjour</div></div>
+    <div class="kpi-card kpi-card--orange"><div class="kpi-card__value">{{ kpis().attente }}</div><div class="kpi-card__label">En attente</div></div>
+  </div>
+
+  <!-- Tabs + Recherche -->
+  <div class="toolbar">
+    <div class="tabs">
+      @for (t of tabs; track t) {
+        <button class="tab" [class.tab--active]="activeTab() === t" (click)="activeTab.set(t)">
+          {{ t }} ({{ countTab(t) }})
+        </button>
+      }
+    </div>
+    <input class="search-input" placeholder="Client, N°, chambre…" [value]="search()" (input)="search.set($any($event.target).value)" />
+  </div>
+
+  <!-- Table -->
+  <div class="card">
+    <table class="table">
+      <thead>
+        <tr><th>N°</th><th>Client</th><th>Chambre</th><th>Arrivée</th><th>Départ</th><th>Nuits</th><th>Personnes</th><th>Montant</th><th>Statut</th><th>Actions</th></tr>
+      </thead>
+      <tbody>
+        @for (r of filtered(); track r.id) {
+          <tr (click)="selected.set(r)" style="cursor:pointer;">
+            <td class="mono">{{ r.numero }}</td>
+            <td class="fw-bold">{{ r.clientNom }}</td>
+            <td>{{ r.chambre }} <span class="text-muted text-sm">({{ r.typeChambre }})</span></td>
+            <td>{{ r.dateArrivee }}</td>
+            <td>{{ r.dateDepart }}</td>
+            <td class="text-center">{{ r.nbNuits }}</td>
+            <td class="text-center">{{ r.nbPersonnes }}</td>
+            <td class="fw-bold">{{ fmt(r.montant) }}</td>
+            <td><span [class]="statutCls(r.statut)">{{ r.statut }}</span></td>
+            <td (click)="$event.stopPropagation()">
+              @if (r.statut === 'Confirmée') {
+                <button class="btn-sm btn-sm--green" (click)="changerStatut(r.id, 'Arrivée')">Check-in</button>
+              }
+              @if (r.statut === 'Arrivée') {
+                <button class="btn-sm btn-sm--orange" (click)="changerStatut(r.id, 'Partie')">Check-out</button>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    @if (filtered().length === 0) {
+      <div class="empty">Aucune réservation pour ce filtre.</div>
+    }
+  </div>
+</div>
+
+<!-- ── DÉTAIL RÉSERVATION ── -->
+@if (selected()) {
+  <div class="overlay" (click)="selected.set(null)">
+    <div class="modal modal--wide" (click)="$event.stopPropagation()">
+      <div class="modal__header">
+        <div>
+          <h2>{{ selected()!.numero }}</h2>
+          <p style="margin:2px 0 0;color:#64748b;font-size:13px;">{{ selected()!.clientNom }} — Chambre {{ selected()!.chambre }}</p>
+        </div>
+        <button class="modal__close" (click)="selected.set(null)">×</button>
+      </div>
+      <div class="modal__body">
+        <div class="detail-grid">
+          <div class="detail-field"><label>Client</label><strong>{{ selected()!.clientNom }}</strong></div>
+          <div class="detail-field"><label>Statut</label><span [class]="statutCls(selected()!.statut)">{{ selected()!.statut }}</span></div>
+          <div class="detail-field"><label>Chambre</label><span>{{ selected()!.chambre }} — {{ selected()!.typeChambre }}</span></div>
+          <div class="detail-field"><label>Personnes</label><span>{{ selected()!.nbPersonnes }}</span></div>
+          <div class="detail-field"><label>Arrivée</label><strong>{{ selected()!.dateArrivee }}</strong></div>
+          <div class="detail-field"><label>Départ</label><strong>{{ selected()!.dateDepart }}</strong></div>
+          <div class="detail-field"><label>Durée</label><span>{{ selected()!.nbNuits }} nuit(s)</span></div>
+          <div class="detail-field"><label>Montant</label><strong class="montant-ttc">{{ fmt(selected()!.montant) }}</strong></div>
+        </div>
+        @if (selected()!.notes) {
+          <div class="notes-box"><label>Notes</label><p>{{ selected()!.notes }}</p></div>
+        }
+      </div>
+      <div class="modal__footer">
+        @if (selected()!.statut === 'En attente') {
+          <button class="btn btn--outline-green" (click)="changerStatut(selected()!.id, 'Confirmée')">Confirmer</button>
+        }
+        @if (selected()!.statut === 'Confirmée') {
+          <button class="btn btn--primary" (click)="changerStatut(selected()!.id, 'Arrivée')">Check-in</button>
+        }
+        @if (selected()!.statut === 'Arrivée') {
+          <button class="btn btn--orange" (click)="changerStatut(selected()!.id, 'Partie')">Check-out</button>
+        }
+        @if (selected()!.statut !== 'Annulée' && selected()!.statut !== 'Partie') {
+          <button class="btn btn--ghost-red" (click)="changerStatut(selected()!.id, 'Annulée')">Annuler</button>
+        }
+        <button class="btn btn--ghost" (click)="selected.set(null)">Fermer</button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- ── NOUVELLE RÉSERVATION ── -->
+@if (showForm()) {
+  <div class="overlay" (click)="showForm.set(false)">
+    <div class="modal modal--wide" (click)="$event.stopPropagation()">
+      <div class="modal__header">
+        <h2>Nouvelle réservation</h2>
+        <button class="modal__close" (click)="showForm.set(false)">×</button>
+      </div>
+      <div class="modal__body">
+        <label class="field">
+          <span>Client *</span>
+          <select (change)="selectionnerClient(+$any($event.target).value)">
+            <option value="0">— Sélectionner un client enregistré —</option>
+            @for (c of clientsOptions; track c.id) {
+              <option [value]="c.id">{{ c.prenom }} {{ c.nom }} ({{ c.tel }})</option>
+            }
+          </select>
+        </label>
+        @if (!form.clientId) {
+          <label class="field">
+            <span>Ou saisir manuellement</span>
+            <input type="text" [(ngModel)]="form.clientNom" placeholder="Nom complet du client" />
+          </label>
+        }
+        <div class="field-row">
+          <label class="field">
+            <span>Chambre *</span>
+            <input type="text" [(ngModel)]="form.chambre" placeholder="Ex: 201" />
+          </label>
+          <label class="field">
+            <span>Type de chambre</span>
+            <select [(ngModel)]="form.typeChambre">
+              @for (t of typesChambre; track t) { <option [value]="t">{{ t }}</option> }
+            </select>
+          </label>
+        </div>
+        <div class="field-row">
+          <label class="field"><span>Date d'arrivée *</span><input type="date" [(ngModel)]="form.dateArrivee" /></label>
+          <label class="field"><span>Date de départ *</span><input type="date" [(ngModel)]="form.dateDepart" /></label>
+        </div>
+        <div class="field-row">
+          <label class="field"><span>Nombre de personnes</span><input type="number" [(ngModel)]="form.nbPersonnes" min="1" /></label>
+          <label class="field"><span>Montant (FCFA)</span><input type="number" [(ngModel)]="form.montant" placeholder="0" /></label>
+        </div>
+        @if (nbNuits() > 0) {
+          <div class="info-box">Durée : <strong>{{ nbNuits() }} nuit(s)</strong></div>
+        }
+        <label class="field"><span>Notes</span><textarea [(ngModel)]="form.notes" rows="2" placeholder="Demandes spéciales, allergies…"></textarea></label>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--ghost" (click)="showForm.set(false)">Annuler</button>
+        <button class="btn btn--primary" (click)="ajouter()">Créer la réservation</button>
+      </div>
+    </div>
+  </div>
+}

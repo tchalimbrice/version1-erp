@@ -1,0 +1,4 @@
+@import '../../shared-page';
+
+.personnel-cell { display: flex; align-items: center; gap: 10px; }
+.avatar { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 11px; flex-shrink: 0; }

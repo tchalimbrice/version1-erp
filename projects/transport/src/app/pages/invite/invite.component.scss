@@ -1,0 +1,29 @@
+.invite-page {
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.card {
+  width: 100%;
+  max-width: 520px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+.error {
+  margin-top: 12px;
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.hint {
+  margin-top: 8px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
