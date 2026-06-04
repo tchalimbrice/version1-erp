@@ -7,14 +7,14 @@ export interface CompanyData {
 }
 
 export interface User {
-  id: string; username: string; password: string;
   name: string; email: string; role: Role;
 }
 
 interface AppState {
   mode?: 'centralized' | 'collaborative';
   company?: CompanyData;
-  currentUser?: { role: Role; name: string; email: string };
+  currentUser?: User;
+  token?: string;
 }
 
 const STORAGE_KEY = 'bizmaster_commerce_state';
@@ -25,13 +25,14 @@ export class CollabStoreService {
 
   readonly mode        = signal<'centralized' | 'collaborative' | undefined>(this.state.mode);
   readonly company     = signal<CompanyData | undefined>(this.state.company);
-  readonly currentUser = signal<{ role: Role; name: string; email: string } | undefined>(this.state.currentUser);
+  readonly currentUser = signal<User | undefined>(this.state.currentUser);
+  readonly token       = signal<string | undefined>(this.state.token);
 
   readonly users = signal<User[]>([
-    { id:'1', username:'gerant',     password:'admin123', name:'M. Konan Didier',     email:'gerant@commerce.ci',   role:'owner'},
-    { id:'2', username:'vendeur',    password:'vend123',  name:'Mme Yao Aminata',     email:'vente@commerce.ci',    role:'employee'},
-    { id:'3', username:'rh',         password:'rh123',    name:'M. Bamba Seydou',     email:'rh@commerce.ci',       role:'hr'},
-    { id:'4', username:'comptable',  password:'cpt123',   name:'Mme Traoré Fatouma',  email:'cpt@commerce.ci',      role:'accountant' },
+    { name:'M. Konan Didier',     email:'gerant@commerce.ci',   role:'owner' },
+    { name:'Mme Yao Aminata',     email:'vente@commerce.ci',    role:'employee' },
+    { name:'M. Bamba Seydou',     email:'rh@commerce.ci',       role:'hr' },
+    { name:'Mme Traoré Fatouma',  email:'cpt@commerce.ci',      role:'accountant' },
   ]);
 
   private load(): AppState {
@@ -40,15 +41,23 @@ export class CollabStoreService {
   }
 
   private save() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ mode: this.mode(), company: this.company(), currentUser: this.currentUser() }));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ mode: this.mode(), company: this.company(), currentUser: this.currentUser(), token: this.token() }));
   }
 
   hydrateFromInvite(invite: { company: CompanyData; mode: 'centralized' | 'collaborative'; user: { role: Role; name: string; email: string } }) {
-    this.company.set(invite.company); this.mode.set(invite.mode); this.currentUser.set(invite.user); this.save();
+    this.company.set(invite.company);
+    this.mode.set(invite.mode);
+    this.currentUser.set(invite.user);
+    this.save();
   }
 
   setCurrentUser(user: User) {
-    this.currentUser.set({ role: user.role, name: user.name, email: user.email });
+    this.currentUser.set(user);
+    this.save();
+  }
+
+  setToken(token: string) {
+    this.token.set(token);
     this.save();
   }
 
@@ -57,6 +66,15 @@ export class CollabStoreService {
     if (c) { this.company.set({ ...c, name }); this.save(); }
   }
 
-  reset() { localStorage.removeItem(STORAGE_KEY); this.currentUser.set(undefined); }
-  logout() { this.currentUser.set(undefined); localStorage.removeItem(STORAGE_KEY); }
+  reset() {
+    localStorage.removeItem(STORAGE_KEY);
+    this.currentUser.set(undefined);
+    this.token.set(undefined);
+  }
+
+  logout() {
+    this.currentUser.set(undefined);
+    this.token.set(undefined);
+    localStorage.removeItem(STORAGE_KEY);
+  }
 }

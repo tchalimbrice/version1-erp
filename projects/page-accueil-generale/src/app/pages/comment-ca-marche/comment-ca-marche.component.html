@@ -1,0 +1,169 @@
+<div class="min-h-screen bg-background">
+  <!-- Header -->
+  <header class="sticky top-0 z-40 px-6 py-4 flex items-center justify-between bg-white/80 backdrop-blur-sm border-b border-gray-100">
+    <button (click)="goBack()" class="flex items-center gap-2 text-text-secondary hover:text-text transition-colors text-sm">
+      &#8592; Retour
+    </button>
+    <div class="flex items-center gap-3">
+      <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-primary to-blue-700 flex items-center justify-center text-white font-bold text-sm">B</div>
+      <span class="font-bold text-text">BizMaster</span>
+    </div>
+    <button (click)="goStart()" class="px-5 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors">
+      Commencer
+    </button>
+  </header>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-blue-50 to-white py-20 px-4 text-center">
+    <div class="max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-primary text-xs font-semibold mb-6">
+        Guide complet
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-bold text-text leading-tight mb-6">
+        Comment fonctionne<br /><span class="text-primary">BizMaster ERP</span> ?
+      </h1>
+      <p class="text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
+        BizMaster est une plateforme ERP tout-en-un pour les PME africaines. En quelques minutes, créez votre espace de gestion, invitez votre équipe et accédez à des rapports automatisés et synthèses métier.
+      </p>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <section class="py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-text text-center mb-4">Les étapes de démarrage</h2>
+      <p class="text-text-secondary text-center mb-16 max-w-xl mx-auto">Suivez ces 6 étapes pour configurer votre espace d'entreprise et commencer à gérer votre activité.</p>
+
+      <div class="flex flex-col gap-8">
+        @for (step of steps; track step.number) {
+          <div class="flex gap-6">
+            <div class="flex-shrink-0 flex flex-col items-center">
+              <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg">{{ step.number }}</div>
+              @if (step.number < steps.length) {
+                <div class="w-0.5 flex-1 bg-gray-200 mt-3"></div>
+              }
+            </div>
+            <div class="pb-8 flex-1">
+              <h3 class="text-xl font-bold text-text mb-2">{{ step.title }}</h3>
+              <p class="text-text-secondary mb-4">{{ step.description }}</p>
+              <ul class="space-y-2">
+                @for (detail of step.details; track detail) {
+                  <li class="flex items-start gap-2 text-sm text-text-secondary">
+                    <span class="text-primary mt-0.5 font-bold">&#10003;</span>
+                    <span>{{ detail }}</span>
+                  </li>
+                }
+              </ul>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="bg-gray-50 py-20 px-4">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold text-text text-center mb-4">Les fonctionnalités clés</h2>
+      <p class="text-text-secondary text-center mb-16 max-w-xl mx-auto">Tout ce dont vous avez besoin pour gérer votre entreprise, en un seul endroit.</p>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        @for (feature of features; track feature.title) {
+          <div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-md transition-shadow">
+            <div class="inline-flex px-2.5 py-1 rounded-full bg-blue-50 text-primary text-xs font-semibold mb-4">{{ feature.badge }}</div>
+            <h3 class="text-base font-bold text-text mb-2">{{ feature.title }}</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">{{ feature.description }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Modes de gestion -->
+  <section class="py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-text text-center mb-4">Deux modes de gestion</h2>
+      <p class="text-text-secondary text-center mb-16 max-w-xl mx-auto">Adaptez l'application à votre organisation, que vous soyez seul ou en équipe.</p>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
+          <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center font-bold text-primary text-xl mb-6">C</div>
+          <h3 class="text-xl font-bold text-text mb-3">Gestion centralisée</h3>
+          <p class="text-text-secondary mb-6">Vous êtes seul à gérer votre entreprise. Vous avez accès à <strong>toutes les fonctionnalités</strong> de votre domaine depuis une seule interface.</p>
+          <ul class="space-y-3 text-sm text-text-secondary">
+            <li class="flex items-start gap-2"><span class="text-primary font-bold">&#10003;</span> Vue complète de toutes les données</li>
+            <li class="flex items-start gap-2"><span class="text-primary font-bold">&#10003;</span> Pas de gestion d'utilisateurs</li>
+            <li class="flex items-start gap-2"><span class="text-primary font-bold">&#10003;</span> Connexion directe sans invitation</li>
+            <li class="flex items-start gap-2"><span class="text-primary font-bold">&#10003;</span> Idéal pour les micro-entreprises</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl border border-primary/30 ring-2 ring-primary/20 p-8 shadow-sm">
+          <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center font-bold text-green-700 text-xl mb-6">E</div>
+          <h3 class="text-xl font-bold text-text mb-3">Gestion collaborative</h3>
+          <p class="text-text-secondary mb-6">Vous gérez votre équipe. Chaque collaborateur dispose d'un <strong>espace dédié</strong> avec uniquement les pages de son rôle.</p>
+          <ul class="space-y-3 text-sm text-text-secondary">
+            <li class="flex items-start gap-2"><span class="text-primary font-bold">&#10003;</span> Comptes individuels par rôle</li>
+            <li class="flex items-start gap-2"><span class="text-primary font-bold">&#10003;</span> Liens d'accès uniques et sécurisés</li>
+            <li class="flex items-start gap-2"><span class="text-primary font-bold">&#10003;</span> Isolation des permissions</li>
+            <li class="flex items-start gap-2"><span class="text-primary font-bold">&#10003;</span> Chef d'entreprise voit tout</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Domaines -->
+  <section class="bg-gray-50 py-20 px-4">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold text-text text-center mb-4">Domaines d'activité disponibles</h2>
+      <p class="text-text-secondary text-center mb-12 max-w-xl mx-auto">Chaque domaine dispose d'une application dédiée avec des fonctionnalités spécifiques à votre secteur.</p>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        @for (domain of [
+          {label:'Construction',  desc:'Chantiers, matériaux, devis, contrats, personnel et comptabilité.'},
+          {label:'Éducation',     desc:'Classes, élèves, emploi du temps, notes, absences et paiements.'},
+          {label:'Logistique',    desc:'Commandes, livraisons, véhicules, entrepôts et suivi GPS.'},
+          {label:'Hôtellerie',    desc:'Réservations, check-in/out, chambres, ménage et réception.'},
+          {label:'Restauration',  desc:'Commandes, menu, réservations, stock et gestion des clients.'},
+          {label:'Commerce',      desc:'Produits, ventes, stock, clients et facturation.'},
+          {label:'Santé',         desc:'Patients, consultations, rendez-vous et dossiers médicaux.'},
+          {label:'Ferme',         desc:'Production agricole, récoltes, stock et gestion des travailleurs.'},
+          {label:'Transport',     desc:'Véhicules, trajets, chauffeurs, livraisons et facturation.'},
+        ]; track domain.label) {
+          <div class="bg-white rounded-xl border border-gray-200 p-5">
+            <h4 class="font-bold text-text mb-1">{{ domain.label }}</h4>
+            <p class="text-xs text-text-secondary leading-relaxed">{{ domain.desc }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 px-4">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl font-bold text-text text-center mb-4">Questions fréquentes</h2>
+      <p class="text-text-secondary text-center mb-16 max-w-xl mx-auto">Vous avez une question ? Consultez les réponses aux questions les plus courantes.</p>
+
+      <div class="flex flex-col gap-4">
+        @for (faq of faqs; track faq.q) {
+          <div class="bg-white rounded-xl border border-gray-200 p-6">
+            <h4 class="font-bold text-text mb-2">{{ faq.q }}</h4>
+            <p class="text-sm text-text-secondary leading-relaxed">{{ faq.a }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-primary py-20 px-4 text-center">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-3xl font-bold text-white mb-4">Prêt à commencer ?</h2>
+      <p class="text-blue-100 mb-10 leading-relaxed">Créez votre espace d'entreprise en 2 minutes. Aucune carte de crédit requise.</p>
+      <button (click)="goStart()" class="px-10 py-4 bg-white text-primary font-bold rounded-xl hover:bg-blue-50 transition-colors text-lg shadow-lg">
+        Créer mon espace gratuitement &#8594;
+      </button>
+    </div>
+  </section>
+</div>

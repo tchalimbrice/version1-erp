@@ -34,8 +34,65 @@
             </div>
             <div class="grid sm:grid-cols-2 gap-4">
               <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Pays</label>
+                <div class="relative">
+                  <input
+                    [(ngModel)]="company.pays"
+                    (input)="onCountryInput()"
+                    type="text"
+                    list="country-suggestions"
+                    placeholder="Tapez un pays"
+                    class="w-full border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 bg-white"
+                  />
+                  <datalist id="country-suggestions">
+                    @for (c of countries; track c.name) {
+                      <option [value]="c.name">{{ c.name }} ({{ c.dial }})</option>
+                    }
+                  </datalist>
+                  @if (company.pays) {
+                    <div class="absolute z-20 mt-2 w-full max-h-56 overflow-auto rounded-xl border border-gray-200 bg-white shadow-lg">
+                      @for (c of filteredCountries(); track c.name) {
+                        <button type="button" (click)="chooseCountry(c)" class="flex w-full items-center justify-between px-4 py-2.5 text-left text-sm hover:bg-blue-50">
+                          <span>{{ c.name }}</span>
+                          <span class="text-xs text-gray-500">{{ c.dial }}</span>
+                        </button>
+                      }
+                    </div>
+                  }
+                </div>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Langue</label>
+                <div class="relative">
+                  <input
+                    [(ngModel)]="company.langue"
+                    (input)="onLanguageInput()"
+                    type="text"
+                    list="language-suggestions"
+                    placeholder="Tapez une langue"
+                    class="w-full border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 bg-white"
+                  />
+                  <datalist id="language-suggestions">
+                    @for (lang of languages; track lang) {
+                      <option [value]="lang"></option>
+                    }
+                  </datalist>
+                  @if (company.langue) {
+                    <div class="absolute z-20 mt-2 w-full max-h-56 overflow-auto rounded-xl border border-gray-200 bg-white shadow-lg">
+                      @for (lang of filteredLanguages(); track lang) {
+                        <button type="button" (click)="chooseLanguage(lang)" class="w-full px-4 py-2.5 text-left text-sm hover:bg-blue-50">
+                          {{ lang }}
+                        </button>
+                      }
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-1">Téléphone</label>
-                <input [(ngModel)]="company.telephone" type="tel" placeholder="Ex: 07 00 00 00" class="w-full border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
+                <input [(ngModel)]="company.telephone" type="tel" placeholder="Ex: +228 07 00 00 00" class="w-full border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
               </div>
               <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-1">Email *</label>
@@ -112,35 +169,51 @@
         <div>
           <div class="text-center mb-12">
             <h1 class="text-4xl sm:text-5xl font-heading font-bold text-text leading-tight tracking-tight mb-4">Domaine d'activité</h1>
-            <p class="text-lg text-text-secondary max-w-2xl mx-auto">Cela déterminera les fonctionnalités et l'interface dédiée à votre secteur.</p>
+            @if (selectedMode === 'centralized') {
+              <p class="text-lg text-text-secondary max-w-2xl mx-auto">Cliquez sur votre secteur pour accéder directement à votre espace de connexion.</p>
+            } @else {
+              <p class="text-lg text-text-secondary max-w-2xl mx-auto">Cela déterminera les fonctionnalités et l'interface dédiée à votre secteur.</p>
+            }
           </div>
-          <div class="grid md:grid-cols-2 gap-6 mb-12">
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
             @for (domain of [
-              {key:'transport',    label:'🚌 Transport',        desc:'Bus, trajets, chauffeurs et itinéraires.'},
-              {key:'agriculture',  label:'🌾 Gestion de ferme', desc:'Bétail, production et soins vétérinaires.'},
-              {key:'hospitality',  label:'🏨 Hôtellerie',       desc:'Réservations, chambres et services.'},
-              {key:'commerce',     label:'🛒 Commerce',         desc:'Catalogue produits, ventes et facturation.'},
-              {key:'health',       label:'🏥 Santé',            desc:'Patients, dossiers médicaux et rendez-vous.'},
-              {key:'education',    label:'🏫 Éducation',        desc:'Étudiants, notes et suivi pédagogique.'},
-              {key:'construction', label:'🏗️ BTP',             desc:'Chantiers, matériaux et suivi de projet.'},
-              {key:'logistics',    label:'📦 Logistique',       desc:'Livraisons, entrepôts et suivi de colis.'}
+              {key:'construction',  label:'Construction',   desc:'Chantiers, matériaux et suivi de projet.'},
+              {key:'education',     label:'Éducation',      desc:'Établissements, élèves et pédagogie.'},
+              {key:'logistics',     label:'Logistique',     desc:'Livraisons, entrepôts et suivi de colis.'},
+              {key:'hospitality',   label:'Hôtellerie',     desc:'Réservations, chambres et services.'},
+              {key:'restauration',  label:'Restauration',   desc:'Commandes, menu, stock et réservations.'},
+              {key:'commerce',      label:'Commerce',       desc:'Ventes, produits et gestion boutique.'},
+              {key:'ferme',         label:'Gestion Ferme',  desc:'Production agricole et gestion des récoltes.'},
+              {key:'sante',         label:'Santé',          desc:'Patients, consultations et dossiers médicaux.'},
+              {key:'transport',     label:'Transport',      desc:'Trajets, véhicules et gestion des livraisons.'}
             ]; track domain.key) {
               <button (click)="selectDomain($any(domain.key))"
                 [class.ring-2]="selectedDomain === domain.key"
                 [class.ring-primary]="selectedDomain === domain.key"
-                class="relative text-left cursor-pointer bg-white rounded-xl p-6 border border-gray-200 hover:border-primary/50 transition-all duration-200">
+                class="relative text-left cursor-pointer bg-white rounded-xl p-6 border border-gray-200 hover:border-primary/50 hover:shadow-md transition-all duration-200 group">
                 <h3 class="text-xl font-semibold text-text">{{ domain.label }}</h3>
                 <p class="text-sm text-text-secondary mt-2">{{ domain.desc }}</p>
+                @if (selectedMode === 'centralized') {
+                  <div class="mt-4 text-xs font-semibold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                    Accéder à cet espace →
+                  </div>
+                }
               </button>
             }
           </div>
-          <div class="text-center flex gap-4 justify-center">
-            <button (click)="previousStep()" class="px-6 py-3 bg-gray-200 text-text rounded-lg font-medium hover:bg-gray-300 transition-colors">Précédent</button>
-            <button (click)="nextStep()" [disabled]="!selectedDomain" [class.opacity-50]="!selectedDomain" [class.cursor-not-allowed]="!selectedDomain"
-              class="px-8 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors">
-              {{ selectedMode === 'collaborative' ? 'Suivant' : 'Lancer mon ERP &#8594;' }}
-            </button>
-          </div>
+          @if (selectedMode === 'collaborative') {
+            <div class="text-center flex gap-4 justify-center">
+              <button (click)="previousStep()" class="px-6 py-3 bg-gray-200 text-text rounded-lg font-medium hover:bg-gray-300 transition-colors">Précédent</button>
+              <button (click)="nextStep()" [disabled]="!selectedDomain" [class.opacity-50]="!selectedDomain" [class.cursor-not-allowed]="!selectedDomain"
+                class="px-8 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors">
+                Suivant &#8594;
+              </button>
+            </div>
+          } @else {
+            <div class="text-center">
+              <button (click)="previousStep()" class="px-6 py-3 bg-gray-200 text-text rounded-lg font-medium hover:bg-gray-300 transition-colors">Précédent</button>
+            </div>
+          }
         </div>
       }
 
@@ -154,42 +227,36 @@
             </p>
           </div>
 
-          <div class="grid md:grid-cols-2 gap-5 mb-10">
+          <div class="flex flex-col gap-3 mb-10">
             @for (role of availableCollabRoles; track role.key) {
               <div (click)="toggleCollabRole(role.key)"
-                [class.ring-2]="isCollabSelected(role.key)"
-                [class.ring-primary]="isCollabSelected(role.key)"
-                [class.bg-primary]="isCollabSelected(role.key)"
-                [class.text-white]="isCollabSelected(role.key)"
-                class="cursor-pointer bg-white rounded-xl p-6 border border-gray-200 hover:border-primary/50 transition-all duration-200">
-                <div class="flex items-start gap-4">
-                  <div class="text-3xl flex-shrink-0">{{ role.icon }}</div>
-                  <div class="flex-1">
-                    <h3 class="text-lg font-bold" [class.text-white]="isCollabSelected(role.key)" [class.text-text]="!isCollabSelected(role.key)">
-                      {{ role.label }}
-                    </h3>
-                    <p class="text-sm mt-1" [class.text-white]="isCollabSelected(role.key)" [class.text-text-secondary]="!isCollabSelected(role.key)">
-                      {{ role.description }}
-                    </p>
-                    <div class="flex flex-wrap gap-1 mt-3">
-                      @for (a of role.access; track a) {
-                        <span class="text-xs px-2 py-0.5 rounded-full font-medium"
-                          [class.bg-white]="isCollabSelected(role.key)"
-                          [class.text-primary]="isCollabSelected(role.key)"
-                          [class.bg-gray-100]="!isCollabSelected(role.key)"
-                          [class.text-gray-600]="!isCollabSelected(role.key)">
-                          {{ a }}
-                        </span>
-                      }
-                    </div>
+                class="cursor-pointer rounded-xl border transition-all duration-150 select-none"
+                [class.border-primary]="isCollabSelected(role.key)"
+                [class.bg-blue-50]="isCollabSelected(role.key)"
+                [class.border-gray-200]="!isCollabSelected(role.key)"
+                [class.bg-white]="!isCollabSelected(role.key)">
+                <div class="flex items-center gap-4 px-5 py-4">
+                  <!-- Checkbox -->
+                  <div class="flex-shrink-0 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors"
+                    [class.border-primary]="isCollabSelected(role.key)"
+                    [class.bg-primary]="isCollabSelected(role.key)"
+                    [class.border-gray-300]="!isCollabSelected(role.key)"
+                    [class.bg-white]="!isCollabSelected(role.key)">
+                    @if (isCollabSelected(role.key)) {
+                      <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 12 10" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="1,5 4,9 11,1"/>
+                      </svg>
+                    }
                   </div>
-                  <div class="flex-shrink-0 mt-1">
-                    <div class="w-6 h-6 rounded-full border-2 flex items-center justify-center"
-                      [class.border-white]="isCollabSelected(role.key)"
-                      [class.bg-white]="isCollabSelected(role.key)"
-                      [class.border-gray-300]="!isCollabSelected(role.key)">
-                      @if (isCollabSelected(role.key)) {
-                        <span class="text-primary font-bold text-xs">✓</span>
+                  <!-- Info -->
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between">
+                      <span class="text-sm font-semibold text-text">{{ role.label }}</span>
+                    </div>
+                    <p class="text-xs text-text-secondary mt-0.5">{{ role.description }}</p>
+                    <div class="flex flex-wrap gap-1 mt-2">
+                      @for (a of role.access; track a) {
+                        <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-gray-100 text-gray-600">{{ a }}</span>
                       }
                     </div>
                   </div>
@@ -228,9 +295,11 @@
             @for (entry of collabEntries; track $index) {
               <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
                 <div class="flex items-center gap-3 mb-5">
-                  <span class="text-2xl">{{ entry.roleDef.icon }}</span>
+                  <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <span class="text-primary font-bold text-sm">{{ entry.roleDef.label.charAt(0) }}</span>
+                  </div>
                   <div>
-                    <h3 class="font-bold text-text">{{ entry.roleDef.label }}</h3>
+                    <h3 class="font-bold text-text text-sm">{{ entry.roleDef.label }}</h3>
                     <p class="text-xs text-text-secondary">{{ entry.roleDef.description }}</p>
                   </div>
                 </div>
@@ -274,9 +343,22 @@
       @if (linksGenerated) {
         <div>
           <div class="text-center mb-10">
-            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">✅</div>
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">&#10003;</div>
             <h1 class="text-3xl font-heading font-bold text-text mb-3">Liens d'accès générés !</h1>
-            <p class="text-text-secondary">Transmettez chaque lien au collaborateur concerné. Chacun sera invité à se connecter avec son email et mot de passe.</p>
+            <p class="text-text-secondary">Le système a généré les liens d'accès. Envoyez-les maintenant par email pour que vos collaborateurs reçoivent leur accès.</p>
+          </div>
+
+          <div class="text-center mt-6 mb-6">
+            <button (click)="sendInviteEmails()" [disabled]="isSendingInvitations" class="px-8 py-4 bg-secondary text-white rounded-lg font-medium hover:bg-secondary/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
+              @if (isSendingInvitations) {
+                Envoi en cours...
+              } @else {
+                Envoyer les invitations par email
+              }
+            </button>
+            @if (emailSendStatus) {
+              <div class="text-sm text-text-secondary mt-3">{{ emailSendStatus }}</div>
+            }
           </div>
 
           <!-- Lien propriétaire -->
@@ -287,9 +369,6 @@
                 <div class="text-sm font-semibold text-blue-800">{{ company.nom }}</div>
                 <div class="text-xs text-blue-600 mt-0.5">{{ company.email }}</div>
               </div>
-              <button (click)="copyLink(ownerLink)" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
-                Copier mon lien
-              </button>
             </div>
           </div>
 
@@ -302,9 +381,6 @@
                   <div class="text-sm font-semibold text-text">{{ link.name }}</div>
                   <div class="text-xs text-text-secondary mt-0.5">{{ link.email }}</div>
                 </div>
-                <button (click)="copyLink(link.url)" class="px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors">
-                  Copier le lien
-                </button>
               </div>
             </div>
           }

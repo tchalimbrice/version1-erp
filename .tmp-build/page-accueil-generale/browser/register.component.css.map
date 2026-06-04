@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/page-accueil-generale/src/app/pages/register/register.component.scss"],
+  "sourcesContent": [".register-form { max-width: 420px; margin: 24px auto; padding: 16px; background: #fff; border-radius: 8px; }\r\n.register-form label { display:block; margin-top:8px }\r\n.register-form input { width:100%; padding:8px; margin-top:4px }\r\n.register-form .message { color:#c00 }\r\n.register-form button { margin-top:12px; padding:8px 16px; background:#007bff; color:#fff; border:none; border-radius:4px }\r\n.field-error { color: #c00; font-size: 0.9em; margin-top:4px }\r\n"],
+  "mappings": ";AAAA,CAAA;AAAiB,aAAA;AAAkB,UAAA,KAAA;AAAmB,WAAA;AAAe,cAAA;AAAkB,iBAAA;;AACvF,CADA,cACA;AAAuB,WAAA;AAAe,cAAA;;AACtC,CAFA,cAEA;AAAuB,SAAA;AAAY,WAAA;AAAa,cAAA;;AAChD,CAHA,cAGA,CAAA;AAA0B,SAAA;;AAC1B,CAJA,cAIA;AAAwB,cAAA;AAAiB,WAAA,IAAA;AAAkB,cAAA;AAAoB,SAAA;AAAY,UAAA;AAAa,iBAAA;;AACxG,CAAA;AAAe,SAAA;AAAa,aAAA;AAAkB,cAAA;;",
+  "names": []
+}

@@ -1,0 +1,128 @@
+<div class="page">
+  <div class="page__header">
+    <div>
+      <h1 class="page__title">Bulletin</h1>
+      <p class="page__sub">{{ students().length }} élève(s) dans {{ selectedClass() || 'la classe choisie' }}</p>
+    </div>
+    <div class="page__actions">
+      <button class="btn btn--ghost" type="button" (click)="goBack()">Retour</button>
+      @if (canProceed()) {
+        <button class="btn btn--primary" type="button" (click)="next()">Suivant</button>
+      }
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__head">
+      <span class="card__title">Classe et période</span>
+      <span class="card__link">{{ activePeriod() }}</span>
+    </div>
+    <div class="fields-row">
+      <div class="field">
+        <label class="field__label">Classe</label>
+        <input class="field__input" [value]="selectedClass()" readonly />
+      </div>
+      <div class="field">
+        <label class="field__label">Période</label>
+        <input class="field__input" [value]="activePeriod()" readonly />
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__head">
+      <span class="card__title">Élèves</span>
+      <span class="card__link">{{ students().length }} carte(s)</span>
+    </div>
+    <div class="student-grid">
+      @for (student of students(); track student.id) {
+        <button
+          type="button"
+          class="student-card"
+          [class.student-card--saved]="studentSaved(student.id)"
+          [class.student-card--selected]="selectedStudentId() === student.id"
+          (click)="selectStudent(student)">
+          <div class="student-card__name">{{ student.nom }} {{ student.prenom }}</div>
+          <div class="student-card__meta">{{ student.matricule }}</div>
+        </button>
+      }
+    </div>
+  </div>
+
+  @if (draft()) {
+    <div class="modal-overlay" (click)="closeDrawer()">
+      <div class="modal modal--wide" (click)="$event.stopPropagation()">
+        <div class="modal__head">
+          <span class="modal__title">{{ bulletinStore.getBulletin(draft()!.studentId, draft()!.periode) ? 'Modifier le bulletin' : 'Nouveau bulletin' }}</span>
+          <button class="modal__close" type="button" (click)="closeDrawer()">×</button>
+        </div>
+
+        <div class="modal__body">
+          <div class="fields-row">
+            <div class="field">
+              <label class="field__label">Matricule</label>
+              <input class="field__input" [value]="draft()!.matricule" readonly />
+            </div>
+            <div class="field">
+              <label class="field__label">Moyenne de l'élève</label>
+              <input class="field__input" type="number" min="0" max="20" step="0.01" [value]="draft()!.moyenneGenerale" (input)="setAverage($any($event.target).value)" />
+            </div>
+          </div>
+
+          <div class="fields-row">
+            <div class="field">
+              <label class="field__label">Nom</label>
+              <input class="field__input" [value]="draft()!.studentNom" readonly />
+            </div>
+            <div class="field">
+              <label class="field__label">Prénom</label>
+              <input class="field__input" [value]="draft()!.studentPrenom" readonly />
+            </div>
+          </div>
+
+          <div class="fields-row">
+            <div class="field">
+              <label class="field__label">Classe</label>
+              <input class="field__input" [value]="draft()!.classe" readonly />
+            </div>
+            <div class="field">
+              <label class="field__label">Année scolaire</label>
+              <input class="field__input" [value]="draft()!.schoolYear" readonly />
+            </div>
+          </div>
+
+          <div class="subject-table subject-table--scroll">
+            <div class="subject-table__head">
+              <span>Matière</span>
+              <span>Devoir 1</span>
+              <span>Devoir 2</span>
+              <span>Contrôle</span>
+              <span>Examen</span>
+              <span>Coef.</span>
+              <span>Moy.</span>
+              <span>Appréciation</span>
+            </div>
+            @for (subject of draft()!.subjects; let i = $index; track subject.matiere) {
+              <div class="subject-table__row">
+                <strong>{{ subject.matiere }}</strong>
+                <input class="field__input field__input--compact" type="number" min="0" max="20" [value]="subject.devoir1" (input)="updateSubject(i, 'devoir1', $any($event.target).value)" />
+                <input class="field__input field__input--compact" type="number" min="0" max="20" [value]="subject.devoir2" (input)="updateSubject(i, 'devoir2', $any($event.target).value)" />
+                <input class="field__input field__input--compact" type="number" min="0" max="20" [value]="subject.controle" (input)="updateSubject(i, 'controle', $any($event.target).value)" />
+                <input class="field__input field__input--compact" type="number" min="0" max="20" [value]="subject.examen" (input)="updateSubject(i, 'examen', $any($event.target).value)" />
+                <input class="field__input field__input--compact" type="number" min="1" [value]="subject.coefficient" (input)="updateSubject(i, 'coefficient', $any($event.target).value)" />
+                <span class="note" [class]="displaySubjectAverage(subject) >= 16 ? 'note note--A' : displaySubjectAverage(subject) >= 12 ? 'note note--B' : displaySubjectAverage(subject) >= 10 ? 'note note--C' : 'note note--F'">{{ displaySubjectAverage(subject) | number:'1.1-1' }}</span>
+                <span class="text-muted">{{ subject.appreciation || '—' }}</span>
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="modal__foot">
+          <button class="btn btn--ghost" type="button" (click)="closeDrawer()">Fermer</button>
+          <button class="btn btn--outline" type="button" (click)="exportPdf()">PDF</button>
+          <button class="btn btn--primary" type="button" (click)="saveBulletin(); closeDrawer()">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

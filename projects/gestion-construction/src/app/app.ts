@@ -3,7 +3,14 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CollabStoreService, Role } from './services/collab-store.service';
 
-interface NavLink { label: string; path: string; icon: string; }
+interface NavLink { label: string; path: string; }
+
+const roleHome: Record<Role, string> = {
+  owner: '/dashboard',
+  employee: '/devis',
+  hr: '/personnel',
+  accountant: '/comptabilite',
+};
 
 @Component({
   selector: 'app-root',
@@ -32,21 +39,38 @@ export class App {
   }
 
   linksForRole(role: Role): NavLink[] {
+    if (role === 'owner' && this.store.mode() === 'centralized') return [
+      { label: 'Tableau de bord',  path: '/dashboard'      },
+      { label: 'Chantiers',        path: '/chantiers'      },
+      { label: 'Sous-traitants',   path: '/sous-traitants' },
+      { label: 'Devis',            path: '/devis'          },
+      { label: 'Contrats',         path: '/contrats'       },
+      { label: 'Matériaux',        path: '/materiaux'      },
+      { label: 'Engins',           path: '/engins'         },
+      { label: 'Personnel',        path: '/personnel'      },
+      { label: 'Comptabilité',     path: '/comptabilite'   },
+      { label: 'Paramètres',       path: '/parametres'     },
+    ];
     if (role === 'owner') return [
-      { label: 'Tableau de bord', path: '/dashboard',      icon: '📊' },
-      { label: 'Chantiers',       path: '/chantiers',      icon: '🏗️' },
-      { label: 'Sous-traitants',  path: '/sous-traitants', icon: '🤝' },
-      { label: 'Paramètres',      path: '/parametres',     icon: '⚙️' },
+      { label: 'Tableau de bord',  path: '/dashboard'      },
+      { label: 'Chantiers',        path: '/chantiers'      },
+      { label: 'Sous-traitants',   path: '/sous-traitants' },
+      { label: 'Paramètres',       path: '/parametres'     },
     ];
     if (role === 'employee') return [
-      { label: 'Devis & Contrats', path: '/devis',      icon: '📋' },
-      { label: 'Matériaux',        path: '/materiaux',   icon: '🧱' },
+      { label: 'Devis',       path: '/devis'      },
+      { label: 'Contrats',    path: '/contrats'   },
+      { label: 'Matériaux',   path: '/materiaux'  },
     ];
     if (role === 'hr') return [
-      { label: 'Personnel', path: '/personnel', icon: '👥' },
+      { label: 'Personnel', path: '/personnel' },
     ];
     return [
-      { label: 'Comptabilité', path: '/comptabilite', icon: '💰' },
+      { label: 'Comptabilité', path: '/comptabilite' },
     ];
+  }
+
+  homeLink(role: Role): string {
+    return roleHome[role] ?? '/connexion';
   }
 }

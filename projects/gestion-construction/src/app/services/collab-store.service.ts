@@ -73,9 +73,24 @@ export class CollabStoreService {
     this.save();
   }
 
+  setCompany(company: CompanyData) {
+    this.company.set(company);
+    this.save();
+  }
+
+  setMode(mode: 'centralized' | 'collaborative') {
+    this.mode.set(mode);
+    this.save();
+  }
+
+  setCollaborators(collaborators: Collaborator[]) {
+    this.collaborators.set(collaborators);
+    this.save();
+  }
+
   logout() {
     this.currentUser.set(undefined);
-    localStorage.removeItem(STORAGE_KEY);
+    this.save();
   }
 
   logAction(actorRole: Role, actorName: string, action: string) {

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/gestion-de-ferme/src/app/pages/invite/invite.component.scss"],
+  "sourcesContent": [".invite-page {\n  min-height: 60vh;\n  display: grid;\n  place-items: center;\n  padding: 24px;\n}\n\n.card {\n  width: 100%;\n  max-width: 520px;\n  background: white;\n  border: 1px solid #e5e7eb;\n  border-radius: 16px;\n  padding: 24px;\n  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);\n}\n\n.error {\n  margin-top: 12px;\n  color: #b91c1c;\n  font-weight: 600;\n}\n\n.hint {\n  margin-top: 8px;\n  color: #6b7280;\n  font-size: 14px;\n}\n\n"],
+  "mappings": ";AAAA,CAAA;AACE,cAAA;AACA,WAAA;AACA,eAAA;AACA,WAAA;;AAGF,CAAA;AACE,SAAA;AACA,aAAA;AACA,cAAA;AACA,UAAA,IAAA,MAAA;AACA,iBAAA;AACA,WAAA;AACA,cAAA,EAAA,KAAA,KAAA,KAAA,CAAA,EAAA,CAAA,EAAA,CAAA,EAAA;;AAGF,CAAA;AACE,cAAA;AACA,SAAA;AACA,eAAA;;AAGF,CAAA;AACE,cAAA;AACA,SAAA;AACA,aAAA;;",
+  "names": []
+}

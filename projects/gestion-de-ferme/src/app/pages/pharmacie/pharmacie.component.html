@@ -1,0 +1,120 @@
+<div class="dashboard">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand__logo" aria-hidden="true">P</div>
+      <div class="brand__text">
+        <h1>Ma Ferme</h1>
+        <p>Gestion de ferme</p>
+      </div>
+    </div>
+
+    <nav class="menu">
+      <a class="menu__item" routerLink="/pharmacie">Pharmacie</a>
+    </nav>
+
+    <button class="logout" type="button" (click)="logout()">Déconnexion</button>
+  </aside>
+
+  <main class="content">
+    <header class="topbar">
+      <div>
+        <h2>Pharmacie</h2>
+        <p class="topbar__sub">Stock des produits vétérinaires et médicaments</p>
+      </div>
+      <button class="primary" type="button" (click)="openForm()">+ Ajouter un produit</button>
+    </header>
+
+    <section class="stats-row">
+      <article class="stat-card">
+        <p>Produits en stock</p>
+        <h3>{{ medicines.length }}</h3>
+        <span>Total des références</span>
+      </article>
+      <article class="stat-card">
+        <p>Stock total</p>
+        <h3>{{ totalStock }}</h3>
+        <span>Unités disponibles</span>
+      </article>
+      <article class="stat-card">
+        <p>À commander</p>
+        <h3>{{ lowStockCount }}</h3>
+        <span>Seuil atteint</span>
+      </article>
+    </section>
+
+    <section class="panel">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Produit</th>
+            <th>Catégorie</th>
+            <th>Stock</th>
+            <th>Seuil</th>
+            <th>Unité</th>
+            <th>Statut</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (med of medicines; track med.id) {
+            <tr>
+              <td>{{ med.name }}</td>
+              <td>{{ med.category }}</td>
+              <td>{{ med.stock }}</td>
+              <td>{{ med.threshold }}</td>
+              <td>{{ med.unit }}</td>
+              <td>
+                <span class="pill" [class.pill--warn]="med.status === 'A commander'">{{ med.status }}</span>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+
+@if (showForm()) {
+  <div class="modal-overlay" (click)="closeForm()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <div class="modal__head">
+        <h3>Ajouter un produit</h3>
+        <button type="button" class="modal__close" (click)="closeForm()" aria-label="Fermer"></button>
+      </div>
+      <div class="modal__body">
+        <label class="field">
+          <span>Nom du produit</span>
+          <input [(ngModel)]="form.name" placeholder="Oxytétracycline" />
+        </label>
+        <label class="field">
+          <span>Catégorie</span>
+          <select [(ngModel)]="form.category">
+            <option>Vitamines</option>
+            <option>Vaccin</option>
+            <option>Antiparasitaire</option>
+            <option>Traitement</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Stock</span>
+          <input type="number" [(ngModel)]="form.stock" />
+        </label>
+        <label class="field">
+          <span>Seuil d'alerte</span>
+          <input type="number" [(ngModel)]="form.threshold" />
+        </label>
+        <label class="field">
+          <span>Unité</span>
+          <select [(ngModel)]="form.unit">
+            <option>boîtes</option>
+            <option>flacons</option>
+            <option>ampoules</option>
+          </select>
+        </label>
+      </div>
+      <div class="modal__foot">
+        <button type="button" class="btn-ghost" (click)="closeForm()">Annuler</button>
+        <button type="button" class="primary" (click)="addMedicine()">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+}

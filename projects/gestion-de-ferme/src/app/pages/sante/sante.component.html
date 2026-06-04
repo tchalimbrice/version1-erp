@@ -1,0 +1,145 @@
+<div class="sante-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand__logo" aria-hidden="true">
+        <svg viewBox="0 0 64 64" role="img" focusable="false">
+          <defs>
+            <linearGradient id="leafGradSante" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#5fc27d" />
+              <stop offset="1" stop-color="#1f7a4e" />
+            </linearGradient>
+          </defs>
+          <circle cx="32" cy="32" r="30" fill="#eef9f1" />
+          <path d="M41 16c-8 1-14 7-14 15 0 5 3 10 8 13 8-6 11-16 6-28z" fill="url(#leafGradSante)" />
+          <path d="M24 24c-6 3-10 8-10 14 0 5 3 9 8 12 6-5 8-16 2-26z" fill="#8ed7a6" />
+          <path d="M25 40c7-5 15-9 21-11" fill="none" stroke="#115237" stroke-width="2.5" stroke-linecap="round" />
+        </svg>
+      </div>
+      <div class="brand__text">
+        <h1>Ma Ferme</h1>
+        <p>Gestion de ferme</p>
+      </div>
+    </div>
+
+    <nav class="menu" aria-label="Navigation principale">
+      <a class="menu__item" routerLink="/tableau-de-bord">Tableau de bord</a>
+      <a class="menu__item" routerLink="/animaux">Animaux</a>
+      <a class="menu__item" routerLink="/aliments">Aliments</a>
+      <a class="menu__item" routerLink="/activites">Activités</a>
+      <a class="menu__item" routerLink="/reproduction">Reproduction</a>
+      <a class="menu__item menu__item--active" routerLink="/sante">Santé</a>
+      <a class="menu__item" routerLink="/finances">Finances</a>
+      <a class="menu__item" routerLink="/parametres">Paramètres</a>
+    </nav>
+
+    <div class="sidebar__footer">
+      <div class="profile">
+        <div class="profile__avatar">JD</div>
+        <div class="profile__text">
+          <p class="profile__name">Jean Dupont</p>
+          <p class="profile__role">Propriétaire</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="content">
+    <header class="topbar">
+      <h2>Santé</h2>
+      <button class="primary-btn" type="button" (click)="openForm()">+ Ajouter un traitement</button>
+    </header>
+
+    <section class="toolbar">
+      <label class="search">
+        <span class="search__icon">⌕</span>
+        <input type="search" placeholder="Rechercher..." />
+      </label>
+      <label class="select">
+        <span>Type:</span>
+        <select>
+          <option>Tous</option>
+          <option>Traitement</option>
+          <option>Vaccination</option>
+          <option>Vermifugation</option>
+        </select>
+      </label>
+      <label class="select">
+        <span>Statut:</span>
+        <select>
+          <option>Tous</option>
+          <option>Terminé</option>
+          <option>À venir</option>
+        </select>
+      </label>
+    </section>
+
+    <section class="table-card">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Animal</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Statut</th>
+            <th>Prochain rendez-vous</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of rows()">
+            <td>{{ row.date }}</td>
+            <td>{{ row.animal }}</td>
+            <td>{{ row.type }}</td>
+            <td>{{ row.description }}</td>
+            <td>
+              <span class="badge" [attr.data-tone]="row.status === 'Termine' ? 'green' : 'orange'">{{ row.status }}</span>
+            </td>
+            <td>{{ row.nextDate }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="table-footer">
+        <div class="table-footer__left">
+          <span>Afficher</span>
+          <select>
+            <option>10</option>
+            <option>25</option>
+            <option>50</option>
+          </select>
+        </div>
+        <div class="pagination">
+          <span>1-4 sur 4</span>
+        </div>
+      </div>
+    </section>
+
+    @if (showForm()) {
+      <div class="modal-overlay" (click)="closeForm()">
+        <div class="modal" (click)="$event.stopPropagation()">
+          <div class="modal__head">
+            <h3>Ajouter un traitement</h3>
+            <button type="button" (click)="closeForm()">×</button>
+          </div>
+          <div class="modal__body">
+            <label class="field"><span>Date</span><input type="date" [(ngModel)]="form.date" /></label>
+            <label class="field"><span>Animal</span><input [(ngModel)]="form.animal" placeholder="Vache N17" /></label>
+            <label class="field"><span>Type</span>
+              <select [(ngModel)]="form.type">
+                <option>Traitement</option>
+                <option>Vaccination</option>
+                <option>Vermifugation</option>
+              </select>
+            </label>
+            <label class="field"><span>Description</span><input [(ngModel)]="form.description" placeholder="Vaccin ou traitement" /></label>
+            <label class="field"><span>Prochain rendez-vous</span><input type="date" [(ngModel)]="form.nextDate" /></label>
+          </div>
+          <div class="modal__foot">
+            <button type="button" class="secondary-btn" (click)="closeForm()">Annuler</button>
+            <button type="button" class="primary-btn" (click)="addRow()">Enregistrer</button>
+          </div>
+        </div>
+      </div>
+    }
+  </main>
+</div>

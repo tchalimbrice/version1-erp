@@ -1,0 +1,46 @@
+<div class="collab-page">
+  <h2>Gestion des collaborateurs</h2>
+  <p *ngIf="message" class="message">{{ message }}</p>
+  <div *ngIf="!companyId">Merci de fournir `companyId` en query param.</div>
+  <div *ngIf="companyId">
+    <div class="form">
+      <label>Recherche utilisateur par email</label>
+      <input [(ngModel)]="emailQuery" (ngModelChange)="searchUsersByEmail($event)" placeholder="Entrez au moins 3 caractères" />
+      <ul *ngIf="userSuggestions.length" class="suggestions">
+        <li *ngFor="let user of userSuggestions" (click)="selectSuggestion(user)">
+          {{ user.email }} — {{ user.firstName }} {{ user.lastName }}
+        </li>
+      </ul>
+      <label>User ID sélectionné</label>
+      <input type="number" [(ngModel)]="newUserId" readonly />
+      <label>Position</label>
+      <input [(ngModel)]="newPosition" />
+      <label><input type="checkbox" [(ngModel)]="newDataAccess" /> Data Access</label>
+      <label><input type="checkbox" [(ngModel)]="newReportAccess" /> Report Access</label>
+      <label><input type="checkbox" [(ngModel)]="newSettingsAccess" /> Settings Access</label>
+      <button (click)="add()">Ajouter</button>
+    </div>
+
+    <div class="list">
+      <h3>Collaborateurs</h3>
+      <div *ngIf="loading">Chargement...</div>
+      <table *ngIf="!loading && collaborators.length">
+        <thead><tr><th>ID</th><th>User ID</th><th>Position</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody>
+          <tr *ngFor="let c of collaborators">
+            <td>{{ c.id }}</td>
+            <td>{{ c.userId }}</td>
+            <td>{{ c.position }}</td>
+            <td>{{ c.status }}</td>
+            <td>
+              <button (click)="suspend(c.id!)">Suspendre</button>
+              <button (click)="activate(c.id!)">Activer</button>
+              <button (click)="remove(c.id!)">Supprimer</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="!loading && !collaborators.length">Aucun collaborateur</div>
+    </div>
+  </div>
+</div>

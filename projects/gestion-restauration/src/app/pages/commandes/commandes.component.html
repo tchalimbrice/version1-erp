@@ -1,0 +1,132 @@
+<div class="p-6 space-y-4">
+  <div class="flex items-center justify-between flex-wrap gap-3">
+    <div>
+      <h1 class="text-2xl font-bold text-slate-900">Commandes</h1>
+      <p class="text-sm text-slate-500">Consultez et gérez les commandes enregistrées.</p>
+    </div>
+    <button type="button" (click)="openForm()" class="action-btn action-btn--primary">
+      + Nouvelle commande
+    </button>
+  </div>
+
+  <!-- Tabs -->
+  <div class="flex gap-1 bg-gray-100 rounded-lg p-1 w-fit">
+    @for (tab of tabs; track tab) {
+      <button (click)="activeTab.set(tab)"
+        class="px-4 py-1.5 rounded-md text-sm font-medium transition-colors"
+        [class.bg-white]="activeTab() === tab"
+        [class.shadow-sm]="activeTab() === tab"
+        [class.text-gray-800]="activeTab() === tab"
+        [class.text-gray-500]="activeTab() !== tab">
+        {{ tab }}
+      </button>
+    }
+  </div>
+
+  <!-- Search -->
+  <div class="flex gap-3">
+    <input type="text" [value]="search()" (input)="search.set($any($event.target).value)"
+      placeholder="Rechercher une commande..."
+      class="w-full max-w-sm border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" />
+  </div>
+
+  <!-- Table -->
+  <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="text-xs text-gray-400 font-semibold uppercase tracking-wide border-b border-gray-100">
+          <th class="px-6 py-3 text-left">N°</th>
+          <th class="px-6 py-3 text-left">Table</th>
+          <th class="px-6 py-3 text-left">Client</th>
+          <th class="px-6 py-3 text-left">Date</th>
+          <th class="px-6 py-3 text-left">Total</th>
+          <th class="px-6 py-3 text-left">Statut</th>
+          <th class="px-6 py-3 text-left">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (cmd of filtered(); track cmd.id) {
+          <tr class="border-b border-gray-50 hover:bg-gray-50 transition-colors">
+            <td class="px-6 py-3 font-semibold text-gray-700">{{ cmd.id }}</td>
+            <td class="px-6 py-3 text-gray-600">{{ cmd.table }}</td>
+            <td class="px-6 py-3 text-gray-600">{{ cmd.client || '—' }}</td>
+            <td class="px-6 py-3 text-gray-500 text-xs">{{ cmd.date }}</td>
+            <td class="px-6 py-3 font-semibold text-gray-700">{{ cmd.total }}</td>
+            <td class="px-6 py-3">
+              <span class="px-2 py-1 rounded-full text-xs font-semibold" [class]="statutClass(cmd.statut)">{{ cmd.statut }}</span>
+            </td>
+            <td class="px-6 py-3">
+              <div class="flex gap-2">
+                <button class="action-btn action-btn--secondary text-xs px-3 py-2">Modifier</button>
+                <button class="action-btn action-btn--danger text-xs px-3 py-2">Suppr.</button>
+              </div>
+            </td>
+          </tr>
+        }
+        @if (filtered().length === 0) {
+          <tr><td colspan="7" class="px-6 py-8 text-center text-gray-400 text-sm">Aucune commande trouvée.</td></tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="flex items-center justify-center gap-2 pt-2">
+    <button class="action-btn action-btn--ghost text-xs px-3 py-2">Précédent</button>
+    <button class="action-btn action-btn--primary text-xs px-3 py-2">1</button>
+    <button class="action-btn action-btn--ghost text-xs px-3 py-2">2</button>
+    <button class="action-btn action-btn--ghost text-xs px-3 py-2">Suivant</button>
+  </div>
+</div>
+
+@if (showForm()) {
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4" (click)="closeForm()">
+    <div class="w-full max-w-xl rounded-3xl bg-white p-6 shadow-2xl" (click)="$event.stopPropagation()">
+      <div class="mb-5 flex items-start justify-between gap-4">
+        <div>
+          <h2 class="text-xl font-semibold text-slate-900">Nouvelle commande</h2>
+          <p class="text-sm text-slate-500">Saisie rapide de la commande sans quitter la page.</p>
+        </div>
+        <button type="button" class="action-btn action-btn--ghost px-3 py-2" (click)="closeForm()">×</button>
+      </div>
+
+      <div class="grid gap-4">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label class="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500">Table</label>
+            <input [(ngModel)]="form.table" class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" placeholder="Ex: Table 3" />
+          </div>
+          <div>
+            <label class="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500">Client</label>
+            <input [(ngModel)]="form.client" class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" placeholder="Nom du client" />
+          </div>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label class="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500">Date</label>
+            <input [(ngModel)]="form.date" class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" placeholder="29/04/2025 14:00" />
+          </div>
+          <div>
+            <label class="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500">Total</label>
+            <input [(ngModel)]="form.total" class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-red-300" placeholder="45,50 €" />
+          </div>
+        </div>
+
+        <div>
+          <label class="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500">Statut</label>
+          <select [(ngModel)]="form.statut" class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-red-300">
+            <option value="En préparation">En préparation</option>
+            <option value="Servi">Servi</option>
+            <option value="Annulé">Annulé</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mt-6 flex justify-end gap-3">
+          <button type="button" (click)="closeForm()" class="action-btn action-btn--ghost">Annuler</button>
+          <button type="button" (click)="saveCommande()" class="action-btn action-btn--primary">Enregistrer</button>
+        </div>
+    </div>
+  </div>
+}

@@ -49,7 +49,7 @@ export class CollabStoreService {
     this.company.set(invite.company); this.mode.set(invite.mode); this.currentUser.set(invite.user); this.save();
   }
 
-  logout() { this.currentUser.set(undefined); localStorage.removeItem(STORAGE_KEY); }
+  logout() { this.currentUser.set(undefined); this.save(); }
 
   logAction(actorRole: Role, actorName: string, action: string) {
     const log: ActivityLog = { id: Date.now().toString(), actorRole, actorName, action, at: new Date().toLocaleString('fr-FR') };

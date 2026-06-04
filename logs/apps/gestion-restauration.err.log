@@ -1,0 +1,1671 @@
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'ngModel' since it isn't a known property of 'select'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/rapports/rapports.component.html:4:12:
+[37m      4 │     <select [32m[(ngModel)]="selectedPeriod"[37m class="border border-gray-...
+        ╵             [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component RapportsComponent.
+
+    projects/gestion-restauration/src/app/pages/rapports/rapports.component.ts:8:15:
+[37m      8 │   templateUrl: [32m'./rapports.component.html'[37m,
+        ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'ngModel' since it isn't a known property of 'select'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/rapports/rapports.component.html:5:6:
+[37m      5 │       [32m[ngModel]="selectedPeriod"[37m (ngModelChange)="selectedPeriod = ...
+        ╵       [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component RapportsComponent.
+
+    projects/gestion-restauration/src/app/pages/rapports/rapports.component.ts:8:15:
+[37m      8 │   templateUrl: [32m'./rapports.component.html'[37m,
+        ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'Event' is not assignable to type 'string'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/rapports/rapports.component.html:5:50:
+[37m      5 │ ...gModel]="selectedPeriod" (ngModelChange)="[32mselectedPeriod = $event[37m">
+        ╵                                              [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component RapportsComponent.
+
+    projects/gestion-restauration/src/app/pages/rapports/rapports.component.ts:8:15:
+[37m      8 │   templateUrl: [32m'./rapports.component.html'[37m,
+        ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'ngModel' since it isn't a known property of 'select'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/rapports/rapports.component.html:4:12:
+[37m      4 │     <select [32m[(ngModel)]="selectedPeriod"[37m class="border border-gray-...
+        ╵             [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component RapportsComponent.
+
+    projects/gestion-restauration/src/app/pages/rapports/rapports.component.ts:8:15:
+[37m      8 │   templateUrl: [32m'./rapports.component.html'[37m,
+        ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'totalRevenue' does not exist on type 'DashboardComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:34:66:
+[37m      34 │ ..."mt-1 text-lg font-semibold text-slate-900">{{ [32mtotalRevenue[37m }}</p>
+         ╵                                                   [32m~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:8:15:
+[37m      8 │   templateUrl: [32m'./dashboard.component.html'[37m,
+        ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:46:16:
+[37m      46 │           <path [32md="{{ lineAreaPath }}"[37m fill="url(#chartGradient)" ...
+         ╵                 [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:8:15:
+[37m      8 │   templateUrl: [32m'./dashboard.component.html'[37m,
+        ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'lineAreaPath' does not exist on type 'DashboardComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:46:22:
+[37m      46 │           <path d="{{ [32mlineAreaPath[37m }}" fill="url(#chartGradient)" ...
+         ╵                       [32m~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:8:15:
+[37m      8 │   templateUrl: [32m'./dashboard.component.html'[37m,
+        ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:47:16:
+[37m      47 │           <path [32md="{{ linePath }}"[37m fill="none" stroke="#0ea5e9" st...
+         ╵                 [32m~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:8:15:
+[37m      8 │   templateUrl: [32m'./dashboard.component.html'[37m,
+        ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'linePath' does not exist on type 'DashboardComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:47:22:
+[37m      47 │           <path d="{{ [32mlinePath[37m }}" fill="none" stroke="#0ea5e9" st...
+         ╵                       [32m~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:8:15:
+[37m      8 │   templateUrl: [32m'./dashboard.component.html'[37m,
+        ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'chartPoints' does not exist on type 'DashboardComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:48:25:
+[37m      48 │           @for (point of [32mchartPoints[37m; track $index) {
+         ╵                          [32m~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:8:15:
+[37m      8 │   templateUrl: [32m'./dashboard.component.html'[37m,
+        ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cx' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:49:20:
+[37m      49 │             <circle [32mcx="{{ point.x }}"[37m cy="{{ point.y }}" r="7" fi...
+         ╵                     [32m~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:8:15:
+[37m      8 │   templateUrl: [32m'./dashboard.component.html'[37m,
+        ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cy' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:49:39:
+[37m      49 │ ...cle cx="{{ point.x }}" [32mcy="{{ point.y }}"[37m r="7" fill="#ffffff" ...
+         ╵                           [32m~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:8:15:
+[37m      8 │   templateUrl: [32m'./dashboard.component.html'[37m,
+        ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'totalSales' does not exist on type 'DashboardComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:66:83:
+[37m      66 │ ...x-3 py-1 text-sm text-slate-600">{{ [32mtotalSales[37m }} commandes</span>
+         ╵                                        [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:8:15:
+[37m      8 │   templateUrl: [32m'./dashboard.component.html'[37m,
+        ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'pieSegments' does not exist on type 'DashboardComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:73:29:
+[37m      73 │             @for (segment of [32mpieSegments[37m; track segment.label) {
+         ╵                              [32m~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:8:15:
+[37m      8 │   templateUrl: [32m'./dashboard.component.html'[37m,
+        ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:46:16:
+[37m      46 │           <path [32md="{{ lineAreaPath }}"[37m fill="url(#chartGradient)" ...
+         ╵                 [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:21:15:
+[37m      21 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:47:16:
+[37m      47 │           <path [32md="{{ linePath }}"[37m fill="none" stroke="#0ea5e9" st...
+         ╵                 [32m~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:21:15:
+[37m      21 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cx' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:49:20:
+[37m      49 │             <circle [32mcx="{{ point.x }}"[37m cy="{{ point.y }}" r="7" fi...
+         ╵                     [32m~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:21:15:
+[37m      21 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cy' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:49:39:
+[37m      49 │ ...cle cx="{{ point.x }}" [32mcy="{{ point.y }}"[37m r="7" fill="#ffffff" ...
+         ╵                           [32m~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:21:15:
+[37m      21 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG2008: Could not find stylesheet file './dashboard.component.scss'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:22:14:
+[37m      22 │   styleUrls: [[32m'./dashboard.component.scss'[37m],
+         ╵               [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mExpected identifier.
+   ╷
+13 │ .dashboard .rounded-[2rem] {
+   │                      ^
+   ╵
+  projects\gestion-restauration\src\app\pages\dashboard\dashboard.component.scss 13:22  root stylesheet[0m [1m[35m[plugin angular-sass][0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'totalRevenue' does not exist on type 'DashboardComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:34:66:
+[37m      34 │ ..."mt-1 text-lg font-semibold text-slate-900">{{ [32mtotalRevenue[37m }}</p>
+         ╵                                                   [32m~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:46:16:
+[37m      46 │           <path [32md="{{ lineAreaPath }}"[37m fill="url(#chartGradient)" ...
+         ╵                 [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:47:16:
+[37m      47 │           <path [32md="{{ linePath }}"[37m fill="none" stroke="#0ea5e9" st...
+         ╵                 [32m~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cx' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:49:20:
+[37m      49 │             <circle [32mcx="{{ point.x }}"[37m cy="{{ point.y }}" r="7" fi...
+         ╵                     [32m~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cy' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:49:39:
+[37m      49 │ ...cle cx="{{ point.x }}" [32mcy="{{ point.y }}"[37m r="7" fill="#ffffff" ...
+         ╵                           [32m~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'totalSales' does not exist on type 'DashboardComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:66:83:
+[37m      66 │ ...x-3 py-1 text-sm text-slate-600">{{ [32mtotalSales[37m }} commandes</span>
+         ╵                                        [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'client' does not exist on type 'Commande'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:129:43:
+[37m      129 │               <td class="px-6 py-4">{{ cmd.[32mclient[37m }}</td>
+          ╵                                            [32m~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mExpected identifier.
+   ╷
+13 │ .dashboard .rounded-[2rem] {
+   │                      ^
+   ╵
+  projects\gestion-restauration\src\app\pages\dashboard\dashboard.component.scss 13:22  root stylesheet[0m [1m[35m[plugin angular-sass][0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:78:18:
+[37m      78 │             <path [32md="{{ lineAreaPath }}"[37m fill="url(#rGrad)"/>
+         ╵                   [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:79:18:
+[37m      79 │             <path [32md="{{ linePath }}"[37m fill="none" stroke="#0ea5e9" ...
+         ╵                   [32m~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cx' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:81:22:
+[37m      81 │               <circle [32mcx="{{ pt.x }}"[37m cy="{{ pt.y }}" r="4" fill="...
+         ╵                       [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cy' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:81:38:
+[37m      81 │ ...<circle cx="{{ pt.x }}" [32mcy="{{ pt.y }}"[37m r="4" fill="#fff" strok...
+         ╵                            [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:78:18:
+[37m      78 │             <path [32md="{{ lineAreaPath }}"[37m fill="url(#rGrad)"/>
+         ╵                   [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:79:18:
+[37m      79 │             <path [32md="{{ linePath }}"[37m fill="none" stroke="#0ea5e9" ...
+         ╵                   [32m~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cx' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:81:22:
+[37m      81 │               <circle [32mcx="{{ pt.x }}"[37m cy="{{ pt.y }}" r="4" fill="...
+         ╵                       [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cy' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:81:38:
+[37m      81 │ ...<circle cx="{{ pt.x }}" [32mcy="{{ pt.y }}"[37m r="4" fill="#fff" strok...
+         ╵                            [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:78:18:
+[37m      78 │             <path [32md="{{ lineAreaPath }}"[37m fill="url(#rGrad)"/>
+         ╵                   [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:79:18:
+[37m      79 │             <path [32md="{{ linePath }}"[37m fill="none" stroke="#0ea5e9" ...
+         ╵                   [32m~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cx' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:81:22:
+[37m      81 │               <circle [32mcx="{{ pt.x }}"[37m cy="{{ pt.y }}" r="4" fill="...
+         ╵                       [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cy' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:81:38:
+[37m      81 │ ...<circle cx="{{ pt.x }}" [32mcy="{{ pt.y }}"[37m r="4" fill="#fff" strok...
+         ╵                            [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:78:18:
+[37m      78 │             <path [32md="{{ lineAreaPath }}"[37m fill="url(#rGrad)"/>
+         ╵                   [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:79:18:
+[37m      79 │             <path [32md="{{ linePath }}"[37m fill="none" stroke="#0ea5e9" ...
+         ╵                   [32m~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cx' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:81:22:
+[37m      81 │               <circle [32mcx="{{ pt.x }}"[37m cy="{{ pt.y }}" r="4" fill="...
+         ╵                       [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cy' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:81:38:
+[37m      81 │ ...<circle cx="{{ pt.x }}" [32mcy="{{ pt.y }}"[37m r="4" fill="#fff" strok...
+         ╵                            [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:78:18:
+[37m      78 │             <path [32md="{{ lineAreaPath }}"[37m fill="url(#rGrad)"/>
+         ╵                   [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:79:18:
+[37m      79 │             <path [32md="{{ linePath }}"[37m fill="none" stroke="#0ea5e9" ...
+         ╵                   [32m~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cx' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:81:22:
+[37m      81 │               <circle [32mcx="{{ pt.x }}"[37m cy="{{ pt.y }}" r="4" fill="...
+         ╵                       [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cy' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:81:38:
+[37m      81 │ ...<circle cx="{{ pt.x }}" [32mcy="{{ pt.y }}"[37m r="4" fill="#fff" strok...
+         ╵                            [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:78:18:
+[37m      78 │             <path [32md="{{ lineAreaPath }}"[37m fill="url(#rGrad)"/>
+         ╵                   [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:79:18:
+[37m      79 │             <path [32md="{{ linePath }}"[37m fill="none" stroke="#0ea5e9" ...
+         ╵                   [32m~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cx' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:81:22:
+[37m      81 │               <circle [32mcx="{{ pt.x }}"[37m cy="{{ pt.y }}" r="4" fill="...
+         ╵                       [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cy' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:81:38:
+[37m      81 │ ...<circle cx="{{ pt.x }}" [32mcy="{{ pt.y }}"[37m r="4" fill="#fff" strok...
+         ╵                            [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:78:18:
+[37m      78 │             <path [32md="{{ lineAreaPath }}"[37m fill="url(#rGrad)"/>
+         ╵                   [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:79:18:
+[37m      79 │             <path [32md="{{ linePath }}"[37m fill="none" stroke="#0ea5e9" ...
+         ╵                   [32m~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cx' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:81:22:
+[37m      81 │               <circle [32mcx="{{ pt.x }}"[37m cy="{{ pt.y }}" r="4" fill="...
+         ╵                       [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cy' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:81:38:
+[37m      81 │ ...<circle cx="{{ pt.x }}" [32mcy="{{ pt.y }}"[37m r="4" fill="#fff" strok...
+         ╵                            [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:78:18:
+[37m      78 │             <path [32md="{{ lineAreaPath }}"[37m fill="url(#rGrad)"/>
+         ╵                   [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:79:18:
+[37m      79 │             <path [32md="{{ linePath }}"[37m fill="none" stroke="#0ea5e9" ...
+         ╵                   [32m~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cx' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:81:22:
+[37m      81 │               <circle [32mcx="{{ pt.x }}"[37m cy="{{ pt.y }}" r="4" fill="...
+         ╵                       [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cy' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:81:38:
+[37m      81 │ ...<circle cx="{{ pt.x }}" [32mcy="{{ pt.y }}"[37m r="4" fill="#fff" strok...
+         ╵                            [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'color' does not exist on type 'MenuItem'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/menu/menu.component.html:24:119:
+[37m      24 │ ...text-2xl font-bold text-gray-400" [style.background]="item.[32mcolor[37m">
+         ╵                                                               [32m~~~~~[0m
+
+  Error occurs in the template of component MenuComponent.
+
+    projects/gestion-restauration/src/app/pages/menu/menu.component.ts:25:15:
+[37m      25 │   templateUrl: [32m'./menu.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2488: Type 'WritableSignal<string[]>' must have a '[Symbol.iterator]()' method that returns an iterator.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/menu/menu.component.html:51:21:
+[37m      51 │         @for (cat of [32mcategories[37m; track cat) {
+         ╵                      [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component MenuComponent.
+
+    projects/gestion-restauration/src/app/pages/menu/menu.component.ts:25:15:
+[37m      25 │   templateUrl: [32m'./menu.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG2008: Could not find stylesheet file './menu.component.scss'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/menu/menu.component.ts:26:12:
+[37m      26 │   styleUrl: [32m'./menu.component.scss'[37m,
+         ╵             [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:78:18:
+[37m      78 │             <path [32md="{{ lineAreaPath }}"[37m fill="url(#rGrad)"/>
+         ╵                   [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'd' since it isn't a known property of ':svg:path'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:79:18:
+[37m      79 │             <path [32md="{{ linePath }}"[37m fill="none" stroke="#0ea5e9" ...
+         ╵                   [32m~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cx' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:81:22:
+[37m      81 │               <circle [32mcx="{{ pt.x }}"[37m cy="{{ pt.y }}" r="4" fill="...
+         ╵                       [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG8002: Can't bind to 'cy' since it isn't a known property of ':svg:circle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.html:81:38:
+[37m      81 │ ...<circle cx="{{ pt.x }}" [32mcy="{{ pt.y }}"[37m r="4" fill="#fff" strok...
+         ╵                            [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component DashboardComponent.
+
+    projects/gestion-restauration/src/app/pages/dashboard/dashboard.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./dashboard.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG2008: Could not find stylesheet file './menu.component.scss'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/menu/menu.component.ts:26:12:
+[37m      26 │   styleUrl: [32m'./menu.component.scss'[37m,
+         ╵             [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'chartBars' does not exist on type 'RapportsComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/rapports/rapports.component.html:27:21:
+[37m      27 │         @for (bar of [32mchartBars[37m; track $index) {
+         ╵                      [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component RapportsComponent.
+
+    projects/gestion-restauration/src/app/pages/rapports/rapports.component.ts:12:15:
+[37m      12 │   templateUrl: [32m'./rapports.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG2008: Could not find stylesheet file './rapports.component.scss'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/rapports/rapports.component.ts:13:15:
+[37m      13 │   styleUrl:    [32m'./rapports.component.scss'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'chartBars' does not exist on type 'RapportsComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/rapports/rapports.component.html:27:21:
+[37m      27 │         @for (bar of [32mchartBars[37m; track $index) {
+         ╵                      [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component RapportsComponent.
+
+    projects/gestion-restauration/src/app/pages/rapports/rapports.component.ts:12:15:
+[37m      12 │   templateUrl: [32m'./rapports.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG2008: Could not find stylesheet file './rapports.component.scss'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/rapports/rapports.component.ts:13:15:
+[37m      13 │   styleUrl:    [32m'./rapports.component.scss'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'chartBars' does not exist on type 'RapportsComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/rapports/rapports.component.html:27:21:
+[37m      27 │         @for (bar of [32mchartBars[37m; track $index) {
+         ╵                      [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component RapportsComponent.
+
+    projects/gestion-restauration/src/app/pages/rapports/rapports.component.ts:12:15:
+[37m      12 │   templateUrl: [32m'./rapports.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG2008: Could not find stylesheet file './rapports.component.scss'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/rapports/rapports.component.ts:13:15:
+[37m      13 │   styleUrl:    [32m'./rapports.component.scss'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG2008: Could not find stylesheet file './rapports.component.scss'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/rapports/rapports.component.ts:13:15:
+[37m      13 │   styleUrl:    [32m'./rapports.component.scss'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'remarks' does not exist on type 'NouvelleCommandeComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/nouvelle-commande/nouvelle-commande.component.html:49:35:
+[37m      49 │ ...     <textarea [(ngModel)]="[32mremarks[37m" rows="3" placeholder="Ajou...
+         ╵                                [32m~~~~~~~[0m
+
+  Error occurs in the template of component NouvelleCommandeComponent.
+
+    projects/gestion-restauration/src/app/pages/nouvelle-commande/nouvelle-commande.component.ts:26:15:
+[37m      26 │   templateUrl: [32m'./nouvelle-commande.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'remarks' does not exist on type 'NouvelleCommandeComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/nouvelle-commande/nouvelle-commande.component.html:49:35:
+[37m      49 │ ...     <textarea [(ngModel)]="[32mremarks[37m" rows="3" placeholder="Ajou...
+         ╵                                [32m~~~~~~~[0m
+
+  Error occurs in the template of component NouvelleCommandeComponent.
+
+    projects/gestion-restauration/src/app/pages/nouvelle-commande/nouvelle-commande.component.ts:26:15:
+[37m      26 │   templateUrl: [32m'./nouvelle-commande.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2488: Type 'Signal<{ label: string; value: number; }[]>' must have a '[Symbol.iterator]()' method that returns an iterator.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.html:16:19:
+[37m      16 │         @for (s of [32mstats[37m; track s.label) {
+         ╵                    [32m~~~~~[0m
+
+  Error occurs in the template of component ReservationsComponent.
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./reservations.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Cannot parse expression. @for loop expression must match the pattern "<identifier> of <expression>"[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.html:104:20:
+[37m      104 │               @for ([32mlet i = 1[37m; i <= 10; i++) {
+          ╵                     [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ReservationsComponent.
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./reservations.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Client' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.html:58:44:
+[37m      58 │ ...t type="text" [(ngModel)]="[32mclientForm[37m().nom" placeholder="Ex: J...
+         ╵                               [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component ClientsComponent.
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./clients.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Client' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.html:58:44:
+[37m      58 │ ...t type="text" [(ngModel)]="[32mclientForm[37m().nom" placeholder="Ex: J...
+         ╵                               [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component ClientsComponent.
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./clients.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Client' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.html:63:44:
+[37m      63 │ ...t type="text" [(ngModel)]="[32mclientForm[37m().tel" placeholder="06 12...
+         ╵                               [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component ClientsComponent.
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./clients.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Client' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.html:63:44:
+[37m      63 │ ...t type="text" [(ngModel)]="[32mclientForm[37m().tel" placeholder="06 12...
+         ╵                               [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component ClientsComponent.
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./clients.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Client' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.html:68:45:
+[37m      68 │ ... type="email" [(ngModel)]="[32mclientForm[37m().email" placeholder="jea...
+         ╵                               [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component ClientsComponent.
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./clients.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Client' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.html:68:45:
+[37m      68 │ ... type="email" [(ngModel)]="[32mclientForm[37m().email" placeholder="jea...
+         ╵                               [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component ClientsComponent.
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./clients.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Client' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.html:73:54:
+[37m      73 │ ...    <input type="number" min="0" [(ngModel)]="[32mclientForm[37m().points"
+         ╵                                                  [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component ClientsComponent.
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./clients.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Client' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.html:73:54:
+[37m      73 │ ...    <input type="number" min="0" [(ngModel)]="[32mclientForm[37m().points"
+         ╵                                                  [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component ClientsComponent.
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./clients.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2488: Type 'Signal<{ label: string; value: number; }[]>' must have a '[Symbol.iterator]()' method that returns an iterator.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.html:16:19:
+[37m      16 │         @for (s of [32mstats[37m; track s.label) {
+         ╵                    [32m~~~~~[0m
+
+  Error occurs in the template of component ReservationsComponent.
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./reservations.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Reservation' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.html:97:44:
+[37m      97 │             <input type="time" [(ngModel)]="[32mreservationForm[37m().heure"
+         ╵                                             [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ReservationsComponent.
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./reservations.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Reservation' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.html:97:44:
+[37m      97 │             <input type="time" [(ngModel)]="[32mreservationForm[37m().heure"
+         ╵                                             [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ReservationsComponent.
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./reservations.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Reservation' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.html:102:33:
+[37m      102 │             <select [(ngModel)]="[32mreservationForm[37m().table"
+          ╵                                  [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ReservationsComponent.
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./reservations.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Reservation' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.html:102:33:
+[37m      102 │             <select [(ngModel)]="[32mreservationForm[37m().table"
+          ╵                                  [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ReservationsComponent.
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./reservations.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Cannot parse expression. @for loop expression must match the pattern "<identifier> of <expression>"[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.html:104:20:
+[37m      104 │               @for ([32mlet i = 1[37m; i <= 10; i++) {
+          ╵                     [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ReservationsComponent.
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./reservations.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Reservation' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.html:111:44:
+[37m      111 │ ...ype="text" [(ngModel)]="[32mreservationForm[37m().nom" placeholder="Ex...
+          ╵                            [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ReservationsComponent.
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./reservations.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Reservation' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.html:111:44:
+[37m      111 │ ...ype="text" [(ngModel)]="[32mreservationForm[37m().nom" placeholder="Ex...
+          ╵                            [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ReservationsComponent.
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./reservations.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Reservation' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.html:116:54:
+[37m      116 │ ...t type="number" min="1" [(ngModel)]="[32mreservationForm[37m().personnes"
+          ╵                                         [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ReservationsComponent.
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./reservations.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Reservation' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.html:116:54:
+[37m      116 │ ...t type="number" min="1" [(ngModel)]="[32mreservationForm[37m().personnes"
+          ╵                                         [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ReservationsComponent.
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./reservations.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Reservation' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.html:121:33:
+[37m      121 │             <select [(ngModel)]="[32mreservationForm[37m().statut"
+          ╵                                  [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ReservationsComponent.
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./reservations.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Reservation' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.html:121:33:
+[37m      121 │             <select [(ngModel)]="[32mreservationForm[37m().statut"
+          ╵                                  [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ReservationsComponent.
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./reservations.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'StockItem' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.html:62:44:
+[37m      62 │ ...ut type="text" [(ngModel)]="[32mitemForm[37m().nom" placeholder="Ex: To...
+         ╵                                [32m~~~~~~~~[0m
+
+  Error occurs in the template of component StockComponent.
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./stock.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'StockItem' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.html:62:44:
+[37m      62 │ ...ut type="text" [(ngModel)]="[32mitemForm[37m().nom" placeholder="Ex: To...
+         ╵                                [32m~~~~~~~~[0m
+
+  Error occurs in the template of component StockComponent.
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./stock.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'StockItem' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.html:68:33:
+[37m      68 │             <select [(ngModel)]="[32mitemForm[37m().categorie"
+         ╵                                  [32m~~~~~~~~[0m
+
+  Error occurs in the template of component StockComponent.
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./stock.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'StockItem' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.html:68:33:
+[37m      68 │             <select [(ngModel)]="[32mitemForm[37m().categorie"
+         ╵                                  [32m~~~~~~~~[0m
+
+  Error occurs in the template of component StockComponent.
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./stock.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'StockItem' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.html:78:54:
+[37m      78 │             <input type="number" min="0" [(ngModel)]="[32mitemForm[37m().qte"
+         ╵                                                       [32m~~~~~~~~[0m
+
+  Error occurs in the template of component StockComponent.
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./stock.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'StockItem' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.html:78:54:
+[37m      78 │             <input type="number" min="0" [(ngModel)]="[32mitemForm[37m().qte"
+         ╵                                                       [32m~~~~~~~~[0m
+
+  Error occurs in the template of component StockComponent.
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./stock.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'StockItem' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.html:84:33:
+[37m      84 │             <select [(ngModel)]="[32mitemForm[37m().unite"
+         ╵                                  [32m~~~~~~~~[0m
+
+  Error occurs in the template of component StockComponent.
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./stock.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'StockItem' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.html:84:33:
+[37m      84 │             <select [(ngModel)]="[32mitemForm[37m().unite"
+         ╵                                  [32m~~~~~~~~[0m
+
+  Error occurs in the template of component StockComponent.
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./stock.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'StockItem' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.html:94:33:
+[37m      94 │             <select [(ngModel)]="[32mitemForm[37m().statut"
+         ╵                                  [32m~~~~~~~~[0m
+
+  Error occurs in the template of component StockComponent.
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./stock.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'StockItem' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.html:94:33:
+[37m      94 │             <select [(ngModel)]="[32mitemForm[37m().statut"
+         ╵                                  [32m~~~~~~~~[0m
+
+  Error occurs in the template of component StockComponent.
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./stock.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Client' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.html:58:44:
+[37m      58 │ ...t type="text" [(ngModel)]="[32mclientForm[37m().nom" placeholder="Ex: J...
+         ╵                               [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component ClientsComponent.
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./clients.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Client' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.html:58:44:
+[37m      58 │ ...t type="text" [(ngModel)]="[32mclientForm[37m().nom" placeholder="Ex: J...
+         ╵                               [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component ClientsComponent.
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./clients.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Client' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.html:63:44:
+[37m      63 │ ...t type="text" [(ngModel)]="[32mclientForm[37m().tel" placeholder="06 12...
+         ╵                               [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component ClientsComponent.
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./clients.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Client' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.html:63:44:
+[37m      63 │ ...t type="text" [(ngModel)]="[32mclientForm[37m().tel" placeholder="06 12...
+         ╵                               [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component ClientsComponent.
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./clients.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Client' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.html:68:45:
+[37m      68 │ ... type="email" [(ngModel)]="[32mclientForm[37m().email" placeholder="jea...
+         ╵                               [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component ClientsComponent.
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./clients.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Client' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.html:68:45:
+[37m      68 │ ... type="email" [(ngModel)]="[32mclientForm[37m().email" placeholder="jea...
+         ╵                               [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component ClientsComponent.
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./clients.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Client' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.html:73:54:
+[37m      73 │ ...    <input type="number" min="0" [(ngModel)]="[32mclientForm[37m().points"
+         ╵                                                  [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component ClientsComponent.
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./clients.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'Client' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.html:73:54:
+[37m      73 │ ...    <input type="number" min="0" [(ngModel)]="[32mclientForm[37m().points"
+         ╵                                                  [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component ClientsComponent.
+
+    projects/gestion-restauration/src/app/pages/clients/clients.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./clients.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2488: Type 'Signal<{ label: string; value: number; }[]>' must have a '[Symbol.iterator]()' method that returns an iterator.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.html:16:19:
+[37m      16 │         @for (s of [32mstats[37m; track s.label) {
+         ╵                    [32m~~~~~[0m
+
+  Error occurs in the template of component ReservationsComponent.
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./reservations.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'StockItem' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.html:62:44:
+[37m      62 │ ...ut type="text" [(ngModel)]="[32mitemForm[37m().nom" placeholder="Ex: To...
+         ╵                                [32m~~~~~~~~[0m
+
+  Error occurs in the template of component StockComponent.
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./stock.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'StockItem' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.html:62:44:
+[37m      62 │ ...ut type="text" [(ngModel)]="[32mitemForm[37m().nom" placeholder="Ex: To...
+         ╵                                [32m~~~~~~~~[0m
+
+  Error occurs in the template of component StockComponent.
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./stock.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'StockItem' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.html:68:33:
+[37m      68 │             <select [(ngModel)]="[32mitemForm[37m().categorie"
+         ╵                                  [32m~~~~~~~~[0m
+
+  Error occurs in the template of component StockComponent.
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./stock.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'StockItem' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.html:68:33:
+[37m      68 │             <select [(ngModel)]="[32mitemForm[37m().categorie"
+         ╵                                  [32m~~~~~~~~[0m
+
+  Error occurs in the template of component StockComponent.
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./stock.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'StockItem' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.html:78:54:
+[37m      78 │             <input type="number" min="0" [(ngModel)]="[32mitemForm[37m().qte"
+         ╵                                                       [32m~~~~~~~~[0m
+
+  Error occurs in the template of component StockComponent.
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./stock.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'StockItem' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.html:78:54:
+[37m      78 │             <input type="number" min="0" [(ngModel)]="[32mitemForm[37m().qte"
+         ╵                                                       [32m~~~~~~~~[0m
+
+  Error occurs in the template of component StockComponent.
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./stock.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'StockItem' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.html:84:33:
+[37m      84 │             <select [(ngModel)]="[32mitemForm[37m().unite"
+         ╵                                  [32m~~~~~~~~[0m
+
+  Error occurs in the template of component StockComponent.
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./stock.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'StockItem' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.html:84:33:
+[37m      84 │             <select [(ngModel)]="[32mitemForm[37m().unite"
+         ╵                                  [32m~~~~~~~~[0m
+
+  Error occurs in the template of component StockComponent.
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./stock.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'StockItem' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.html:94:33:
+[37m      94 │             <select [(ngModel)]="[32mitemForm[37m().statut"
+         ╵                                  [32m~~~~~~~~[0m
+
+  Error occurs in the template of component StockComponent.
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./stock.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'StockItem' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.html:94:33:
+[37m      94 │             <select [(ngModel)]="[32mitemForm[37m().statut"
+         ╵                                  [32m~~~~~~~~[0m
+
+  Error occurs in the template of component StockComponent.
+
+    projects/gestion-restauration/src/app/pages/stock/stock.component.ts:11:15:
+[37m      11 │   templateUrl: [32m'./stock.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2488: Type 'Signal<{ label: string; value: number; }[]>' must have a '[Symbol.iterator]()' method that returns an iterator.[0m [1m[35m[plugin angular-compiler][0m
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.html:16:19:
+[37m      16 │         @for (s of [32mstats[37m; track s.label) {
+         ╵                    [32m~~~~~[0m
+
+  Error occurs in the template of component ReservationsComponent.
+
+    projects/gestion-restauration/src/app/pages/reservations/reservations.component.ts:13:15:
+[37m      13 │   templateUrl: [32m'./reservations.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m

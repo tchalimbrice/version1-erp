@@ -1,5 +1,53 @@
-<div class="login-page"> <div class="bg-img"></div> <div class="login-card"> <div class="login-card__icon"></div> <h1 class="login-card__title">BTP Manager</h1> <p class="login-card__sub">Gestion d'entreprise de construction</p> <label class="login-field"> <span>Lien d'invitation ou token</span> <textarea [(ngModel)]="inviteText" class="login-field__input" rows="4"placeholder="Collez votre lien d'invitation ici…"></textarea> </label> @if (error) {
-      <div class="login-error">{{ error }}</div> }
+<div class="login-page">
+  <div class="bg-img"></div>
 
-    <button class="login-btn" (click)="connect()">Accéder à l'espace</button> <a href="http://localhost:4200" class="login-back">← Retour à BIZMASTER</a> </div>
+  <div class="login-card">
+    <div class="login-card__badge">BTP</div>
+    <h1 class="login-card__title">BTP Manager</h1>
+    <p class="login-card__sub">Gestion d'entreprise de construction</p>
+
+    @if (hasInvite) {
+      <div class="login-welcome">
+        <div class="login-welcome__name">{{ collaboratorName }}</div>
+        <div class="login-welcome__role">{{ collaboratorRole }}</div>
+        <div class="login-welcome__company">{{ companyName }}</div>
+      </div>
+    } @else if (companyName) {
+      <div class="login-company">{{ companyName }}</div>
+    }
+
+    <div class="login-fields">
+      <label class="login-field">
+        <span>Adresse email</span>
+        <input
+          [(ngModel)]="email"
+          type="email"
+          class="login-field__input"
+          [readOnly]="hasInvite"
+          [class.login-field__input--readonly]="hasInvite"
+          placeholder="votre@email.ci"
+          (keyup.enter)="login()"
+        />
+      </label>
+
+      <label class="login-field">
+        <span>Mot de passe</span>
+        <input
+          [(ngModel)]="password"
+          type="password"
+          class="login-field__input"
+          placeholder="••••••••"
+          (keyup.enter)="login()"
+        />
+      </label>
+    </div>
+
+    @if (error) {
+      <div class="login-error">{{ error }}</div>
+    }
+
+    <button class="login-btn" (click)="login()">Se connecter</button>
+
+    <a href="http://localhost:4200" class="login-back">← Retour à BIZMASTER</a>
+  </div>
 </div>

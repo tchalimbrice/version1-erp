@@ -1,18 +1,28 @@
-﻿import { Component, computed } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { CollabStoreService, SaleEntry } from '../../services/collab-store.service';
 
 @Component({
   selector: 'app-ventes',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './ventes.component.html',
   styleUrl: './ventes.component.scss'
 })
 export class VentesComponent {
   readonly sales = computed(() => this.store.sales());
-  readonly totalSales = computed(() => this.store.sales().reduce((sum, s) => sum + s.total, 0));
+  readonly totalSales = computed(() => this.store.sales().reduce((sum, sale) => sum + sale.total, 0));
+
+  showForm = false;
+  form = {
+    product: 'Tomates',
+    quantity: 0,
+    unit: 'kg',
+    unitPrice: 0,
+    client: ''
+  };
 
   constructor(private readonly store: CollabStoreService) {
     if (this.store.sales().length === 0) {
@@ -20,18 +30,39 @@ export class VentesComponent {
     }
   }
 
+  openForm() {
+    this.showForm = true;
+  }
+
+  closeForm() {
+    this.showForm = false;
+  }
+
   addSale() {
-    const sample: SaleEntry = {
+    if (!this.form.product || !this.form.quantity || !this.form.unitPrice || !this.form.client) {
+      return;
+    }
+
+    const entry: SaleEntry = {
       id: crypto.randomUUID().slice(0, 8),
-      product: 'Tomates',
-      quantity: 40,
-      unit: 'kg',
-      unitPrice: 900,
-      total: 36000,
-      client: 'Marché Central',
+      product: this.form.product,
+      quantity: Number(this.form.quantity),
+      unit: this.form.unit,
+      unitPrice: Number(this.form.unitPrice),
+      total: Number(this.form.quantity) * Number(this.form.unitPrice),
+      client: this.form.client,
       date: new Date().toISOString()
     };
-    this.store.addSale(sample);
+
+    this.store.addSale(entry);
+    this.form = {
+      product: 'Tomates',
+      quantity: 0,
+      unit: 'kg',
+      unitPrice: 0,
+      client: ''
+    };
+    this.showForm = false;
   }
 
   formatMoney(amount: number): string {

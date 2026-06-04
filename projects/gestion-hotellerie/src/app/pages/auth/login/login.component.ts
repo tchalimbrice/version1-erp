@@ -29,31 +29,24 @@ import { decodeInvite } from '../../../utils/invite';
         </div>
       }
 
-      @if (hasInvite()) {
-        <div style="display:flex;flex-direction:column;gap:15px;">
-          <div style="display:flex;flex-direction:column;gap:5px;">
-            <label style="font-size:11px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.5px;">Adresse email</label>
-            <input type="email" [value]="email()" readonly
-              style="border:1.5px solid #e3e8f0;border-radius:10px;padding:11px 14px;font-size:13px;background:#f8f9fb;color:#444;outline:none;cursor:not-allowed;" />
-          </div>
-          <div style="display:flex;flex-direction:column;gap:5px;">
-            <label style="font-size:11px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.5px;">Mot de passe</label>
-            <input type="password" [value]="password()" (input)="password.set($any($event.target).value)" (keydown.enter)="login()"
-              placeholder="••••••••"
-              style="border:1.5px solid #e3e8f0;border-radius:10px;padding:11px 14px;font-size:13px;outline:none;" />
-          </div>
-          <button (click)="login()"
-            style="background:linear-gradient(135deg,#f39c12,#d68910);color:#fff;border:none;border-radius:11px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(243,156,18,.35);">
-            Se connecter →
-          </button>
+      <div style="display:flex;flex-direction:column;gap:15px;">
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <label style="font-size:11px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.5px;">Adresse email</label>
+          <input type="email" [value]="email()" (input)="email.set($any($event.target).value)"
+            placeholder="votre@email.ci"
+            style="border:1.5px solid #e3e8f0;border-radius:10px;padding:11px 14px;font-size:13px;outline:none;transition:border-color .15s;" />
         </div>
-      } @else {
-        <div style="text-align:center;padding:24px 0;">
-          <div style="font-size:52px;margin-bottom:14px;">🔗</div>
-          <p style="color:#444;font-size:14px;font-weight:600;margin-bottom:8px;">Lien d'invitation requis</p>
-          <p style="color:#8a9ab0;font-size:12px;line-height:1.6;">Utilisez le lien d'invitation fourni<br/>par votre administrateur.</p>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <label style="font-size:11px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.5px;">Mot de passe</label>
+          <input type="password" [value]="password()" (input)="password.set($any($event.target).value)" (keydown.enter)="login()"
+            placeholder="••••••••"
+            style="border:1.5px solid #e3e8f0;border-radius:10px;padding:11px 14px;font-size:13px;outline:none;" />
         </div>
-      }
+        <button (click)="login()"
+          style="background:linear-gradient(135deg,#f39c12,#d68910);color:#fff;border:none;border-radius:11px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(243,156,18,.35);">
+          Se connecter →
+        </button>
+      </div>
 
       <a href="http://localhost:4200" style="display:block;margin-top:22px;text-align:center;color:#9aa5b4;font-size:12px;text-decoration:none;">← Retour à BIZMASTER</a>
     </div>
@@ -66,19 +59,23 @@ export class LoginComponent {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
-  email      = signal('');
-  password   = signal('');
-  error      = signal('');
-  companyName = signal('');
-  hasInvite  = signal(false);
+  email       = signal('');
+  password    = signal('');
+  error       = signal('');
+  companyName = signal(this.store.company()?.name ?? '');
 
   private pendingPayload: ReturnType<typeof decodeInvite> = undefined;
 
   constructor() {
+    const token       = this.route.snapshot.queryParamMap.get('invite');
+    const authVerified = this.route.snapshot.queryParamMap.get('auth') === '1';
+    if (token && authVerified) {
+      const payload = decodeInvite(token);
+      if (payload) { this.store.hydrateFromInvite(payload); this.redirectByRole(payload.user.role); return; }
+    }
+    if (token) { this.processInvite(token); return; }
     const existing = this.store.currentUser();
-    if (existing) { this.redirectByRole(existing.role); return; }
-    const token = this.route.snapshot.queryParamMap.get('invite');
-    if (token) this.processInvite(token);
+    if (existing) { this.redirectByRole(existing.role); }
   }
 
   private processInvite(token: string) {
@@ -87,18 +84,30 @@ export class LoginComponent {
     this.pendingPayload = payload;
     this.email.set(payload.user.email);
     this.companyName.set(payload.company.name);
-    this.hasInvite.set(true);
   }
 
   login() {
     this.error.set('');
-    if (!this.pendingPayload) { this.error.set('Lien d\'invitation manquant.'); return; }
+    if (!this.email()) { this.error.set('Veuillez saisir votre email.'); return; }
     if (!this.password()) { this.error.set('Veuillez saisir votre mot de passe.'); return; }
-    if (this.password() !== this.pendingPayload.password) {
-      this.error.set('Mot de passe incorrect.'); return;
+
+    if (this.pendingPayload) {
+      if (this.email() !== this.pendingPayload.user.email) { this.error.set('Email incorrect.'); return; }
+      if (this.password() !== this.pendingPayload.password) { this.error.set('Mot de passe incorrect.'); return; }
+      this.store.hydrateFromInvite(this.pendingPayload);
+      this.redirectByRole(this.pendingPayload.user.role);
+      return;
     }
-    this.store.hydrateFromInvite(this.pendingPayload);
-    this.redirectByRole(this.pendingPayload.user.role);
+
+    const company = this.store.company();
+    if (!company) {
+      this.error.set('Aucune entreprise configurée. Accédez via BIZMASTER pour votre première connexion.');
+      return;
+    }
+    if (this.email() !== company.email) { this.error.set('Email incorrect.'); return; }
+    if (this.password() !== company.adminPassword) { this.error.set('Mot de passe incorrect.'); return; }
+    this.store.setCurrentUser({ role: 'owner', name: company.name, email: company.email });
+    this.redirectByRole('owner');
   }
 
   private redirectByRole(role: string) {

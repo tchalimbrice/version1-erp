@@ -8,7 +8,8 @@ const roleHomes: Record<Role, string> = {
   owner: '/tableau-de-bord',
   employee: '/parcelles',
   hr: '/rh',
-  accountant: '/comptabilite'
+  accountant: '/comptabilite',
+  pharmacien: '/pharmacie'
 };
 
 @Component({
@@ -35,4 +36,3 @@ export class InviteComponent {
     this.router.navigate(['/connexion'], { queryParams: { invite: inviteParam } });
   }
 }
-

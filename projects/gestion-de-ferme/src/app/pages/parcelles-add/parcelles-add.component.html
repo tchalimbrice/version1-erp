@@ -1,6 +1,5 @@
-﻿<div class="form-page"> <header class="topbar"> <h1>Ajouter une parcelle</h1> <button class="ghost" type="button" (click)="cancel()">Retour</button> </header> <form class="card" (ngSubmit)="submit()"> <div class="form-grid"> <label> Nom de la parcelle
-        <input type="text" name="name" [(ngModel)]="name" placeholder="Parcelle F" /> </label> <label> Culture
-        <input type="text" name="culture" [(ngModel)]="culture" placeholder="Maïs" /> </label> <label> Superficie (ha)
-        <input type="text" name="area" [(ngModel)]="area" placeholder="1.5" /> </label> <label> Statut
-        <input type="text" name="status" [(ngModel)]="status" placeholder="En croissance" /> </label> </div> <div class="form-actions"> <button class="ghost" type="button" (click)="cancel()">Annuler</button> <button class="primary" type="submit">Enregistrer</button> </div> </form>
-</div>
+<main class="form-page">
+  <h2>Ajouter une parcelle</h2>
+  <p>Formulaire de parcelle temporaire.</p>
+  <a routerLink="/parcelles" class="back">Retour</a>
+</main>

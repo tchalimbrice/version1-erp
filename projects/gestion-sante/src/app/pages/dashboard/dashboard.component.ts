@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { CollabStoreService } from '../../services/collab-store.service';
 
@@ -14,7 +15,9 @@ interface RecentActivity {
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
+  private readonly http = inject(HttpClient);
+  private readonly apiUrl = 'http://localhost:8080/api/sante/dashboard/summary';
   readonly today = new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 
   kpis = [
@@ -64,6 +67,29 @@ export class DashboardComponent {
   }
 
   constructor(public readonly store: CollabStoreService) {}
+
+  ngOnInit(): void {
+    this.http.get<{ service: string; metrics: Array<{ code: string; label: string; value: number; color: string }> }>(this.apiUrl)
+      .subscribe({
+        next: summary => this.applySummary(summary),
+        error: () => undefined,
+      });
+  }
+
+  private applySummary(summary: { service: string; metrics: Array<{ code: string; label: string; value: number; color: string }> }): void {
+    const metrics = new Map(summary.metrics.map(metric => [metric.code, metric.value] as const));
+    const patients = metrics.get('patients');
+    const consultations = metrics.get('consultations');
+    const ordonnances = metrics.get('ordonnances');
+
+    if (patients !== undefined) this.kpis[0].value = String(patients);
+    if (consultations !== undefined) {
+      this.kpis[1].value = String(consultations);
+      this.kpis[2].value = String(consultations);
+    }
+    if (ordonnances !== undefined) this.kpis[3].value = `${ordonnances * 580} Fcfa`;
+    this.recentActivities = [...this.recentActivities];
+  }
 
   statutClass(s: string): string {
     if (s === 'Terminée')   return 'badge badge--green';

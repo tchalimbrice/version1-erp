@@ -47,6 +47,11 @@ export function decodeInvite(raw: string): InvitePayloadV1 | undefined {
   } catch { return undefined; }
 }
 
+export function buildInviteLink(token: string, baseUrl: string): string {
+  const root = baseUrl.replace(/\/$/, '');
+  return `${root}/connexion?invite=${encodeURIComponent(token)}`;
+}
+
 export function extractInviteTokenFromText(text: string): string | undefined {
   const trimmed = text.trim();
   if (!trimmed) return undefined;

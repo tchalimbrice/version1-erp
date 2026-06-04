@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CollabStoreService, Role } from './services/collab-store.service';
 
-interface NavLink { label: string; path: string; icon: string; }
+interface NavLink { label: string; path: string; }
 
 @Component({
   selector: 'app-root',
@@ -32,23 +32,35 @@ export class App {
   }
 
   linksForRole(role: Role): NavLink[] {
+    if (role === 'owner' && this.store.mode() === 'centralized') return [
+      { label: 'Tableau de bord',  path: '/dashboard'        },
+      { label: 'Commandes',        path: '/commandes'        },
+      { label: 'Livraisons',       path: '/livraisons'       },
+      { label: 'Véhicules',        path: '/vehicules'        },
+      { label: 'Entrepôts',        path: '/entrepots'        },
+      { label: 'Clients',          path: '/clients'          },
+      { label: 'Suivi temps réel', path: '/suivi-temps-reel' },
+      { label: 'Chauffeurs',       path: '/chauffeurs'       },
+      { label: 'Facturation',      path: '/facturation'      },
+      { label: 'Paramètres',       path: '/parametres'       },
+    ];
     if (role === 'owner') return [
-      { label: 'Tableau de bord', path: '/dashboard',  icon: '📊' },
-      { label: 'Paramètres',      path: '/parametres', icon: '⚙️' },
+      { label: 'Tableau de bord',  path: '/dashboard'  },
+      { label: 'Paramètres',       path: '/parametres' },
     ];
     if (role === 'employee') return [
-      { label: 'Commandes',        path: '/commandes',        icon: '📋' },
-      { label: 'Livraisons',       path: '/livraisons',       icon: '🚚' },
-      { label: 'Véhicules',        path: '/vehicules',        icon: '🚛' },
-      { label: 'Entrepôts',        path: '/entrepots',        icon: '🏭' },
-      { label: 'Clients',          path: '/clients',          icon: '👤' },
-      { label: 'Suivi temps réel', path: '/suivi-temps-reel', icon: '📍' },
+      { label: 'Commandes',        path: '/commandes'        },
+      { label: 'Livraisons',       path: '/livraisons'       },
+      { label: 'Véhicules',        path: '/vehicules'        },
+      { label: 'Entrepôts',        path: '/entrepots'        },
+      { label: 'Clients',          path: '/clients'          },
+      { label: 'Suivi temps réel', path: '/suivi-temps-reel' },
     ];
     if (role === 'hr') return [
-      { label: 'Chauffeurs', path: '/chauffeurs', icon: '🧑‍✈️' },
+      { label: 'Chauffeurs', path: '/chauffeurs' },
     ];
     return [
-      { label: 'Facturation', path: '/facturation', icon: '💰' },
+      { label: 'Facturation', path: '/facturation' },
     ];
   }
 }

@@ -1,0 +1,26 @@
+[33m>[39m Building...
+[32m√[39m Building...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                 [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                  [2m | [22m [36m19.25 kB[39m[2m | [22m
+[32mchunk-S6HH3XBL.js[39m  [2m | [22m[2m-[22m                     [2m | [22m  [36m3.07 kB[39m[2m | [22m
+[32mchunk-CZJLB7T5.js[39m  [2m | [22m[2m-[22m                     [2m | [22m  [36m1.08 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m                [2m | [22m[36m122 bytes[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m         [2m | [22m [1m23.52 kB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                 [2m | [22m [1mRaw size[22m
+[32mchunk-M2EEAGRR.js[39m  [2m | [22m[2mproduits-component[22m    [2m | [22m [36m54.17 kB[39m[2m | [22m
+[32mchunk-5XK2JEP4.js[39m  [2m | [22m[2mfactures-component[22m    [2m | [22m [36m51.57 kB[39m[2m | [22m
+[32mchunk-PGQCHGU5.js[39m  [2m | [22m[2mclients-component[22m     [2m | [22m [36m49.49 kB[39m[2m | [22m
+[32mchunk-OY6HTQCW.js[39m  [2m | [22m[2mventes-component[22m      [2m | [22m [36m48.10 kB[39m[2m | [22m
+[32mchunk-2HFNEF4E.js[39m  [2m | [22m[2mfournisseurs-component[22m[2m | [22m [36m47.66 kB[39m[2m | [22m
+[32mchunk-N7SYNJXF.js[39m  [2m | [22m[2mstocks-component[22m      [2m | [22m [36m47.34 kB[39m[2m | [22m
+[32mchunk-SCGSMORZ.js[39m  [2m | [22m[2mdashboard-component[22m   [2m | [22m [36m37.35 kB[39m[2m | [22m
+[32mchunk-ZNMS5D4H.js[39m  [2m | [22m[2mparametres-component[22m  [2m | [22m [36m35.68 kB[39m[2m | [22m
+[32mchunk-LKHPAZ2Q.js[39m  [2m | [22m[2mconnexion-component[22m   [2m | [22m [36m16.94 kB[39m[2m | [22m
+
+Application bundle generation complete. [19.026 seconds] - 2026-05-01T06:36:04.976Z
+
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4207[22m/[39m

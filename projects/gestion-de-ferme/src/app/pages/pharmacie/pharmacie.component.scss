@@ -1,0 +1,27 @@
+:host{display:block;min-height:100dvh;background:#f6fbf8}
+.dashboard{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:100dvh}
+.sidebar{background:#fff;border-right:1px solid #e6edf3;padding:1.3rem 1rem;display:flex;flex-direction:column;gap:1.4rem}
+.brand{display:flex;align-items:center;gap:.8rem}
+.brand__logo{width:44px;height:44px;border-radius:14px;background:#1f7a4e;color:#fff;display:grid;place-items:center;font-weight:800}
+.brand__text h1{margin:0;font-size:1rem;color:#1e2a22}
+.brand__text p{margin:.15rem 0 0;font-size:.78rem;color:#66766f}
+.menu{display:grid;gap:.3rem}
+.menu__item{text-decoration:none;color:#4a5750;font-size:.9rem;padding:.65rem .8rem;border-radius:12px;font-weight:600}
+.menu__item:hover,.menu__item--active{background:#eef6f0;color:#1f7a4e}
+.logout{margin-top:auto;background:#f5f8fb;color:#4a5750;border:1px solid #e6edf3;padding:.7rem 1rem;border-radius:12px;font-weight:600}
+.content{padding:1.4rem 1.6rem 1.8rem}
+.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1rem}
+.topbar h2{margin:0;font-size:1.45rem;color:#1e2a22}
+.topbar__sub{margin:.25rem 0 0;color:#6a7a71;font-size:.9rem}
+.primary{display:inline-flex;align-items:center;justify-content:center;border:none;padding:.7rem 1rem;border-radius:12px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#1f7a4e,#0f5a35);color:#fff;box-shadow:0 12px 20px rgba(31,122,78,.18)}
+.stats-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.9rem;margin-bottom:.9rem}
+.stat-card,.panel{background:#fff;border-radius:18px;border:1px solid #edf2f5;box-shadow:0 12px 22px rgba(15,64,40,.05);padding:1rem 1rem 1.1rem}
+.stat-card p{margin:0;color:#67766f;font-size:.82rem;font-weight:600}
+.stat-card h3{margin:.1rem 0 0;color:#18251e;font-size:1.28rem}
+.stat-card span{color:#8a9892;font-size:.75rem}
+.table{width:100%;border-collapse:collapse}
+.table thead th{text-align:left;font-size:.8rem;color:#70817a;font-weight:700;padding-bottom:.7rem}
+.table tbody td{padding:.82rem 0;border-top:1px solid #edf2f5;color:#243029;font-size:.9rem}
+.pill{display:inline-flex;align-items:center;padding:.24rem .6rem;border-radius:999px;background:rgba(31,122,78,.12);color:#1f7a4e;font-size:.77rem;font-weight:700}
+.pill--warn{background:rgba(239,68,68,.12);color:#dc2626}
+@media (max-width: 1080px){.dashboard{grid-template-columns:1fr}.sidebar{flex-direction:row;align-items:center;overflow-x:auto}.stats-row{grid-template-columns:1fr}}

@@ -9,8 +9,9 @@ export const routes: Routes = [
   { path: 'sous-traitants', loadComponent: () => import('./pages/sous-traitants/sous-traitants.component').then(m => m.SousTraitantsComponent), canActivate: [roleGuard], data: { roles: ['owner'] } },
   { path: 'parametres',     loadComponent: () => import('./pages/parametres/parametres.component').then(m => m.ParametresComponent),            canActivate: [roleGuard], data: { roles: ['owner'] } },
   { path: 'devis',          loadComponent: () => import('./pages/devis/devis.component').then(m => m.DevisComponent),                           canActivate: [roleGuard], data: { roles: ['employee'] } },
+  { path: 'contrats',       loadComponent: () => import('./pages/devis/devis.component').then(m => m.DevisComponent),                           canActivate: [roleGuard], data: { roles: ['employee'] } },
   { path: 'materiaux',      loadComponent: () => import('./pages/materiaux/materiaux.component').then(m => m.MateriauxComponent),               canActivate: [roleGuard], data: { roles: ['employee'] } },
-  { path: 'engins',         loadComponent: () => import('./pages/engins/engins.component').then(m => m.EnginsComponent),                        canActivate: [roleGuard], data: { roles: ['employee', 'owner'] } },
+  { path: 'engins',         loadComponent: () => import('./pages/engins/engins.component').then(m => m.EnginsComponent),                        canActivate: [roleGuard], data: { roles: ['employee'] } },
   { path: 'personnel',      loadComponent: () => import('./pages/personnel/personnel.component').then(m => m.PersonnelComponent),               canActivate: [roleGuard], data: { roles: ['hr'] } },
   { path: 'comptabilite',   loadComponent: () => import('./pages/comptabilite/comptabilite.component').then(m => m.ComptabiliteComponent),       canActivate: [roleGuard], data: { roles: ['accountant'] } },
   { path: '**', redirectTo: '/connexion' }

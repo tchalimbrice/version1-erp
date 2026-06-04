@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/page-accueil-generale/src/app/pages/invitation-accept/invitation-accept.component.scss"],
+  "sourcesContent": [".invite-accept { max-width: 420px; margin: 24px auto; padding: 16px; border-radius: 8px; background: #fff; }\r\n.invite-accept h2 { margin-bottom: 12px; }\r\n.invite-accept label { display: block; margin-top: 8px; }\r\n.invite-accept input { width: 100%; padding: 8px; margin-top: 4px; }\r\n.invite-accept .message { color: #c00; }\r\n.invite-accept button { margin-top: 12px; padding: 8px 16px; background:#007bff; color:white; border:none; border-radius:4px }\r\n.invite-accept .actions { display:flex; gap:8px; margin-top:8px }\r\n"],
+  "mappings": ";AAAA,CAAA;AAAiB,aAAA;AAAkB,UAAA,KAAA;AAAmB,WAAA;AAAe,iBAAA;AAAoB,cAAA;;AACzF,CADA,cACA;AAAoB,iBAAA;;AACpB,CAFA,cAEA;AAAuB,WAAA;AAAgB,cAAA;;AACvC,CAHA,cAGA;AAAuB,SAAA;AAAa,WAAA;AAAc,cAAA;;AAClD,CAJA,cAIA,CAAA;AAA0B,SAAA;;AAC1B,CALA,cAKA;AAAwB,cAAA;AAAkB,WAAA,IAAA;AAAmB,cAAA;AAAoB,SAAA;AAAa,UAAA;AAAa,iBAAA;;AAC3G,CANA,cAMA,CAAA;AAA0B,WAAA;AAAc,OAAA;AAAS,cAAA;;",
+  "names": []
+}

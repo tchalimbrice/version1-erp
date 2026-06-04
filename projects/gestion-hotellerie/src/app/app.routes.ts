@@ -11,10 +11,9 @@ import { ParametresComponent } from './pages/parametres/parametres.component';
 
 import { ReservationsComponent } from './pages/reservations/reservations.component';
 import { CheckinComponent } from './pages/checkin/checkin.component';
-import { ChambresComponent } from './pages/chambres/chambres.component';
+import { ChambresComponent } from './pages/chambres';
 import { ClientsComponent } from './pages/clients/clients.component';
 import { MenageComponent } from './pages/menage/menage.component';
-import { RapportsComponent } from './pages/rapports/rapports.component';
 
 import { EmployesComponent } from './pages/employes/employes.component';
 import { AnciensEmployesComponent } from './pages/anciens-employes/anciens-employes.component';
@@ -39,7 +38,6 @@ export const routes: Routes = [
   { path: 'chambres',     component: ChambresComponent,     canActivate: [roleGuard], data: { roles: ['employee'] } },
   { path: 'clients',      component: ClientsComponent,      canActivate: [roleGuard], data: { roles: ['employee'] } },
   { path: 'menage',       component: MenageComponent,       canActivate: [roleGuard], data: { roles: ['employee'] } },
-  { path: 'rapports',     component: RapportsComponent,     canActivate: [roleGuard], data: { roles: ['employee'] } },
 
   { path: 'employes',          component: EmployesComponent,        canActivate: [roleGuard], data: { roles: ['hr'] } },
   { path: 'anciens-employes',  component: AnciensEmployesComponent, canActivate: [roleGuard], data: { roles: ['hr'] } },

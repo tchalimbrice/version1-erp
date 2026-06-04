@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/page-accueil-generale/src/app/pages/erp-company-setup/erp-company-setup.component.scss"],
+  "sourcesContent": [":host {\n  display: block;\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;;",
+  "names": []
+}

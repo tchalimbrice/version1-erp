@@ -18,16 +18,29 @@ export class App {
 
   linksForRole(role: Role | undefined): Array<{ label: string; path: string }> {
     if (!role) return [];
-    if (role === 'owner') return [{ label: 'Tableau de bord', path: '/tableau-de-bord' }, { label: 'Finances', path: '/finances' }];
-    if (role === 'employee') {
+
+    if (role === 'owner') {
       return [
-        { label: 'Parcelles', path: '/parcelles' },
-        { label: 'Élevage', path: '/elevage' },
-        { label: 'Inventaire', path: '/inventaire' },
-        { label: 'Ventes', path: '/ventes' },
-        { label: 'Rapports', path: '/rapports' }
+        { label: 'Tableau de bord', path: '/tableau-de-bord' },
+        { label: 'Finances', path: '/finances' },
+        { label: 'Paramètres', path: '/parametres' }
       ];
     }
+
+    if (role === 'employee') {
+      return [
+        { label: 'Animaux', path: '/animaux' },
+        { label: 'Aliments', path: '/aliments' },
+        { label: 'Activités', path: '/activites' },
+        { label: 'Reproduction', path: '/reproduction' },
+        { label: 'Santé', path: '/sante' }
+      ];
+    }
+
+    if (role === 'pharmacien') {
+      return [{ label: 'Pharmacie', path: '/pharmacie' }];
+    }
+
     if (role === 'hr') return [{ label: 'RH', path: '/rh' }];
     return [{ label: 'Comptabilité', path: '/comptabilite' }];
   }

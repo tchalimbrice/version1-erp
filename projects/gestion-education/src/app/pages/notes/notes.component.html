@@ -1,0 +1,44 @@
+<div class="page">
+  <div class="page__header">
+    <div>
+      <h1 class="page__title">Notes & Bulletins</h1>
+      <p class="page__sub">Préparez un bulletin avant d'ouvrir l'espace de saisie.</p>
+    </div>
+    <div class="page__actions">
+      <button class="btn btn--outline" type="button" (click)="goToHistory()">Historique des bulletins</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__head">
+      <span class="card__title">Choix du bulletin</span>
+      <span class="card__link">Classes de la 6ème à la Terminale</span>
+    </div>
+
+    <div class="fields-row">
+      <div class="field">
+        <label class="field__label">Classe</label>
+        <select class="field__select" [value]="selectedClass()" (change)="selectClass($any($event.target).value)">
+          <option value="">-- Choisir une classe --</option>
+          @for (c of secondaryClasses(); track c.id) {
+            <option [value]="c.nom">{{ c.nom }} ({{ c.effectif }} élèves)</option>
+          }
+        </select>
+      </div>
+      <div class="field">
+        <label class="field__label">Période</label>
+        <select class="field__select" [value]="selectedPeriod()" (change)="selectedPeriod.set($any($event.target).value)" [disabled]="!availablePeriods().length">
+          <option value="">-- Choisir une période --</option>
+          @for (period of availablePeriods(); track period) {
+            <option [value]="period">{{ period }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
+      <button class="btn btn--primary" type="button" [disabled]="!selectedClass() || !selectedPeriod()" [class.btn--disabled]="!selectedClass() || !selectedPeriod()" (click)="openWorkspace()">Bulletin</button>
+      <span class="text-muted" style="align-self:center;">Le bouton reste grisé tant qu'une classe et une période ne sont pas choisies.</span>
+    </div>
+  </div>
+</div>

@@ -26,10 +26,14 @@ export class ConnexionComponent {
     private readonly router: Router,
     private readonly route: ActivatedRoute
   ) {
+    const inviteParam = this.route.snapshot.queryParamMap.get('invite');
+    const authVerified = this.route.snapshot.queryParamMap.get('auth') === '1';
+    if (inviteParam && authVerified) {
+      const payload = decodeInvite(inviteParam);
+      if (payload) { this.store.hydrateFromInvite(payload); this.redirectByRole(payload.user.role); return; }
+    }
     const existing = this.store.currentUser();
     if (existing) { this.redirectByRole(existing.role); return; }
-
-    const inviteParam = this.route.snapshot.queryParamMap.get('invite');
     if (inviteParam) {
       this.inviteText.set(inviteParam);
       this.parseInvite();
@@ -60,8 +64,11 @@ export class ConnexionComponent {
 
   private redirectByRole(role: string) {
     const dest: Record<string, string> = {
-      owner: '/dashboard', hr: '/rendez-vous', employee: '/personnel',
-      accountant: '/facturation', pharmacien: '/pharmacie'
+      owner: '/dashboard',
+      employee: '/patients',
+      hr: '/rendez-vous',
+      accountant: '/facturation',
+      pharmacien: '/pharmacie'
     };
     this.router.navigate([dest[role] ?? '/dashboard']);
   }

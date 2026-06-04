@@ -1,0 +1,25 @@
+
+<--- Last few GCs --->
+
+[30896:0000019668EE5000]     4372 ms: Mark-Compact 12.6 (20.7) -> 11.1 (29.5) MB, pooled: 0 MB, 3.22 / 0.00 ms  (+ 5.9 ms in 0 steps since start of marking, biggest step 0.0 ms, walltime since start of marking 14 ms) (average mu = 0.998, current mu = 0.99[30896:0000019668EE5000]     5821 ms: Scavenge 20.8 (30.7) -> 14.5 (30.7) MB, pooled: 0 MB, 2.77 / 0.01 ms  (average mu = 0.998, current mu = 0.998) allocation failure; 
+
+
+<--- JS stacktrace --->
+
+FATAL ERROR: Zone Allocation failed - process out of memory
+----- Native stack trace -----
+
+ 1: 00007FF6C1913587 
+ 2: 00007FF6C1873A5B 
+ 3: 00007FF6C247CCD1 
+ 4: 00007FF6C2469786 
+ 5: 00007FF6C1F4BAEB 
+ 6: 00007FF6C1EB1FA1 
+ 7: 00007FF6C24483BC 
+ 8: 00007FF6C23E48A0 
+ 9: 00007FF6C23E3B12 
+10: 00007FF6C1EBD012 
+11: 00007FF6C2323475 
+12: 00007FF6C1FB669A 
+13: 00007FF6C1FB6F89 
+14: 00007FF6624EDAFA 

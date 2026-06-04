@@ -39,35 +39,35 @@ interface PaiementEleve {
 <div class="page">
   <div class="page__header">
     <div>
-      <h1 class="page__title">💰 Paiements & Facturation</h1>
+      <h1 class="page__title"> Paiements & Facturation</h1>
       <p class="page__sub">Inscription, scolarités, paiements en tranches et reçus</p>
     </div>
     <div class="page__actions">
-      <button class="btn btn--outline" (click)="tab.set('inscription')">📋 Nouvelle inscription</button>
+      <button class="btn btn--outline" (click)="tab.set('inscription')"> Nouvelle inscription</button>
       <button class="btn btn--primary" (click)="tab.set('paiement')">+ Enregistrer paiement</button>
     </div>
   </div>
 
   <div class="tabs">
-    <button class="tab" [class.active]="tab()==='liste'"       (click)="tab.set('liste')">📋 Liste élèves</button>
-    <button class="tab" [class.active]="tab()==='paiement'"    (click)="tab.set('paiement')">💳 Paiement</button>
-    <button class="tab" [class.active]="tab()==='inscription'" (click)="tab.set('inscription')">📝 Inscription</button>
-    <button class="tab" [class.active]="tab()==='historique'"  (click)="tab.set('historique')">🕐 Historique</button>
+    <button class="tab" [class.active]="tab()==='liste'"       (click)="tab.set('liste')"> Liste élèves</button>
+    <button class="tab" [class.active]="tab()==='paiement'"    (click)="tab.set('paiement')"> Paiement</button>
+    <button class="tab" [class.active]="tab()==='inscription'" (click)="tab.set('inscription')"> Inscription</button>
+    <button class="tab" [class.active]="tab()==='historique'"  (click)="tab.set('historique')"> Historique</button>
   </div>
 
   <!-- ── Liste des élèves ── -->
   @if (tab() === 'liste') {
     <div class="kpi-grid">
       <div class="kpi-card" style="border-left-color:#27ae60">
-        <div class="kpi-card__icon" style="background:#d5f5e3">✅</div>
+        <div class="kpi-card__icon" style="background:#d5f5e3"></div>
         <div class="kpi-card__body"><div class="kpi-card__value">{{ aJour() }}</div><div class="kpi-card__label">À jour</div></div>
       </div>
       <div class="kpi-card" style="border-left-color:#c0392b">
-        <div class="kpi-card__icon" style="background:#fdecea">⚠️</div>
+        <div class="kpi-card__icon" style="background:#fdecea"></div>
         <div class="kpi-card__body"><div class="kpi-card__value">{{ enRetard() }}</div><div class="kpi-card__label">En retard</div></div>
       </div>
       <div class="kpi-card" style="border-left-color:#1a3a5c">
-        <div class="kpi-card__icon" style="background:#d6eaf8">🧑‍🎓</div>
+        <div class="kpi-card__icon" style="background:#d6eaf8"></div>
         <div class="kpi-card__body"><div class="kpi-card__value">{{ eleves().length }}</div><div class="kpi-card__label">Total inscrits</div></div>
       </div>
     </div>

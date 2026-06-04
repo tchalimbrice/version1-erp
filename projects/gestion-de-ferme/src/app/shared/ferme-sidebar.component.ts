@@ -3,7 +3,10 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { CollabStoreService, Role } from '../services/collab-store.service';
 
-interface NavLink { label: string; path: string; }
+interface NavLink {
+  label: string;
+  path: string;
+}
 
 @Component({
   selector: 'app-ferme-sidebar',
@@ -27,27 +30,33 @@ export class FermeSidebarComponent {
 
   get links(): NavLink[] {
     const r = this.role();
-    if (r === 'owner') return [
-      { label: 'Tableau de bord',    path: '/tableau-de-bord' },
-      { label: 'Finances',           path: '/finances' },
-      { label: 'Élevage',            path: '/elevage' },
-      { label: 'Suivi sanitaire',    path: '/suivi-sanitaire' },
-      { label: 'Production élevage', path: '/production-elevage' },
-      { label: 'Parcelles',          path: '/parcelles' },
-      { label: 'Inventaire',         path: '/inventaire' },
-      { label: 'Ventes',             path: '/ventes' },
-      { label: 'Rapports',           path: '/rapports' },
-    ];
-    if (r === 'employee') return [
-      { label: 'Parcelles',          path: '/parcelles' },
-      { label: 'Élevage',            path: '/elevage' },
-      { label: 'Suivi sanitaire',    path: '/suivi-sanitaire' },
-      { label: 'Production élevage', path: '/production-elevage' },
-      { label: 'Inventaire',         path: '/inventaire' },
-      { label: 'Ventes',             path: '/ventes' },
-      { label: 'Rapports',           path: '/rapports' },
-    ];
-    if (r === 'hr') return [{ label: 'RH', path: '/rh' }];
+
+    if (r === 'owner') {
+      return [
+        { label: 'Tableau de bord', path: '/tableau-de-bord' },
+        { label: 'Finances', path: '/finances' },
+        { label: 'Paramètres', path: '/parametres' }
+      ];
+    }
+
+    if (r === 'employee') {
+      return [
+        { label: 'Animaux', path: '/animaux' },
+        { label: 'Aliments', path: '/aliments' },
+        { label: 'Activités', path: '/activites' },
+        { label: 'Reproduction', path: '/reproduction' },
+        { label: 'Santé', path: '/sante' },
+      ];
+    }
+
+    if (r === 'pharmacien') {
+      return [{ label: 'Pharmacie', path: '/pharmacie' }];
+    }
+
+    if (r === 'hr') {
+      return [{ label: 'RH', path: '/rh' }];
+    }
+
     return [{ label: 'Comptabilité', path: '/comptabilite' }];
   }
 

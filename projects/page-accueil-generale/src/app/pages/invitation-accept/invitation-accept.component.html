@@ -1,0 +1,18 @@
+<div class="invite-accept">
+  <h2>Accepter l'invitation</h2>
+  <p *ngIf="message" class="message">{{ message }}</p>
+  <div *ngIf="!message">
+    <p *ngIf="token">Vous êtes invité(e). Vous pouvez soit créer un compte, soit, si vous avez déjà un compte, accepter l'invitation après connexion.</p>
+    <div class="actions">
+      <button (click)="goToRegister()">Créer un compte</button>
+      <button (click)="accept()">J'ai déjà un compte - Accepter</button>
+    </div>
+    <div *ngIf="accepting">
+      <label>Nouveau mot de passe</label>
+      <input type="password" [(ngModel)]="password" />
+      <label>Confirmer le mot de passe</label>
+      <input type="password" [(ngModel)]="confirm" />
+      <button (click)="accept()">Accepter</button>
+    </div>
+  </div>
+</div>

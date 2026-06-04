@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/gestion-hotellerie/src/styles.scss"],
+  "sourcesContent": ["@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');\n\n* {\n  box-sizing: border-box;\n}\n\nhtml,\nbody {\n  height: 100%;\n}\n\nbody {\n  margin: 0;\n  font-family: 'Manrope', 'Segoe UI', sans-serif;\n  background: #f7f7fb;\n  color: #0f172a;\n}\n\nh1,\nh2,\nh3 {\n  font-family: 'Playfair Display', 'Manrope', serif;\n}\n"],
+  "mappings": ";;;AAEA;AACE,cAAA;;AAGF;AAAA;AAEE,UAAA;;AAGF;AACE,UAAA;AACA;IAAA,SAAA;IAAA,UAAA;IAAA;AACA,cAAA;AACA,SAAA;;AAGF;AAAA;AAAA;AAGE;IAAA,kBAAA;IAAA,SAAA;IAAA;;",
+  "names": []
+}

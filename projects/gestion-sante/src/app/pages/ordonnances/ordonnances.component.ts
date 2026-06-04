@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import jsPDF from 'jspdf';
 
 interface Ordonnance {
   id: string; patient: string; medecin: string; date: string;
@@ -31,5 +32,73 @@ export class OrdonnancesComponent {
     this.ordonnances.unshift({ id: Date.now().toString(), ...this.form });
     this.form = { patient: '', medecin: '', date: '', medicaments: '', posologie: '', duree: '7 jours', renouvellable: false };
     this.showForm.set(false);
+  }
+
+  telechargerPDF(o: Ordonnance) {
+    const doc = new jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: [148.5, 210] // Demi A4
+    });
+
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 10;
+    const contentWidth = pageWidth - 2 * margin;
+
+    // Nom de l'hôpital
+    doc.setFontSize(16);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Hôpital Central de Bamako', pageWidth / 2, margin + 10, { align: 'center' });
+
+    // Titre
+    doc.setFontSize(14);
+    doc.text('ORDONNANCE', pageWidth / 2, margin + 25, { align: 'center' });
+
+    // Informations de l'ordonnance
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    let y = margin + 40;
+
+    doc.text(`Patient: ${o.patient}`, margin, y);
+    y += 8;
+    doc.text(`Médecin: ${o.medecin}`, margin, y);
+    y += 8;
+    doc.text(`Date: ${o.date}`, margin, y);
+    y += 8;
+    doc.text(`Heure: ${new Date().toLocaleTimeString('fr-FR')}`, margin, y);
+    y += 12;
+
+    // Médicaments prescrits
+    doc.setFont('helvetica', 'bold');
+    doc.text('Médicaments prescrits:', margin, y);
+    y += 8;
+    doc.setFont('helvetica', 'normal');
+    const medLines = doc.splitTextToSize(o.medicaments, contentWidth);
+    doc.text(medLines, margin, y);
+    y += medLines.length * 5 + 8;
+
+    // Posologie
+    doc.setFont('helvetica', 'bold');
+    doc.text('Posologie:', margin, y);
+    y += 8;
+    doc.setFont('helvetica', 'normal');
+    const posoLines = doc.splitTextToSize(o.posologie, contentWidth);
+    doc.text(posoLines, margin, y);
+    y += posoLines.length * 5 + 8;
+
+    // Durée
+    doc.text(`Durée du traitement: ${o.duree}`, margin, y);
+    y += 8;
+    doc.text(`Renouvellable: ${o.renouvellable ? 'Oui' : 'Non'}`, margin, y);
+    y += 20;
+
+    // Zone de signature
+    doc.setFont('helvetica', 'normal');
+    doc.text('Signature du médecin:', margin, pageHeight - margin - 20);
+    doc.line(margin, pageHeight - margin - 15, pageWidth - margin, pageHeight - margin - 15);
+
+    // Téléchargement
+    doc.save(`ordonnance_${o.patient.replace(/\s+/g, '_')}_${o.date.replace(/\//g, '-')}.pdf`);
   }
 }

@@ -1,0 +1,202 @@
+<div class="mn-page" (click)="closeAllDropdowns()">
+
+  <!-- ── Header ── -->
+  <div class="mn-header">
+    <h1 class="mn-header__title">Menu</h1>
+    <button class="mn-btn-add action-btn action-btn--primary" (click)="openAddForm()">
+      <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"/>
+      </svg>
+      Ajouter un plat
+    </button>
+  </div>
+
+  <!-- ── Tabs ── -->
+  <div class="mn-tabs">
+    @for (tab of tabs; track tab) {
+      <button class="mn-tab" [class.mn-tab--active]="activeTab() === tab" (click)="activeTab.set(tab)">
+        {{ tab }}
+      </button>
+    }
+  </div>
+
+  <!-- ── Items grid ── -->
+  @if (activeTab() !== 'Catégories') {
+    @if (filtered().length === 0) {
+      <div class="mn-empty">
+        <svg viewBox="0 0 48 48" fill="none" stroke="#cbd5e1" stroke-width="2" width="48" height="48">
+          <circle cx="24" cy="24" r="20"/><path d="M16 24h16M24 16v16"/>
+        </svg>
+        <p>Aucun article dans cette catégorie</p>
+        <button class="mn-btn-add action-btn action-btn--primary" (click)="openAddForm()">+ Ajouter un plat</button>
+      </div>
+    } @else {
+      <div class="mn-grid">
+        @for (item of filtered(); track item.id) {
+          <article class="mn-card" (click)="openDetail(item)">
+            <!-- Image area -->
+            <div class="mn-card__img-wrap">
+              @if (item.image) {
+                <img class="mn-card__img" [src]="item.image" [alt]="item.name" (error)="imgError($event)">
+              }
+              <div class="mn-card__img-bg"></div>
+              <!-- 3-dot menu -->
+              <button class="mn-card__dots" (click)="toggleDropdown(item.id, $event)" title="Options">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+                  <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"/>
+                </svg>
+              </button>
+              @if (openDropdownId() === item.id) {
+                <div class="mn-dropdown" (click)="$event.stopPropagation()">
+                  <button class="mn-dropdown__item action-btn action-btn--ghost" (click)="openEditForm(item, $event)">
+                    <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg>
+                    Modifier
+                  </button>
+                  <button class="mn-dropdown__item mn-dropdown__item--danger action-btn action-btn--danger" (click)="deleteItem(item, $event)">
+                    <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                    Supprimer
+                  </button>
+                </div>
+              }
+            </div>
+            <!-- Text area -->
+            <div class="mn-card__body">
+              <p class="mn-card__name">{{ item.name }}</p>
+              <p class="mn-card__price">{{ item.price | number:'1.2-2' }} €</p>
+              <p class="mn-card__sub">{{ item.subCategory }}</p>
+            </div>
+          </article>
+        }
+      </div>
+    }
+  }
+
+  <!-- ── Catégories tab ── -->
+  @if (activeTab() === 'Catégories') {
+    <div class="mn-cat-card">
+      <div class="mn-cat-card__head">
+        <h2 class="mn-cat-card__title">Catégories du menu</h2>
+        <button class="mn-btn-add mn-btn-add--sm action-btn action-btn--secondary" (click)="categories.update(l => [...l, 'Nouvelle catégorie'])">
+          + Ajouter
+        </button>
+      </div>
+      <ul class="mn-cat-list">
+        @for (cat of categories(); track cat) {
+          <li class="mn-cat-item">
+            <span class="mn-cat-item__dot"></span>
+            <span class="mn-cat-item__label">{{ cat }}</span>
+            <button class="mn-cat-item__btn mn-cat-item__btn--del action-btn action-btn--danger" (click)="categories.update(l => l.filter(c => c !== cat))">Suppr.</button>
+          </li>
+        }
+      </ul>
+    </div>
+  }
+
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- Detail modal                           -->
+<!-- ═══════════════════════════════════════ -->
+@if (selectedItem(); as item) {
+  <div class="mn-overlay" (click)="closeDetail()">
+    <div class="mn-detail" (click)="$event.stopPropagation()">
+      <!-- Image -->
+      <div class="mn-detail__img-wrap">
+        @if (item.image) {
+          <img class="mn-detail__img" [src]="item.image" [alt]="item.name" (error)="imgError($event)">
+        }
+        <button class="mn-detail__close" (click)="closeDetail()">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+        </button>
+      </div>
+      <!-- Info -->
+      <div class="mn-detail__body">
+        <div class="mn-detail__top">
+          <div>
+            <h2 class="mn-detail__name">{{ item.name }}</h2>
+            <span class="mn-detail__sub">{{ item.subCategory }}</span>
+          </div>
+          <p class="mn-detail__price">{{ item.price | number:'1.2-2' }} €</p>
+        </div>
+        <p class="mn-detail__desc">{{ item.description }}</p>
+        <div class="mn-detail__actions">
+          <button class="mn-detail__btn mn-detail__btn--edit action-btn action-btn--secondary" (click)="openEditForm(item)">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="15" height="15"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg>
+            Modifier
+          </button>
+          <button class="mn-detail__btn mn-detail__btn--del action-btn action-btn--danger" (click)="deleteItem(item)">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="15" height="15"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+            Supprimer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- ═══════════════════════════════════════ -->
+<!-- Add / Edit form modal                  -->
+<!-- ═══════════════════════════════════════ -->
+@if (formMode(); as mode) {
+  <div class="mn-overlay" (click)="closeForm()">
+    <div class="mn-form-modal" (click)="$event.stopPropagation()">
+      <div class="mn-form-modal__head">
+        <h2 class="mn-form-modal__title">{{ mode === 'add' ? 'Ajouter un plat' : 'Modifier le plat' }}</h2>
+        <button class="mn-detail__close" (click)="closeForm()">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+        </button>
+      </div>
+      <!-- Preview -->
+      @if (formItem.image) {
+        <div class="mn-form-modal__preview">
+          <img [src]="formItem.image" alt="aperçu" (error)="imgError($event)">
+        </div>
+      }
+      <!-- Fields -->
+      <div class="mn-form">
+        <div class="mn-form__row mn-form__row--2">
+          <div class="mn-form__field">
+            <label class="mn-form__label">Nom *</label>
+            <input class="mn-form__input" type="text" [(ngModel)]="formItem.name" placeholder="Ex: Burger Classic">
+          </div>
+          <div class="mn-form__field">
+            <label class="mn-form__label">Prix (€) *</label>
+            <input class="mn-form__input" type="number" [(ngModel)]="formItem.price" placeholder="0.00" min="0" step="0.50">
+          </div>
+        </div>
+        <div class="mn-form__row mn-form__row--2">
+          <div class="mn-form__field">
+            <label class="mn-form__label">Catégorie</label>
+            <select class="mn-form__input" [(ngModel)]="formItem.category">
+              <option>Plats</option>
+              <option>Boissons</option>
+              <option>Desserts</option>
+            </select>
+          </div>
+          <div class="mn-form__field">
+            <label class="mn-form__label">Sous-catégorie</label>
+            <input class="mn-form__input" type="text" [(ngModel)]="formItem.subCategory" placeholder="Ex: Plat principal">
+          </div>
+        </div>
+        <div class="mn-form__field">
+          <label class="mn-form__label">Description</label>
+          <textarea class="mn-form__input mn-form__textarea" [(ngModel)]="formItem.description" rows="3" placeholder="Description du plat..."></textarea>
+        </div>
+        <div class="mn-form__field">
+          <label class="mn-form__label">URL de l'image</label>
+          <input class="mn-form__input" type="url" [(ngModel)]="formItem.image" placeholder="https://...">
+        </div>
+        <div class="mn-form__actions">
+          <button class="mn-form__cancel action-btn action-btn--ghost" (click)="closeForm()">Annuler</button>
+          <button class="mn-form__submit action-btn action-btn--primary" (click)="submitForm()" [disabled]="!formItem.name.trim()">
+            {{ mode === 'add' ? 'Ajouter' : 'Enregistrer' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}

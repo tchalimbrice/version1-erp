@@ -1,0 +1,75 @@
+
+
+#
+# Fatal process out of memory: Zone
+#
+----- Native stack trace -----
+
+ 1: 00007FF6C1913587 
+ 2: 00007FF6C17E46CF 
+ 3: 00007FF6C2AE3876 
+ 4: 00007FF6C2469591 
+ 5: 00007FF6C1F4BAEB 
+ 6: 00007FF6C1CC2E18 
+ 7: 00007FF6C1CCD63C 
+ 8: 00007FF6C2FCE1DE 
+ 9: 00007FF6C2FC3BF9 
+
+<--- Last few GCs --->
+
+[20520:000001F5206F5000]     7079 ms: Scavenge 22.3 (32.0) -> 17.1 (33.5) MB, pooled: 0 MB, 6.97 / 0.17 ms  (average mu = 0.998, current mu = 0.998) allocation failure; 
+
+
+<--- JS stacktrace --->
+
+10: 00007FF6C2F9A79E 
+11: 00007FF6C2F98037 
+
+<--- Last few GCs --->
+
+[20520:000001F5206F5000]     7079 ms: Scavenge 22.3 (32.0) -> 17.1 (33.5) MB, pooled: 0 MB, 6.97 / 0.17 ms  (average mu = 0.998, current mu = 0.998) allocation failure; 
+
+
+<--- JS stacktrace --->
+
+
+<--- Last few GCs --->
+
+[20520:000001F5206F5000]     7079 ms: Scavenge 22.3 (32.0) -> 17.1 (33.5) MB, pooled: 0 MB, 6.97 / 0.17 ms  (average mu = 0.998, current mu = 0.998) allocation failure; 
+
+
+<--- JS stacktrace --->
+
+FATAL ERROR: MarkCompactCollector: young object promotion failed Allocation failed - JavaScript heap out of memory
+----- Native stack trace -----
+
+12: 00007FF6C2F9763D 
+FATAL ERROR: MarkCompactCollector: young object promotion failed Allocation failed - JavaScript heap out of memory
+FATAL ERROR: MarkCompactCollector: young object promotion failed Allocation failed - JavaScript heap out of memory
+13: 00007FF6C2FDD145 
+14: 00007FF6C2C03E92 
+15: 00007FF6C2BFDCAA 
+16: 00007FF6C23E6844 
+17: 00007FF6C23AD422 
+18: 00007FF6C266FAB6 
+19: 00007FF6C17E7470 
+20: 00007FF6C19728B3 
+21: 00007FF6C31FBEAB 
+ 1: 00007FF6C1913587 
+ 2: 00007FF6C1873A5B 
+ 3: 00007FF6C247CCD1 
+ 4: 00007FF6C2469786 
+ 5: 00007FF6C22C5ED0 
+ 6: 00007FF6C2298EDF 
+ 7: 00007FF6C22AA042 
+ 8: 00007FF6C22A0FBE 
+ 9: 00007FF6C22A77C9 
+10: 00007FF6C22ABB31 
+11: 00007FF6C266FAB6 
+12: 00007FF6C17E7470 
+13: 00007FF6C19728B3 
+14: 00007FF6C31FBEAB 
+15: 00007FF9785F7374 
+16: 00007FF97A25CC91 
+----- Native stack trace -----
+

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/gestion-hotellerie/src/app/pages/clients/clients.component.scss"],
+  "sourcesContent": [".page {\n  padding: 22px;\n}\n\nh1 {\n  margin: 0 0 14px;\n  font-size: 18px;\n  font-weight: 800;\n}\n\n.list {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n  display: grid;\n  gap: 10px;\n}\n\n.list li {\n  border: 1px solid rgba(15, 23, 42, 0.12);\n  border-radius: 14px;\n  padding: 12px;\n  background: #fff;\n  display: grid;\n  gap: 4px;\n}\n\n.list b {\n  font-size: 13px;\n}\n\n.list span {\n  font-size: 12px;\n  color: rgba(15, 23, 42, 0.7);\n}\n\n"],
+  "mappings": ";AAAA,CAAA;AACE,WAAA;;AAGF;AACE,UAAA,EAAA,EAAA;AACA,aAAA;AACA,eAAA;;AAGF,CAAA;AACE,cAAA;AACA,WAAA;AACA,UAAA;AACA,WAAA;AACA,OAAA;;AAGF,CARA,KAQA;AACE,UAAA,IAAA,MAAA,KAAA,EAAA,EAAA,EAAA,EAAA,EAAA,EAAA;AACA,iBAAA;AACA,WAAA;AACA,cAAA;AACA,WAAA;AACA,OAAA;;AAGF,CAjBA,KAiBA;AACE,aAAA;;AAGF,CArBA,KAqBA;AACE,aAAA;AACA,SAAA,KAAA,EAAA,EAAA,EAAA,EAAA,EAAA,EAAA;;",
+  "names": []
+}

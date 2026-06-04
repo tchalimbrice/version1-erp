@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CollabStoreService, Role } from './services/collab-store.service';
 
-interface NavLink { label: string; path: string; icon: string; }
+interface NavLink { label: string; path: string; }
 
 @Component({
   selector: 'app-root',
@@ -36,30 +36,41 @@ export class App {
 
   linksForRole(role: Role | undefined): NavLink[] {
     if (!role) return [];
+    if (role === 'owner' && this.store.mode() === 'centralized') return [
+      { label: 'Tableau de bord',        path: '/dashboard'         },
+      { label: 'Réservations',           path: '/reservations'      },
+      { label: 'Check-in / Check-out',   path: '/checkin'           },
+      { label: 'Chambres',               path: '/chambres'          },
+      { label: 'Clients',                path: '/clients'           },
+      { label: 'Ménage',                 path: '/menage'            },
+      { label: 'Employés',               path: '/employes'          },
+      { label: 'Accueil réception',      path: '/accueil-reception' },
+      { label: 'Facturation',            path: '/facturation'       },
+      { label: 'Paramètres',             path: '/parametres'        },
+    ];
     if (role === 'owner') return [
-      { label: 'Tableau de bord', path: '/dashboard',    icon: '' },
-      { label: 'Paramètres',      path: '/parametres',   icon: '' }
+      { label: 'Tableau de bord', path: '/dashboard'  },
+      { label: 'Paramètres',      path: '/parametres' },
     ];
     if (role === 'employee') return [
-      { label: 'Réservations',        path: '/reservations', icon: '' },
-      { label: 'Check-in / Check-out', path: '/checkin',     icon: '&#8597;' },
-      { label: 'Chambres',            path: '/chambres',     icon: '' },
-      { label: 'Clients',             path: '/clients',      icon: '' },
-      { label: 'Ménage',              path: '/menage',       icon: '' },
-      { label: 'Rapports',            path: '/rapports',     icon: '' }
+      { label: 'Réservations',         path: '/reservations' },
+      { label: 'Check-in / Check-out', path: '/checkin'      },
+      { label: 'Chambres',             path: '/chambres'     },
+      { label: 'Clients',              path: '/clients'      },
+      { label: 'Ménage',               path: '/menage'       },
     ];
     if (role === 'hr') return [
-      { label: 'Employés actifs',  path: '/employes',         icon: '' },
-      { label: 'Anciens employés', path: '/anciens-employes', icon: '' },
+      { label: 'Employés actifs',  path: '/employes'          },
+      { label: 'Anciens employés', path: '/anciens-employes'  },
     ];
     if (role === 'receptionist') return [
-      { label: 'Accueil',       path: '/accueil-reception',      icon: '' },
-      { label: 'Clients',       path: '/clients-hotel',          icon: '' },
-      { label: 'Réservations',  path: '/reservations-reception', icon: '' },
-      { label: 'Commandes',     path: '/commandes',              icon: '' },
+      { label: 'Accueil',       path: '/accueil-reception'      },
+      { label: 'Clients',       path: '/clients-hotel'          },
+      { label: 'Réservations',  path: '/reservations-reception' },
+      { label: 'Commandes',     path: '/commandes'              },
     ];
     return [
-      { label: 'Facturation', path: '/facturation', icon: '' }
+      { label: 'Facturation', path: '/facturation' },
     ];
   }
 }

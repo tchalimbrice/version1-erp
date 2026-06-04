@@ -1,0 +1,151 @@
+<div class="db-page">
+
+  <!-- ── Top header ── -->
+  <header class="db-header">
+    <div>
+      <h1 class="db-header__title">Tableau de bord</h1>
+    </div>
+    <div class="db-header__actions">
+      <button class="db-header__btn" title="Notifications">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+          <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+        </svg>
+      </button>
+      <div class="db-header__avatar">A</div>
+    </div>
+  </header>
+
+  <div class="db-body">
+
+    <!-- ── KPI Cards ── -->
+    <section class="db-kpi-grid">
+      @for (stat of stats; track stat.label) {
+        <article class="db-card db-kpi">
+          <div class="db-kpi__left">
+            <p class="db-kpi__label">{{ stat.label }}</p>
+            <p class="db-kpi__value">{{ stat.value }}</p>
+            <p class="db-kpi__change" [class.up]="stat.up" [class.down]="!stat.up">
+              <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11">
+                @if (stat.up) { <path d="M8 3l5 8H3z"/> }
+                @else { <path d="M8 13L3 5h10z"/> }
+              </svg>
+              {{ stat.change }}
+            </p>
+          </div>
+          <div class="db-kpi__icon-box" [style.background]="stat.bg">
+            @switch (stat.icon) {
+              @case ('revenue') {
+                <svg viewBox="0 0 20 20" fill="currentColor" width="22" height="22" [style.color]="stat.color">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"/>
+                </svg>
+              }
+              @case ('orders') {
+                <svg viewBox="0 0 20 20" fill="currentColor" width="22" height="22" [style.color]="stat.color">
+                  <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                  <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/>
+                </svg>
+              }
+              @case ('reservations') {
+                <svg viewBox="0 0 20 20" fill="currentColor" width="22" height="22" [style.color]="stat.color">
+                  <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                </svg>
+              }
+              @case ('clients') {
+                <svg viewBox="0 0 20 20" fill="currentColor" width="22" height="22" [style.color]="stat.color">
+                  <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+                </svg>
+              }
+            }
+          </div>
+        </article>
+      }
+    </section>
+
+    <!-- ── Charts ── -->
+    <section class="db-charts-grid">
+
+      <!-- Line chart -->
+      <article class="db-card">
+        <h2 class="db-card__title">Chiffre d'affaires (7 derniers jours)</h2>
+        <div class="db-chart-wrap">
+          <svg viewBox="0 0 700 150" class="db-chart-svg" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="rGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.02"/>
+              </linearGradient>
+            </defs>
+            <path [attr.d]="lineAreaPath" fill="url(#rGrad)"/>
+            <path [attr.d]="linePath" fill="none" stroke="#0ea5e9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            @for (pt of chartPoints; track $index) {
+              <circle [attr.cx]="pt.x" [attr.cy]="pt.y" r="4" fill="#fff" stroke="#0ea5e9" stroke-width="2.5"/>
+            }
+          </svg>
+          <div class="db-chart-axis">
+            @for (d of days; track d) { <span>{{ d }}</span> }
+          </div>
+        </div>
+      </article>
+
+      <!-- Donut chart -->
+      <article class="db-card">
+        <h2 class="db-card__title">Ventes par catégorie</h2>
+        <div class="db-donut-wrap">
+          <svg viewBox="0 0 180 180" width="150" height="150">
+            <circle cx="90" cy="90" r="60" stroke="#f1f5f9" stroke-width="22" fill="none"/>
+            <g transform="rotate(-90 90 90)">
+              @for (seg of pieSegments; track seg.label) {
+                <circle cx="90" cy="90" r="60" fill="none" stroke-width="22" stroke-linecap="butt"
+                  [attr.stroke]="seg.color"
+                  [attr.stroke-dasharray]="seg.dashArray"
+                  [attr.stroke-dashoffset]="seg.dashOffset"/>
+              }
+            </g>
+          </svg>
+          <div class="db-legend">
+            @for (item of pieData; track item.label) {
+              <div class="db-legend__row">
+                <span class="db-legend__dot" [style.background]="item.color"></span>
+                <span class="db-legend__label">{{ item.label }}</span>
+                <span class="db-legend__pct">{{ item.pct }}%</span>
+              </div>
+            }
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ── Recent orders table ── -->
+    <section class="db-card db-table-card">
+      <div class="db-table-card__head">
+        <h2 class="db-card__title" style="margin-bottom:0">Commandes récentes</h2>
+      </div>
+      <div class="db-table-scroll">
+        <table class="db-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Table</th>
+              <th>Date/heure</th>
+              <th>Total</th>
+              <th>Statut</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (cmd of recentCommandes; track cmd.id) {
+              <tr>
+                <td class="font-id">{{ cmd.id }}</td>
+                <td>{{ cmd.table }}</td>
+                <td class="muted">{{ cmd.date }}</td>
+                <td class="font-bold">{{ cmd.total }}</td>
+                <td><span [class]="statutClass(cmd.statut)">{{ cmd.statut }}</span></td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+</div>

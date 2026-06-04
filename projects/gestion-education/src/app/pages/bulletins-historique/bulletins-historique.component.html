@@ -1,0 +1,62 @@
+<div class="page">
+  <div class="page__header">
+    <div>
+      <h1 class="page__title">Historique des bulletins</h1>
+      <p class="page__sub">{{ bulletins().length }} bulletin(s) trouvé(s)</p>
+    </div>
+    <div class="page__actions">
+      <input
+        class="search-input"
+        type="search"
+        placeholder="Rechercher un élève, une classe, une période..."
+        [value]="query()"
+        (input)="query.set($any($event.target).value)" />
+    </div>
+  </div>
+
+  <div class="stats-row">
+    @for (stat of stats(); track stat.label) {
+      <div class="stat-card">
+        <div class="stat-card__val">{{ stat.value }}</div>
+        <div class="stat-card__lbl">{{ stat.label }}</div>
+      </div>
+    }
+  </div>
+
+  <div class="card">
+    <div class="card__head">
+      <span class="card__title">Bulletins enregistrés</span>
+      <span class="card__link">{{ schoolName }}</span>
+    </div>
+
+    <div class="bulletin-grid">
+      @for (record of bulletins(); track record.id) {
+        <article class="bulletin-card">
+          <div class="bulletin-card__head">
+            <div>
+              <div class="bulletin-card__title">{{ record.studentNom }} {{ record.studentPrenom }}</div>
+              <div class="bulletin-card__meta">{{ record.classe }} • {{ record.periode }}</div>
+            </div>
+            <span class="badge badge--orange">{{ record.matricule }}</span>
+          </div>
+
+          <div class="bulletin-card__body">
+            <div class="bulletin-card__line"><span>Moyenne</span><strong>{{ record.moyenneGenerale | number:'1.2-2' }}/20</strong></div>
+            <div class="bulletin-card__line"><span>Mention</span><strong>{{ record.mention }}</strong></div>
+            <div class="bulletin-card__line"><span>Rang</span><strong>{{ record.rang }}</strong></div>
+            <div class="bulletin-card__line"><span>Année</span><strong>{{ record.schoolYear }}</strong></div>
+          </div>
+
+          <div class="bulletin-card__foot">
+            <button class="btn btn--ghost btn--small" type="button" (click)="editBulletin(record)">Modifier</button>
+            <button class="btn btn--outline btn--small" type="button" (click)="bulletinStore.exportBulletinPdf(record, schoolName)">PDF</button>
+          </div>
+        </article>
+      }
+    </div>
+
+    @if (!bulletins().length) {
+      <div class="empty-state">Aucun bulletin ne correspond à votre recherche.</div>
+    }
+  </div>
+</div>

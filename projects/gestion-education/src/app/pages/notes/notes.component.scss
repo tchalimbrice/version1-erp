@@ -1,0 +1,137 @@
+@use '../../shared-page.scss';
+
+.btn--disabled,
+.btn:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.period-toggle {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.period-toggle__btn {
+  border: 1.5px solid #e3e8f0;
+  background: #fff;
+  color: #6d7c92;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.period-toggle__btn--active {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+  border-color: #e67e22;
+  color: #fff;
+}
+
+.student-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.student-card {
+  border: 1.5px solid #e3e8f0;
+  border-radius: 14px;
+  background: #fff;
+  padding: 14px;
+  text-align: left;
+  cursor: pointer;
+  min-height: 88px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
+}
+
+.student-card--selected {
+  border-color: #1a3a5c;
+}
+
+.student-card--saved {
+  background: #fff3e5;
+  border-color: #f39c12;
+}
+
+.student-card__name {
+  font-size: 14px;
+  font-weight: 800;
+  color: #1a3a5c;
+}
+
+.student-card__meta {
+  margin-top: 6px;
+  font-size: 11px;
+  color: #8a9ab0;
+}
+
+.subject-table {
+  border: 1px solid #e3e8f0;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.subject-table__head,
+.subject-table__row {
+  display: grid;
+  grid-template-columns: minmax(120px, 1.3fr) repeat(4, minmax(72px, .8fr)) 70px 72px minmax(120px, 1fr);
+  gap: 8px;
+  align-items: center;
+  padding: 10px 12px;
+}
+
+.subject-table__head {
+  background: #f8f9fb;
+  color: #8a9ab0;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+}
+
+.subject-table__row {
+  border-top: 1px solid #f0f2f7;
+  font-size: 12px;
+}
+
+.subject-table__row strong {
+  color: #1a3a5c;
+}
+
+.field__input--compact {
+  min-width: 0;
+  padding: 8px 10px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.summary-box {
+  border: 1px solid #e3e8f0;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #fff, #fafbff);
+  padding: 14px;
+}
+
+.summary-box__label {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  color: #8a9ab0;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+}
+
+.summary-box__value {
+  display: block;
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: 900;
+  color: #1a3a5c;
+}
+

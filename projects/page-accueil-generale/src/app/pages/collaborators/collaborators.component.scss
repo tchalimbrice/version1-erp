@@ -1,0 +1,7 @@
+.collab-page { max-width: 900px; margin: 20px auto; background:#fff; padding:16px; border-radius:8px }
+.collab-page .form { display:flex; gap:8px; align-items:center; flex-wrap:wrap }
+.collab-page input[type=number], .collab-page input[type=text] { width:120px }
+.collab-page .list { margin-top:16px }
+.collab-page table { width:100%; border-collapse:collapse }
+.collab-page th, .collab-page td { border:1px solid #eee; padding:8px; text-align:left }
+.collab-page .message { color:#c00 }

@@ -75,9 +75,14 @@ export class LoginComponent {
   private pendingPayload: ReturnType<typeof decodeInvite> = undefined;
 
   constructor() {
+    const token = this.route.snapshot.queryParamMap.get('invite');
+    const authVerified = this.route.snapshot.queryParamMap.get('auth') === '1';
+    if (token && authVerified) {
+      const payload = decodeInvite(token);
+      if (payload) { this.store.hydrateFromInvite(payload); this.redirectByRole(payload.user.role); return; }
+    }
     const existing = this.store.currentUser();
     if (existing) { this.redirectByRole(existing.role); return; }
-    const token = this.route.snapshot.queryParamMap.get('invite');
     if (token) this.processInvite(token);
   }
 
@@ -103,7 +108,7 @@ export class LoginComponent {
 
   private redirectByRole(role: string) {
     const dest: Record<string, string> = {
-      owner: '/tableau-de-bord', employee: '/parcelles', hr: '/rh', accountant: '/comptabilite'
+      owner: '/tableau-de-bord', employee: '/animaux', hr: '/rh', accountant: '/comptabilite', pharmacien: '/pharmacie'
     };
     this.router.navigate([dest[role] ?? '/tableau-de-bord']);
   }

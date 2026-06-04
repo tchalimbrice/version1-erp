@@ -45,5 +45,6 @@ export class CollabLoginComponent {
     if (role === 'employee') this.router.navigate(['/parcelles']);
     if (role === 'hr') this.router.navigate(['/rh']);
     if (role === 'accountant') this.router.navigate(['/comptabilite']);
+    if (role === 'pharmacien') this.router.navigate(['/pharmacie']);
   }
 }

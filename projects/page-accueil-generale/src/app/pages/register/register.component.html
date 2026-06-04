@@ -1,0 +1,33 @@
+<div class="register-form">
+  <h2>Créer un compte</h2>
+  <p *ngIf="message" class="message">{{ message }}</p>
+  <label>Nom d'utilisateur</label>
+  <input [(ngModel)]="username" name="username" required />
+  <div *ngIf="submitted && !username" class="field-error">Le nom d'utilisateur est requis.</div>
+
+  <label>Email</label>
+  <input [(ngModel)]="email" name="email" required type="email" />
+  <div *ngIf="submitted && !email" class="field-error">L'email est requis.</div>
+
+  <label>Prénom</label>
+  <input [(ngModel)]="firstName" name="firstName" required />
+  <div *ngIf="submitted && !firstName" class="field-error">Le prénom est requis.</div>
+
+  <label>Nom</label>
+  <input [(ngModel)]="lastName" name="lastName" required />
+  <div *ngIf="submitted && !lastName" class="field-error">Le nom est requis.</div>
+
+  <label>Domaine</label>
+  <input [(ngModel)]="domain" name="domain" placeholder="ex: gestion-commerce" required />
+  <div *ngIf="submitted && !domain" class="field-error">Le domaine est requis.</div>
+
+  <label>Mot de passe</label>
+  <input type="password" [(ngModel)]="password" name="password" required />
+  <div *ngIf="submitted && !password" class="field-error">Le mot de passe est requis.</div>
+
+  <label>Confirmer</label>
+  <input type="password" [(ngModel)]="confirm" name="confirm" required />
+  <div *ngIf="submitted && password !== confirm" class="field-error">Les mots de passe ne correspondent pas.</div>
+
+  <button (click)="register()" [disabled]="loading || !isFormValid()">{{ loading ? 'En cours...' : 'S\'inscrire' }}</button>
+</div>

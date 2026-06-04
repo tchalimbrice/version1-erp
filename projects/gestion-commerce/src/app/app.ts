@@ -33,6 +33,8 @@ export class App {
   linksForRole(role: Role): NavLink[] {
     if (role === 'owner') return [
       { label: 'Tableau de bord', path: '/dashboard',   icon: '📊' },
+      { label: 'Entreprises',     path: '/entreprises', icon: '🏢' },
+      { label: 'Audits',          path: '/audits',      icon: '📝' },
       { label: 'Stocks',          path: '/stocks',       icon: '📦' },
       { label: 'Fournisseurs',    path: '/fournisseurs', icon: '🚚' },
       { label: 'Paramètres',      path: '/parametres',   icon: '⚙️' },

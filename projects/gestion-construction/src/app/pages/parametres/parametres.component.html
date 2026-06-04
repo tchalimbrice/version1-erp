@@ -1,4 +1,150 @@
-<div class="page"> <header class="page__header"> <div> <h1 class="page__title">Paramètres</h1> <p class="page__sub">Informations de l'entreprise</p> </div> </header> <div class="card" style="max-width:600px;"> <div class="card__head"> <span class="card__title"> Entreprise BTP</span> </div> <div style="display:flex;flex-direction:column;gap:14px;"> <div class="field"> <label class="field__label">Nom de l'entreprise</label> <input [(ngModel)]="form.name" class="field__input" /> </div> <div class="field"> <label class="field__label">Adresse</label> <input [(ngModel)]="form.address" class="field__input" /> </div> <div class="fields-row"> <div class="field"> <label class="field__label">Téléphone</label> <input [(ngModel)]="form.phone" class="field__input" /> </div> <div class="field"> <label class="field__label">E-mail</label> <input [(ngModel)]="form.email" type="email" class="field__input" /> </div> </div> </div> <div style="margin-top:24px;display:flex;align-items:center;gap:16px;"> <button class="btn btn--primary" (click)="save()">Enregistrer</button> @if (saved()) {
-        <span style="color:#27ae60;font-size:13px;font-weight:700;">✓ Modifications enregistrées</span> }
-    </div> </div>
+<div class="page">
+  <header class="page__header">
+    <div>
+      <h1 class="page__title">Paramètres</h1>
+      <p class="page__sub">Informations de l'entreprise et gestion collaborative</p>
+    </div>
+  </header>
+
+  @if (feedback()) {
+    <div class="card" style="margin-bottom:18px;border-left:4px solid #e67e22;">
+      <strong>{{ feedback() }}</strong>
+    </div>
+  }
+
+  <div class="card">
+    <div class="card__head">
+      <span class="card__title">Entreprise BTP</span>
+    </div>
+
+    <div class="fields-row fields-row--3">
+      <label class="field">
+        <span class="field__label">Mode d'accès</span>
+        <select [(ngModel)]="form.mode" class="field__select">
+          <option value="centralized">Centralisé</option>
+          <option value="collaborative">Collaboratif</option>
+        </select>
+      </label>
+      <label class="field">
+        <span class="field__label">Nom de l'entreprise</span>
+        <input [(ngModel)]="form.name" class="field__input" />
+      </label>
+      <label class="field">
+        <span class="field__label">Adresse</span>
+        <input [(ngModel)]="form.address" class="field__input" />
+      </label>
+    </div>
+
+    <div class="fields-row">
+      <label class="field">
+        <span class="field__label">Téléphone</span>
+        <input [(ngModel)]="form.phone" class="field__input" />
+      </label>
+      <label class="field">
+        <span class="field__label">E-mail</span>
+        <input [(ngModel)]="form.email" type="email" class="field__input" />
+      </label>
+    </div>
+
+    <div class="field" style="margin-top:14px;">
+      <span class="field__label">Mot de passe administrateur</span>
+      <input [(ngModel)]="form.adminPassword" type="password" class="field__input" />
+    </div>
+
+    <div style="margin-top:20px;display:flex;align-items:center;gap:16px;">
+      <button class="btn btn--primary" (click)="save()">Enregistrer</button>
+      @if (saved()) {
+        <span style="color:#27ae60;font-size:13px;font-weight:700;">✓ Modifications enregistrées</span>
+      }
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__head">
+      <span class="card__title">Gestion collaborative</span>
+      <span class="card__link">Les liens renvoient d'abord vers la connexion</span>
+    </div>
+
+    <div class="fields-row fields-row--3">
+      <label class="field">
+        <span class="field__label">Prénom</span>
+        <input [(ngModel)]="collaboratorForm.firstName" class="field__input" placeholder="Ex: Jean" />
+      </label>
+      <label class="field">
+        <span class="field__label">Nom</span>
+        <input [(ngModel)]="collaboratorForm.lastName" class="field__input" placeholder="Ex: Kouamé" />
+      </label>
+      <label class="field">
+        <span class="field__label">Rôle</span>
+        <select [(ngModel)]="collaboratorForm.role" class="field__select">
+          @for (role of roleOptions; track role.value) {
+            <option [ngValue]="role.value">{{ role.label }}</option>
+          }
+        </select>
+      </label>
+    </div>
+
+    <div class="fields-row">
+      <label class="field">
+        <span class="field__label">Email</span>
+        <input [(ngModel)]="collaboratorForm.email" type="email" class="field__input" placeholder="collab@entreprise.com" />
+      </label>
+      <label class="field">
+        <span class="field__label">Mot de passe</span>
+        <input [(ngModel)]="collaboratorForm.password" type="text" class="field__input" placeholder="Mot de passe provisoire" />
+      </label>
+    </div>
+
+    <div style="margin-top:18px;">
+      <button class="btn btn--primary" (click)="addCollaborator()">Générer le lien</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__head">
+      <span class="card__title">Liens générés</span>
+      <span class="card__link">{{ collaborators().length }} collaborateur(s)</span>
+    </div>
+
+    @if (collaborators().length === 0) {
+      <p class="page__sub">Aucun lien généré pour le moment.</p>
+    } @else {
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Collaborateur</th>
+              <th>Rôle</th>
+              <th>Email</th>
+              <th>Lien d'accès</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of collaborators(); track item.id) {
+              <tr>
+                <td class="fw-med">{{ item.firstName }} {{ item.lastName }}</td>
+                <td class="text-muted">
+                  @switch (item.role) {
+                    @case ('owner') { Chef d'entreprise }
+                    @case ('accountant') { Comptable }
+                    @case ('hr') { RH }
+                    @case ('employee') { Architecte / Technicien }
+                  }
+                </td>
+                <td class="text-muted">{{ item.email }}</td>
+                <td class="mono">{{ getInviteLink(item) }}</td>
+                <td>
+                  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <button class="btn btn--outline" (click)="copyLink(getInviteLink(item))">Copier</button>
+                    <button class="btn btn--ghost" (click)="removeCollaborator(item.id)">Retirer</button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </div>
 </div>

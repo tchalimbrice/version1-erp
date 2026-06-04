@@ -1,2 +1,181 @@
-﻿<div class="dashboard"> <aside class="sidebar"> <div class="brand"> <div class="brand__logo" aria-hidden="true"> <svg viewBox="0 0 64 64" role="img"> <defs> <linearGradient id="leafSide" x1="0" y1="0" x2="1" y2="1"> <stop offset="0" stop-color="#1f7a4e" /> <stop offset="1" stop-color="#0e5a35" /> </linearGradient> </defs> <circle cx="32" cy="32" r="30" fill="#e9f4ee" /> <path d="M42 16c-8 0-14 6-14 14 0 6 4 12 10 14 8-6 10-16 4-28z" fill="url(#leafSide)" /> <path d="M26 26c-6 2-10 8-10 14 0 6 4 10 10 12 6-6 8-16 0-26z" fill="#3aa76d" /> <path d="M24 40c8-6 16-10 22-12" fill="none" stroke="#0e5a35" stroke-width="2.5" stroke-linecap="round" /> </svg> </div> <div class="brand__text"> <h1>AGROFEST</h1> <p>Gestion de ferme</p> </div> </div> <nav class="menu"> <a class="menu__item active" routerLink="/tableau-de-bord">Tableau de bord</a> <a class="menu__item" routerLink="/finances">Finances</a> <a class="menu__item" href="#">Rapports</a> <a class="menu__item" href="#">Paramètres</a> </nav> <button class="logout" type="button">Déconnexion</button> </aside> <main class="content"> <header class="topbar"> <div class="topbar__left"> <h2>Tableau de bord</h2> </div> <div class="topbar__right"> <button class="icon-btn" type="button" aria-label="Notifications">??</button> <div class="user"> <div class="user__avatar">JD</div> <div class="user__info"> <span class="user__name">Jean Dupont</span> <span class="user__role">Propriétaire</span> </div> </div> </div> </header> <section *ngIf="ownerInviteUrl()" class="panel" style="margin-bottom: 16px;"> <div class="panel__header"> <h4>Lien unique chef d’entreprise (à conserver)</h4> </div> <div style="padding: 12px; word-break: break-all;">{{ ownerInviteUrl() }}</div> </section> <section class="stats"> <article class="stat-card green"> <div> <p>Parcelles</p> <h3>12</h3> </div> <span class="stat-icon">??</span> </article> <article class="stat-card orange"> <div> <p>Animaux</p> <h3>48</h3> </div> <span class="stat-icon">??</span> </article> <article class="stat-card blue"> <div> <p>Tâches</p> <h3>25</h3> </div> <span class="stat-icon">??</span> </article> <article class="stat-card teal"> <div> <p>Solde</p> <h3>{{ formatMoney(balance()) }} Fcfa</h3> </div> <span class="stat-icon">??</span> </article> </section> <section class="grid"> <article class="panel wide"> <div class="panel__header"> <h4>Aperçu de la ferme - Cette semaine</h4> <select class="select"> <option>Revenus</option> <option>Production</option> <option>Dépenses</option> </select> </div> <div class="chart"> <svg viewBox="0 0 320 120" aria-hidden="true"> <path class="chart__fill" [attr.d]="chartFill(lastSales(6).map(s => s.total))"></path> <path class="chart__line" [attr.d]="chartPath(lastSales(6).map(s => s.total))"></path> </svg> <div class="chart__axis"> <span>Lun</span> <span>Mar</span> <span>Mer</span> <span>Jeu</span> <span>Ven</span> <span>Sam</span> <span>Dim</span> </div> </div> </article> <article class="panel"> <div class="panel__header"> <h4>Météo</h4> </div> <div class="weather"> <div class="weather__icon">??</div> <div> <div class="weather__temp">28°C</div> <div class="weather__state">Ensoleillé</div> </div> </div> </article> <article class="panel"> <div class="panel__header"> <h4>Tâches récentes</h4> </div> <ul class="tasks"> <li> <div> <strong>Irrigation - Parcelle A</strong> <span>Aujourd'hui</span> </div> <span class="tag green">Urgent</span> </li> <li> <div> <strong>Nourrir les poulets</strong> <span>Demain</span> </div> <span class="tag orange">Planifié</span> </li> <li> <div> <strong>Récolte des tomates</strong> <span>15 mai 2024</span> </div> <span class="tag">Prévu</span> </li> </ul> </article> <article class="panel"> <div class="panel__header"> <h4>Activités</h4> </div> <div class="donut"> <div class="donut__chart"></div> <div class="donut__legend"> <span><i class="legend-dot green"></i>Parcelles <b>12</b></span> <span><i class="legend-dot orange"></i>Élevage <b>48</b></span> <span><i class="legend-dot blue"></i>Tâches <b>25</b></span> </div> </div> </article> </section> </main>
+<div class="dashboard-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand__logo" aria-hidden="true">
+        <svg viewBox="0 0 64 64" role="img" focusable="false">
+          <defs>
+            <linearGradient id="leafGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#5fc27d" />
+              <stop offset="1" stop-color="#1f7a4e" />
+            </linearGradient>
+          </defs>
+          <circle cx="32" cy="32" r="30" fill="#eef9f1" />
+          <path d="M41 16c-8 1-14 7-14 15 0 5 3 10 8 13 8-6 11-16 6-28z" fill="url(#leafGrad)" />
+          <path d="M24 24c-6 3-10 8-10 14 0 5 3 9 8 12 6-5 8-16 2-26z" fill="#8ed7a6" />
+          <path d="M25 40c7-5 15-9 21-11" fill="none" stroke="#115237" stroke-width="2.5" stroke-linecap="round" />
+        </svg>
+      </div>
+      <div class="brand__text">
+        <h1>Ma Ferme</h1>
+        <p>Gestion de ferme</p>
+      </div>
+    </div>
+
+    <nav class="menu" aria-label="Navigation principale">
+      <a class="menu__item menu__item--active" routerLink="/tableau-de-bord">
+        <span class="menu__icon">⌂</span>
+        Tableau de bord
+      </a>
+      <a class="menu__item" routerLink="/animaux">
+        <span class="menu__icon">◔</span>
+        Animaux
+      </a>
+      <a class="menu__item" routerLink="/aliments">
+        <span class="menu__icon">▦</span>
+        Aliments
+      </a>
+      <a class="menu__item" routerLink="/activites">
+        <span class="menu__icon">◷</span>
+        Activités
+      </a>
+      <a class="menu__item" routerLink="/reproduction">
+        <span class="menu__icon">◎</span>
+        Reproduction
+      </a>
+      <a class="menu__item" routerLink="/sante">
+        <span class="menu__icon">✚</span>
+        Santé
+      </a>
+      <a class="menu__item" routerLink="/finances">
+        <span class="menu__icon">◧</span>
+        Finances
+      </a>
+      <a class="menu__item" routerLink="/parametres">
+        <span class="menu__icon">⚙</span>
+        Paramètres
+      </a>
+    </nav>
+
+    <div class="sidebar__footer">
+      <div class="profile">
+        <div class="profile__avatar">{{ userInitials() }}</div>
+        <div class="profile__text">
+          <p class="profile__name">{{ userName() }}</p>
+          <p class="profile__role">Propriétaire</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="content">
+    <header class="topbar">
+      <h2>Tableau de bord</h2>
+      <div class="topbar__actions">
+        <label class="search" aria-label="Rechercher">
+          <span class="search__icon">⌕</span>
+          <input type="search" placeholder="Rechercher..." />
+        </label>
+        <button class="icon-btn" type="button" aria-label="Notifications">◉</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero__copy">
+        <p class="hero__eyebrow">Bonjour, {{ greetingName() }} !</p>
+        <h1>Voici un aperçu de votre ferme aujourd'hui.</h1>
+      </div>
+
+      <div class="hero__scene" aria-hidden="true">
+        <div class="hero__cloud hero__cloud--one"></div>
+        <div class="hero__cloud hero__cloud--two"></div>
+        <div class="hero__sun"></div>
+        <div class="hero__hill hero__hill--back"></div>
+        <div class="hero__hill hero__hill--front"></div>
+        <div class="hero__field"></div>
+        <div class="hero__barn">
+          <div class="hero__roof"></div>
+          <div class="hero__body">
+            <span class="hero__door"></span>
+            <span class="hero__window hero__window--left"></span>
+            <span class="hero__window hero__window--right"></span>
+          </div>
+          <div class="hero__silo"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="summary-grid">
+      <article
+        *ngFor="let stat of summaryStats"
+        class="summary-card"
+        [class.summary-card--accent]="stat.accent"
+      >
+        <div class="summary-card__icon">{{ stat.icon }}</div>
+        <div class="summary-card__content">
+          <p>{{ stat.label }}</p>
+          <h3>{{ stat.value }}</h3>
+          <span [class]="stat.deltaClass">{{ stat.delta }}</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="dashboard-grid">
+      <div class="dashboard-grid__left">
+        <article class="panel">
+          <div class="panel__header">
+            <h3>Aperçu rapide</h3>
+          </div>
+          <div class="quick-grid">
+            <article *ngFor="let card of quickCards" class="quick-card">
+              <p>{{ card.label }}</p>
+              <h4>{{ card.value }}</h4>
+              <div class="quick-card__foot">
+                <span>{{ card.delta }}</span>
+                <span class="quick-card__muted">Détails +</span>
+              </div>
+            </article>
+          </div>
+        </article>
+
+        <article class="panel panel--activity">
+          <div class="panel__header">
+            <h3>Activités récentes</h3>
+          </div>
+          <ul class="activity-list">
+            <li *ngFor="let activity of recentActivities()">
+              <div class="activity-list__bullet" [attr.data-tone]="activity.tone"></div>
+              <div class="activity-list__text">
+                <strong>{{ activity.actorName }}</strong>
+                <span>{{ activity.action }}</span>
+              </div>
+              <time>{{ activity.at | date:'dd/MM/yyyy' }}</time>
+            </li>
+          </ul>
+          <a class="panel__link" routerLink="/activites">Voir toutes les activités +</a>
+        </article>
+      </div>
+
+      <article class="panel panel--chart">
+        <div class="panel__header">
+          <h3>Évolution des revenus</h3>
+          <span class="panel__chip">Ce mois</span>
+        </div>
+        <div class="chart">
+          <svg viewBox="0 0 420 210" role="img" aria-label="Évolution des revenus">
+            <defs>
+              <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#6cc888" stop-opacity="0.32" />
+                <stop offset="100%" stop-color="#6cc888" stop-opacity="0.03" />
+              </linearGradient>
+            </defs>
+            <path class="chart__fill" [attr.d]="chartFill(revenueSeries)" fill="url(#chartFill)"></path>
+            <path class="chart__line" [attr.d]="chartPath(revenueSeries)"></path>
+          </svg>
+          <div class="chart__labels">
+            <span *ngFor="let label of revenueLabels">{{ label }}</span>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
 </div>

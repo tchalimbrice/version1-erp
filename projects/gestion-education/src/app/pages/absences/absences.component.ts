@@ -27,7 +27,7 @@ interface EtatProf {
 <div class="page">
   <div class="page__header">
     <div>
-      <h1 class="page__title">📋 Absences</h1>
+      <h1 class="page__title"> Absences</h1>
       <p class="page__sub">Gestion des absences élèves et état de présence du corps enseignant</p>
     </div>
     <div class="page__actions">
@@ -41,29 +41,29 @@ interface EtatProf {
   </div>
 
   <div class="tabs">
-    <button class="tab" [class.active]="tab()==='eleves'" (click)="tab.set('eleves')">🧑‍🎓 Élèves</button>
-    <button class="tab" [class.active]="tab()==='profs'"  (click)="tab.set('profs')">👨‍🏫 Enseignants</button>
+    <button class="tab" [class.active]="tab()==='eleves'" (click)="tab.set('eleves')"> Élèves</button>
+    <button class="tab" [class.active]="tab()==='profs'"  (click)="tab.set('profs')"> Enseignants</button>
   </div>
 
   <!-- ── Absences élèves ── -->
   @if (tab() === 'eleves') {
     <div class="kpi-grid">
       <div class="kpi-card" style="border-left-color:#c0392b">
-        <div class="kpi-card__icon" style="background:#fdecea">❌</div>
+        <div class="kpi-card__icon" style="background:#fdecea"></div>
         <div class="kpi-card__body">
           <div class="kpi-card__value">{{ absentsJour() }}</div>
           <div class="kpi-card__label">Absents aujourd'hui</div>
         </div>
       </div>
       <div class="kpi-card" style="border-left-color:#f39c12">
-        <div class="kpi-card__icon" style="background:#fef9e7">⏰</div>
+        <div class="kpi-card__icon" style="background:#fef9e7"></div>
         <div class="kpi-card__body">
           <div class="kpi-card__value">{{ retardsJour() }}</div>
           <div class="kpi-card__label">En retard</div>
         </div>
       </div>
       <div class="kpi-card" style="border-left-color:#27ae60">
-        <div class="kpi-card__icon" style="background:#d5f5e3">✅</div>
+        <div class="kpi-card__icon" style="background:#d5f5e3"></div>
         <div class="kpi-card__body">
           <div class="kpi-card__value">{{ justifiesJour() }}</div>
           <div class="kpi-card__label">Absences justifiées</div>
@@ -113,21 +113,21 @@ interface EtatProf {
   @if (tab() === 'profs') {
     <div class="kpi-grid">
       <div class="kpi-card" style="border-left-color:#27ae60">
-        <div class="kpi-card__icon" style="background:#d5f5e3">✅</div>
+        <div class="kpi-card__icon" style="background:#d5f5e3"></div>
         <div class="kpi-card__body">
           <div class="kpi-card__value">{{ profsPresents() }}</div>
           <div class="kpi-card__label">Présents</div>
         </div>
       </div>
       <div class="kpi-card" style="border-left-color:#c0392b">
-        <div class="kpi-card__icon" style="background:#fdecea">❌</div>
+        <div class="kpi-card__icon" style="background:#fdecea"></div>
         <div class="kpi-card__body">
           <div class="kpi-card__value">{{ profsAbsents() }}</div>
           <div class="kpi-card__label">Absents</div>
         </div>
       </div>
       <div class="kpi-card" style="border-left-color:#f39c12">
-        <div class="kpi-card__icon" style="background:#fef9e7">📝</div>
+        <div class="kpi-card__icon" style="background:#fef9e7"></div>
         <div class="kpi-card__body">
           <div class="kpi-card__value">{{ profsPermission() }}</div>
           <div class="kpi-card__label">En permission</div>

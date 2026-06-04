@@ -1,0 +1,87 @@
+<div class="p-6 space-y-4">
+  <div class="flex items-center justify-between flex-wrap gap-3">
+    <div>
+      <h1 class="text-2xl font-bold text-slate-900">Clients</h1>
+      <p class="text-sm text-slate-500">Gérez les informations de vos clients fidélisés.</p>
+    </div>
+    <button (click)="openAddForm()"
+      class="action-btn action-btn--primary">
+      + Nouveau client
+    </button>
+  </div>
+
+  <input type="text" [value]="search()" (input)="search.set($any($event.target).value)"
+    placeholder="Rechercher un client..."
+    class="w-full max-w-sm rounded-2xl border border-slate-200 bg-slate-50 px-4 py-2 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-300" />
+
+  <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="text-xs text-slate-500 font-semibold uppercase tracking-[0.18em] border-b border-slate-200">
+          <th class="px-6 py-4 text-left">Nom</th>
+          <th class="px-6 py-4 text-left">Téléphone</th>
+          <th class="px-6 py-4 text-left">Email</th>
+          <th class="px-6 py-4 text-left">Points fidélité</th>
+          <th class="px-6 py-4 text-left">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-100">
+        @for (c of filtered(); track c.email) {
+          <tr class="hover:bg-slate-50 transition-colors">
+            <td class="px-6 py-4 font-semibold text-slate-900">{{ c.nom }}</td>
+            <td class="px-6 py-4 text-slate-600">{{ c.tel }}</td>
+            <td class="px-6 py-4 text-slate-600">{{ c.email }}</td>
+            <td class="px-6 py-4 text-slate-900"><span class="font-semibold">{{ c.points }}</span> pts</td>
+            <td class="px-6 py-4">
+              <button class="action-btn action-btn--danger text-xs px-3 py-2" (click)="deleteClient(c.email)">Suppr.</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  @if (showForm()) {
+    <div class="fixed inset-0 z-50 grid place-items-center bg-slate-950/50 p-4">
+      <div class="w-full max-w-2xl rounded-3xl bg-white p-6 shadow-2xl">
+        <div class="mb-6 flex items-center justify-between">
+          <div>
+            <h2 class="text-xl font-semibold text-slate-900">Ajouter un client</h2>
+            <p class="text-sm text-slate-500">Ajoutez un nouveau client à la base.</p>
+          </div>
+          <button class="action-btn action-btn--ghost px-3 py-2" (click)="closeForm()">✕</button>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Nom</label>
+            <input type="text" [(ngModel)]="clientForm.nom" placeholder="Ex: Jean Martin"
+              class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-300" />
+          </div>
+          <div>
+            <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Téléphone</label>
+            <input type="text" [(ngModel)]="clientForm.tel" placeholder="06 12 34 56 78"
+              class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-300" />
+          </div>
+          <div class="sm:col-span-2">
+            <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Email</label>
+            <input type="email" [(ngModel)]="clientForm.email" placeholder="jean@mail.com"
+              class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-300" />
+          </div>
+          <div class="sm:col-span-2">
+            <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Points fidélité</label>
+            <input type="number" min="0" [(ngModel)]="clientForm.points"
+              class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-300" />
+          </div>
+        </div>
+
+        <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-end">
+          <button class="action-btn action-btn--ghost"
+            (click)="closeForm()">Annuler</button>
+          <button class="action-btn action-btn--primary"
+            (click)="submitForm()">Ajouter</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

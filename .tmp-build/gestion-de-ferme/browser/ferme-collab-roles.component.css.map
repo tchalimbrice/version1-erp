@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/gestion-de-ferme/src/app/pages/ferme-collab-roles/ferme-collab-roles.component.scss"],
+  "sourcesContent": [".roles-page { min-height: 100vh; padding: 32px; background: #f6fbf8; }\n.back { display: inline-block; margin-top: 16px; color: #1f7a4e; text-decoration: none; font-weight: 700; }\n"],
+  "mappings": ";AAAA,CAAA;AAAc,cAAA;AAAmB,WAAA;AAAe,cAAA;;AAChD,CAAA;AAAQ,WAAA;AAAuB,cAAA;AAAkB,SAAA;AAAgB,mBAAA;AAAuB,eAAA;;",
+  "names": []
+}

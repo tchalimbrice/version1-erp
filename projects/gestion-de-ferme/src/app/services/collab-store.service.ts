@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 
-export type Role = 'owner' | 'employee' | 'hr' | 'accountant';
+export type Role = 'owner' | 'employee' | 'hr' | 'accountant' | 'pharmacien';
 
 export interface CompanyData {
   name: string;

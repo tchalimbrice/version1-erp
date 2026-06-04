@@ -1,5 +1,0 @@
-# .streamlit/config.toml
-
-[logger]
-level = "debug"
-#level = "info"

@@ -57,3 +57,20 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Invitations et Mailtrap
+
+Le parcours collaboratif de `projects/page-accueil-generale` envoie maintenant les invitations via une petite API locale.
+
+Variables d'environnement attendues pour le serveur d'invitations:
+
+- `MAILTRAP_API_TOKEN`
+- `MAILTRAP_FROM_EMAIL`
+- `MAILTRAP_FROM_NAME`
+- `APP_PUBLIC_URL` pour les liens dans les emails, par défaut `http://localhost:4200`
+
+Lancer le backend d'invitations:
+
+```bash
+npm run api
+```

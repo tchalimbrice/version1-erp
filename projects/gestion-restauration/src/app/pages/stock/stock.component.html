@@ -1,0 +1,111 @@
+<div class="p-6 space-y-4">
+  <div class="flex items-center justify-between flex-wrap gap-3">
+    <div>
+      <h1 class="text-2xl font-bold text-slate-900">Stock</h1>
+      <p class="text-sm text-slate-500">Gérez les produits disponibles et les niveaux de stock.</p>
+    </div>
+    <button (click)="openAddForm()"
+      class="action-btn action-btn--primary">
+      + Nouveau produit
+    </button>
+  </div>
+
+  <input type="text" [value]="search()" (input)="search.set($any($event.target).value)"
+    placeholder="Rechercher un produit..."
+    class="w-full max-w-sm rounded-2xl border border-slate-200 bg-slate-50 px-4 py-2 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-300" />
+
+  <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="text-xs text-slate-500 font-semibold uppercase tracking-[0.18em] border-b border-slate-200">
+          <th class="px-6 py-4 text-left">Produit</th>
+          <th class="px-6 py-4 text-left">Catégorie</th>
+          <th class="px-6 py-4 text-left">Quantité</th>
+          <th class="px-6 py-4 text-left">Unité</th>
+          <th class="px-6 py-4 text-left">Statut</th>
+          <th class="px-6 py-4 text-left">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-100">
+        @for (item of filtered(); track item.nom) {
+          <tr class="hover:bg-slate-50 transition-colors">
+            <td class="px-6 py-4 font-semibold text-slate-900">{{ item.nom }}</td>
+            <td class="px-6 py-4 text-slate-600">{{ item.categorie }}</td>
+            <td class="px-6 py-4 font-semibold text-slate-900">{{ item.qte }}</td>
+            <td class="px-6 py-4 text-slate-600">{{ item.unite }}</td>
+            <td class="px-6 py-4">
+              <span class="inline-flex rounded-full px-2 py-1 text-xs font-semibold" [class]="statutClass(item.statut)">{{ item.statut }}</span>
+            </td>
+            <td class="px-6 py-4">
+              <button class="action-btn action-btn--danger text-xs px-3 py-2" (click)="deleteItem(item.nom)">Suppr.</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  @if (showForm()) {
+    <div class="fixed inset-0 z-50 grid place-items-center bg-slate-950/50 p-4">
+      <div class="w-full max-w-2xl rounded-3xl bg-white p-6 shadow-2xl">
+        <div class="mb-6 flex items-center justify-between">
+          <div>
+            <h2 class="text-xl font-semibold text-slate-900">Ajouter un produit</h2>
+            <p class="text-sm text-slate-500">Complétez les informations pour le stock.</p>
+          </div>
+          <button class="action-btn action-btn--ghost px-3 py-2" (click)="closeForm()">✕</button>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Produit</label>
+            <input type="text" [(ngModel)]="itemForm.nom" placeholder="Ex: Tomate"
+              class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-300" />
+          </div>
+
+          <div>
+            <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Catégorie</label>
+            <select [(ngModel)]="itemForm.categorie"
+              class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-300">
+              @for (category of categories; track category) {
+                <option [value]="category">{{ category }}</option>
+              }
+            </select>
+          </div>
+
+          <div>
+            <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Quantité</label>
+            <input type="number" min="0" [(ngModel)]="itemForm.qte"
+              class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-300" />
+          </div>
+
+          <div>
+            <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Unité</label>
+            <select [(ngModel)]="itemForm.unite"
+              class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-300">
+              @for (unit of units; track unit) {
+                <option [value]="unit">{{ unit }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="sm:col-span-2">
+            <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Statut</label>
+            <select [(ngModel)]="itemForm.statut"
+              class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-300">
+              <option>En stock</option>
+              <option>Stock faible</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-end">
+          <button class="action-btn action-btn--ghost"
+            (click)="closeForm()">Annuler</button>
+          <button class="action-btn action-btn--primary"
+            (click)="submitForm()">Ajouter</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

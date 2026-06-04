@@ -13,6 +13,6 @@ export const routes: Routes = [
   { path: 'clients',         loadComponent: () => import('./pages/clients/clients.component').then(m => m.ClientsComponent),               canActivate: [roleGuard], data: { roles: ['employee'] } },
   { path: 'suivi-temps-reel',loadComponent: () => import('./pages/suivi-temps-reel/suivi-temps-reel.component').then(m => m.SuiviTempsReelComponent), canActivate: [roleGuard], data: { roles: ['employee'] } },
   { path: 'chauffeurs',      loadComponent: () => import('./pages/chauffeurs/chauffeurs.component').then(m => m.ChauffeursComponent),      canActivate: [roleGuard], data: { roles: ['hr'] } },
-  { path: 'facturation',     loadComponent: () => import('./pages/facturation/facturation.component').then(m => m.FacturationComponent),   canActivate: [roleGuard], data: { roles: ['accountant'] } },
+  { path: 'facturation',    loadComponent: () => import('./pages/facturation/facturation.component').then(m => m.FacturationComponent),     canActivate: [roleGuard], data: { roles: ['accountant'] } },
   { path: '**', redirectTo: '/connexion' }
 ];

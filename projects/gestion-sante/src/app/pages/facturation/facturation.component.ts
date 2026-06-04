@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import jsPDF from 'jspdf';
 
 type StatutF = 'Payé' | 'En attente' | 'Annulé';
 
@@ -50,11 +51,76 @@ export class FacturationComponent {
     this.showForm.set(false);
   }
 
-  marquerPaye(f: Facture) { f.statut = 'Payé'; }
-
   statutClass(s: StatutF): string {
-    if (s === 'Payé')       return 'badge badge--green';
-    if (s === 'En attente') return 'badge badge--yellow';
-    return 'badge badge--red';
+    return s === 'Payé' ? 'badge badge--green' :
+           s === 'En attente' ? 'badge badge--yellow' : 'badge badge--red';
+  }
+
+  telechargerPDF(f: Facture) {
+    const doc = new jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: [148.5, 210] // Demi A4
+    });
+
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 10;
+    const contentWidth = pageWidth - 2 * margin;
+
+    // Nom de l'hôpital
+    doc.setFontSize(16);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Hôpital Central de Bamako', pageWidth / 2, margin + 10, { align: 'center' });
+
+    // Titre
+    doc.setFontSize(14);
+    doc.text('FACTURE', pageWidth / 2, margin + 25, { align: 'center' });
+
+    // Informations de la facture
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    let y = margin + 40;
+
+    doc.text(`Numéro de facture: ${f.numero}`, margin, y);
+    y += 8;
+    doc.text(`Patient: ${f.patient}`, margin, y);
+    y += 8;
+    doc.text(`Date: ${f.date}`, margin, y);
+    y += 8;
+    doc.text(`Heure: ${new Date().toLocaleTimeString('fr-FR')}`, margin, y);
+    y += 8;
+    doc.text(`Médecin: Dr. [Nom du médecin]`, margin, y); // À adapter selon les données disponibles
+    y += 12;
+
+    // Actes/Médicaments
+    doc.setFont('helvetica', 'bold');
+    doc.text('Actes/Médicaments prescrits:', margin, y);
+    y += 8;
+    doc.setFont('helvetica', 'normal');
+    const actesLines = doc.splitTextToSize(f.actes, contentWidth);
+    doc.text(actesLines, margin, y);
+    y += actesLines.length * 5 + 8;
+
+    // Montant
+    doc.setFont('helvetica', 'bold');
+    doc.text(`Montant total: ${this.formatMoney(f.montant)} Fcfa`, margin, y);
+    y += 8;
+    doc.text(`Statut: ${f.statut}`, margin, y);
+    y += 20;
+
+    // Zone de signature
+    doc.setFont('helvetica', 'normal');
+    doc.text('Signature du patient:', margin, pageHeight - margin - 20);
+    doc.line(margin, pageHeight - margin - 15, pageWidth - margin, pageHeight - margin - 15);
+
+    // Téléchargement
+    doc.save(`facture_${f.numero}.pdf`);
+  }
+
+  marquerPaye(f: Facture) {
+    if (f.statut === 'En attente') {
+      f.statut = 'Payé';
+    }
   }
 }

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/page-accueil-generale/src/app/pages/collaborators/collaborators.component.scss"],
+  "sourcesContent": [".collab-page { max-width: 900px; margin: 20px auto; background:#fff; padding:16px; border-radius:8px }\r\n.collab-page .form { display:flex; gap:8px; align-items:center; flex-wrap:wrap }\r\n.collab-page input[type=number], .collab-page input[type=text] { width:120px }\r\n.collab-page .list { margin-top:16px }\r\n.collab-page table { width:100%; border-collapse:collapse }\r\n.collab-page th, .collab-page td { border:1px solid #eee; padding:8px; text-align:left }\r\n.collab-page .message { color:#c00 }\r\n"],
+  "mappings": ";AAAA,CAAA;AAAe,aAAA;AAAkB,UAAA,KAAA;AAAmB,cAAA;AAAiB,WAAA;AAAc,iBAAA;;AACnF,CADA,YACA,CAAA;AAAqB,WAAA;AAAc,OAAA;AAAS,eAAA;AAAoB,aAAA;;AAChE,CAFA,YAEA,KAAA,CAAA;AAAA,CAFA,YAEA,KAAA,CAAA;AAAiE,SAAA;;AACjE,CAHA,YAGA,CAAA;AAAqB,cAAA;;AACrB,CAJA,YAIA;AAAqB,SAAA;AAAY,mBAAA;;AACjC,CALA,YAKA;AAAA,CALA,YAKA;AAAmC,UAAA,IAAA,MAAA;AAAuB,WAAA;AAAa,cAAA;;AACvE,CANA,YAMA,CAAA;AAAwB,SAAA;;",
+  "names": []
+}
